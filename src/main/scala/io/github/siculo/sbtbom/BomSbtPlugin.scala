@@ -2,8 +2,9 @@ package io.github.siculo.sbtbom
 
 import io.github.siculo.sbtbom.PluginConstants._
 import org.cyclonedx.model.Component
-import sbt.Keys.{ artifact, configuration, version }
+import sbt.Keys.{ artifact, configuration, packagedArtifacts, version }
 import sbt.{ Def, _ }
+import sbt.plugins.JvmPlugin
 
 import scala.language.postfixOps
 
@@ -12,7 +13,7 @@ import scala.language.postfixOps
  */
 object BomSbtPlugin extends AutoPlugin {
 
-  override def requires: Plugins = empty
+  override def requires: Plugins = JvmPlugin
 
   override def trigger: PluginTrigger = allRequirements
 
@@ -51,7 +52,10 @@ object BomSbtPlugin extends AutoPlugin {
       IntegrationTest / listBom := Def
         .taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, IntegrationTest))
         .value,
-      bomConfigurations := Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value
+      bomConfigurations := Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value,
+      packagedArtifacts += {
+        Artifact(artifact.value.name, "cyclonedx", "xml", "cyclonedx") -> makeBom.value
+      },
     )
   }
 }
