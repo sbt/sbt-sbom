@@ -1,17 +1,21 @@
 package io.github.siculo.sbtbom
 
-import io.github.siculo.sbtbom.PluginConstants.*
 import org.apache.commons.io.FileUtils
+import org.cyclonedx.Version
+import org.cyclonedx.generators.BomGeneratorFactory
 import org.cyclonedx.model.Bom
 import org.cyclonedx.parsers.XmlParser
-import org.cyclonedx.{CycloneDxSchema, Version}
-import org.cyclonedx.generators.BomGeneratorFactory
 import sbt.*
 
 import java.nio.charset.Charset
 import scala.collection.JavaConverters.*
 
-case class BomTaskProperties(report: UpdateReport, currentConfiguration: Configuration, log: Logger, schemaVersion: String)
+case class BomTaskProperties(
+                              report: UpdateReport,
+                              currentConfiguration: Configuration,
+                              log: Logger,
+                              schemaVersion: String
+                            )
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
 
@@ -43,12 +47,6 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
     }
   }
 
-  @throws[BomError]
-  protected def raiseException(message: String): Unit = {
-    log.error(message)
-    throw new BomError(message)
-  }
-
   private def extractorParams(currentConfiguration: Configuration): BomExtractorParams =
     BomExtractorParams(schemaVersion, currentConfiguration)
 
@@ -72,7 +70,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected def log: Logger = properties.log
 
   protected lazy val schemaVersion: Version =
-    supportedVersions.find(_.getVersionString == properties.schemaVersion) match {
+    SchemaVersions.supportedVersionByName(properties.schemaVersion) match {
       case Some(foundVersion) => foundVersion
       case None =>
         val message = s"Unsupported schema version ${properties.schemaVersion}"

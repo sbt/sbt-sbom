@@ -1,8 +1,8 @@
 package io.github.siculo.sbtbom
 
-import io.github.siculo.sbtbom.BomSbtPlugin.autoImport._
+import io.github.siculo.sbtbom.BomSbtPlugin.autoImport.*
+import sbt.*
 import sbt.Keys.{sLog, target}
-import sbt._
 
 object BomSbtSettings {
   def makeBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[sbt.File]] = Def.task[File] {

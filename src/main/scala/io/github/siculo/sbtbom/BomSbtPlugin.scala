@@ -1,9 +1,9 @@
 package io.github.siculo.sbtbom
 
-import io.github.siculo.sbtbom.PluginConstants._
+import io.github.siculo.sbtbom.SchemaVersions.*
 import org.cyclonedx.model.Component
+import sbt.*
 import sbt.Keys.{artifact, configuration, packagedArtifacts, version}
-import sbt.{Def, _}
 import sbt.plugins.JvmPlugin
 
 import scala.language.postfixOps
@@ -28,7 +28,7 @@ object BomSbtPlugin extends AutoPlugin {
     lazy val bomConfigurations: TaskKey[Seq[Configuration]] = taskKey[Seq[Configuration]]("Returns the list of configurations whose components are included in the generated bom")
   }
 
-  import autoImport._
+  import autoImport.*
 
   override lazy val projectSettings: Seq[Setting[_]] = {
     val bomFileNameSetting = Def.setting {

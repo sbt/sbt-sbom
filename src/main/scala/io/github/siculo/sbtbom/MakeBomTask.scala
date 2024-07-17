@@ -1,6 +1,6 @@
 package io.github.siculo.sbtbom
 
-import sbt._
+import sbt.*
 
 class MakeBomTask(properties: BomTaskProperties,
                   bomFile: File)
