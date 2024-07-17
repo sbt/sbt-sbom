@@ -1,20 +1,29 @@
-ThisBuild / organization := "io.github.siculo"
-ThisBuild / organizationName := "Siculo"
-ThisBuild / organizationHomepage := Some(url("https://github.com/siculo"))
+ThisBuild / organization := "de.lhns"
 ThisBuild / version := "0.4.0-SNAPSHOT"
 ThisBuild / scalaVersion := "2.12.19"
-ThisBuild / homepage := Some(url("https://github.com/siculo/sbt-bom"))
+
+ThisBuild / licenses += ("MIT License", url("https://opensource.org/licenses/MIT"))
+ThisBuild / homepage := scmInfo.value.map(_.browseUrl)
+ThisBuild / scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/lhns/sbt-bom"),
+    "scm:git@github.com:lhns/sbt-bom.git"
+  )
+)
 ThisBuild / developers := List(
-  Developer("siculo", "Fabrizio Di Giuseppe", "siculo.github@gmail.com", url("https://github.com/siculo"))
+  Developer(
+    id = "siculo",
+    name = "Fabrizio Di Giuseppe",
+    email = "siculo.github@gmail.com",
+    url = url("https://github.com/siculo")
+  ),
+  Developer(
+    id = "lhns",
+    name = "Pierre Kisters",
+    email = "pierrekisters@gmail.com",
+    url = url("https://github.com/lhns/")
+  )
 )
-ThisBuild / licenses := List(
-  ("MIT License", url("https://opensource.org/licenses/MIT"))
-)
-ThisBuild / scmInfo := Some(ScmInfo(
-  url("https://github.com/siculo/sbt-bom/tree/master"),
-  "scm:git:git://github.com/siculo/sbt-bom.git",
-  Some("scm:git:ssh://github.com:siculo/sbt-bom.git")
-))
 ThisBuild / description := "SBT plugin to generate CycloneDx SBOM files"
 
 lazy val root = (project in file("."))
@@ -32,8 +41,7 @@ lazy val root = (project in file("."))
     scriptedLaunchOpts := {
       scriptedLaunchOpts.value ++ Seq("-Xmx1024M", "-Dplugin.version=" + version.value, "-Dplugin.organization=" + organization.value)
     },
-    scriptedBufferLog := false,
-    //dependencyOverrides += "org.typelevel" %% "jawn-parser" % "0.14.1"
+    scriptedBufferLog := false
   )
 
 ThisBuild / pomIncludeRepository := { _ => false }

@@ -7,17 +7,13 @@ The aim of this [project](https://siculo.github.io/sbt-bom/) is to:
 - extract a valid [CycloneDx](https://cyclonedx.org/) bom file from [sbt](https://www.scala-sbt.org/) projects
 - ensure that the bom file is processable with Software Composition Analysis tools (like [Dependency Track](https://dependencytrack.org/))
 
-Current version of the plugin is 0.3.0, published to the Central Repository.
-
-Snapshot version are published to the [Sonatype Repository](https://s01.oss.sonatype.org/content/repositories/snapshots).
-
 ## usage
 
 ### project setup
 
 Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin` :
 
-`addSbtPlugin("io.github.siculo" %% "sbt-bom" % "0.3.0")`
+`addSbtPlugin("de.lhns" %% "sbt-bom" % "0.4.0")`
 
 ### BOM creation
 
