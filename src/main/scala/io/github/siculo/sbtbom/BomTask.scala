@@ -1,14 +1,15 @@
 package io.github.siculo.sbtbom
 
-import io.github.siculo.sbtbom.PluginConstants._
+import io.github.siculo.sbtbom.PluginConstants.*
 import org.apache.commons.io.FileUtils
 import org.cyclonedx.model.Bom
 import org.cyclonedx.parsers.XmlParser
-import org.cyclonedx.{BomGeneratorFactory, CycloneDxSchema}
-import sbt._
+import org.cyclonedx.{CycloneDxSchema, Version}
+import org.cyclonedx.generators.BomGeneratorFactory
+import sbt.*
 
 import java.nio.charset.Charset
-import scala.collection.JavaConverters._
+import scala.collection.JavaConverters.*
 
 case class BomTaskProperties(report: UpdateReport, currentConfiguration: Configuration, log: Logger, schemaVersion: String)
 
@@ -70,7 +71,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
 
   protected def log: Logger = properties.log
 
-  protected lazy val schemaVersion: CycloneDxSchema.Version =
+  protected lazy val schemaVersion: Version =
     supportedVersions.find(_.getVersionString == properties.schemaVersion) match {
       case Some(foundVersion) => foundVersion
       case None =>

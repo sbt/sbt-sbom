@@ -1,14 +1,14 @@
 package io.github.siculo.sbtbom
 
 import com.github.packageurl.PackageURL
-import org.cyclonedx.CycloneDxSchema
+import org.cyclonedx.{CycloneDxSchema, Version}
 import org.cyclonedx.model.{Bom, Component, License, LicenseChoice}
 import sbt.librarymanagement.ModuleReport
-import sbt._
+import sbt.*
 
 import java.util
 import java.util.UUID
-import scala.collection.JavaConverters._
+import scala.collection.JavaConverters.*
 import scala.collection.immutable
 
 class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logger) {
@@ -16,7 +16,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
 
   def bom: Bom = {
     val bom = new Bom
-    if (settings.schemaVersion != CycloneDxSchema.Version.VERSION_10) {
+    if (settings.schemaVersion != Version.VERSION_10) {
       bom.setSerialNumber(serialNumber)
     }
     bom.setComponents(components.asJava)
@@ -80,7 +80,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
         new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
       )
       component.setScope(Component.Scope.REQUIRED)
-      licenseChoice.foreach(component.setLicenseChoice)
+      licenseChoice.foreach(component.setLicenses)
 
       /*
         not returned component properties are (BOM version 1.0):
@@ -110,7 +110,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
           modelLicense =>
             val license = new License()
             license.setName(modelLicense.name)
-            if (settings.schemaVersion != CycloneDxSchema.Version.VERSION_10) {
+            if (settings.schemaVersion != Version.VERSION_10) {
               modelLicense.url.foreach(license.setUrl)
             }
             choice.addLicense(license)

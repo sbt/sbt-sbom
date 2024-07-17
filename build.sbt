@@ -19,7 +19,7 @@ lazy val root = (project in file("."))
       scriptedLaunchOpts.value ++ Seq("-Xmx1024M", "-Dplugin.version=" + version.value, "-Dplugin.organization=" + organization.value)
     },
     scriptedBufferLog := false,
-    dependencyOverrides += "org.typelevel" %% "jawn-parser" % "0.14.1"
+    //dependencyOverrides += "org.typelevel" %% "jawn-parser" % "0.14.1"
   )
 
 ThisBuild / pomIncludeRepository := { _ => false }
