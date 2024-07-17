@@ -17,9 +17,14 @@ class LicensesArchive(licenses: Seq[License]) {
 }
 
 object LicensesArchive {
-  private lazy val fileStream = getClass.getResourceAsStream("/licenses.xml")
-  private lazy val archiveText = Source.fromInputStream(fileStream).mkString
-  private lazy val archive = new LicensesArchive(new LicensesArchiveParser(archiveText).licenses)
+  private def loadResourceAsString(resource: String): String = {
+    val fileStream = getClass.getResourceAsStream(resource)
+    Source.fromInputStream(fileStream).mkString
+  }
 
-  def findByUrl(url: String): Option[License] = archive.findByUrl(url)
+  def fromJsonString(json: String): LicensesArchive =
+    new LicensesArchive(LicensesArchiveJsonParser.parseString(json))
+
+  lazy val bundled: LicensesArchive =
+    fromJsonString(loadResourceAsString("/licenses.json"))
 }
