@@ -2,9 +2,13 @@ name: Scala CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - '**'
+    tags-ignore:
+      - '*.*'
+  release:
+    types:
+      - published
 
 jobs:
   build:
