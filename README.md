@@ -1,5 +1,11 @@
 # sbt-bom
 
+[![build](https://github.com/lhns/sbt-bom/actions/workflows/build.yml/badge.svg)](https://github.com/lhns/sbt-bom/actions/workflows/build.yml)
+[![Release Notes](https://img.shields.io/github/release/lhns/sbt-bom.svg?maxAge=3600)](https://github.com/lhns/sbt-bom/releases/latest)
+[![Maven Central](https://img.shields.io/maven-central/v/de.lhns/sbt-bom_2.12)](https://search.maven.org/artifact/de.lhns/sbt-bom_2.12)
+[![Apache License 2.0](https://img.shields.io/github/license/lhns/sbt-bom.svg?maxAge=3600)](https://opensource.org/license/mit)
+[![Scala Steward badge](https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAAVFBMVEUAAACHjojlOy5NWlrKzcYRKjGFjIbp293YycuLa3pYY2LSqql4f3pCUFTgSjNodYRmcXUsPD/NTTbjRS+2jomhgnzNc223cGvZS0HaSD0XLjbaSjElhIr+AAAAAXRSTlMAQObYZgAAAHlJREFUCNdNyosOwyAIhWHAQS1Vt7a77/3fcxxdmv0xwmckutAR1nkm4ggbyEcg/wWmlGLDAA3oL50xi6fk5ffZ3E2E3QfZDCcCN2YtbEWZt+Drc6u6rlqv7Uk0LdKqqr5rk2UCRXOk0vmQKGfc94nOJyQjouF9H/wCc9gECEYfONoAAAAASUVORK5CYII=)](https://scala-steward.org)
+
 *sbt bom.xml exporter*
 
 The aim of this [project](https://siculo.github.io/sbt-bom/) is to:
@@ -80,18 +86,6 @@ Scripted tests are run using `scripted` comand.
 
 ## changelog
 
-### v0.4.0
+See [Releases](https://github.com/lhns/sbt-bom/releases).
 
-### v0.3.0
-- The BOM is generated so that it takes into account the Scope (Compile, Test...) and its dependencies
-- targetBomFile setting replaced by bomFileName
-- default BOM file name is ${artifactId}-${version}.bom.xml
-- GroupId has been changed to io.github.siculo
-- Generated BOM is a valid 1.0 BOM file (removed unespected properties like BOM serial number and license URL)
-
-### v0.2.0
-- The cyclonedx-core-java library has been integrated and is used to generate the BOM
-- Removed all old model classes used so far
-
-### v0.1.0
-- First release
+For versions before 0.4.0 see [siculo/sbt-bom#changelog](https://github.com/siculo/sbt-bom#changelog).
