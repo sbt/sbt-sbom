@@ -1,3 +1,5 @@
+ThisBuild / scalaVersion := "2.12.19"
+ThisBuild / versionScheme := Some("early-semver")
 ThisBuild / organization := "de.lhns"
 ThisBuild / version := {
   val Tag = "refs/tags/v?([0-9]+(?:\\.[0-9]+)+(?:[+-].*)?)".r
@@ -6,8 +8,6 @@ ThisBuild / version := {
     .collect { case Tag(tag) => tag }
     .getOrElse("0.4.0-SNAPSHOT")
 }
-ThisBuild / scalaVersion := "2.12.19"
-
 ThisBuild / licenses += ("MIT License", url("https://opensource.org/licenses/MIT"))
 ThisBuild / homepage := scmInfo.value.map(_.browseUrl)
 ThisBuild / scmInfo := Some(
@@ -31,6 +31,18 @@ ThisBuild / developers := List(
   )
 )
 ThisBuild / description := "SBT plugin to generate CycloneDx SBOM files"
+ThisBuild / publishMavenStyle := true
+ThisBuild / publishTo := sonatypePublishToBundle.value
+ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
+ThisBuild / credentials ++= (for {
+  username <- sys.env.get("SONATYPE_USERNAME")
+  password <- sys.env.get("SONATYPE_PASSWORD")
+} yield Credentials(
+  "Sonatype Nexus Repository Manager",
+  sonatypeCredentialHost.value,
+  username,
+  password
+)).toList
 
 lazy val root = (project in file("."))
   .enablePlugins(ScriptedPlugin)
@@ -49,11 +61,3 @@ lazy val root = (project in file("."))
     },
     scriptedBufferLog := false
   )
-
-ThisBuild / pomIncludeRepository := { _ => false }
-ThisBuild / publishTo := {
-  val nexus = "https://s01.oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
-ThisBuild / publishMavenStyle := true
