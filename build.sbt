@@ -1,5 +1,11 @@
 ThisBuild / organization := "de.lhns"
-ThisBuild / version := "0.4.0-SNAPSHOT"
+ThisBuild / version := {
+  val Tag = "refs/tags/v?([0-9]+(?:\\.[0-9]+)+(?:[+-].*)?)".r
+  sys.env
+    .get("CI_VERSION")
+    .collect { case Tag(tag) => tag }
+    .getOrElse("0.4.0-SNAPSHOT")
+}
 ThisBuild / scalaVersion := "2.12.19"
 
 ThisBuild / licenses += ("MIT License", url("https://opensource.org/licenses/MIT"))

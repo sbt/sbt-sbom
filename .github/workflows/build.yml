@@ -23,6 +23,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'sbt'
+          gpg-private-key: ${{ secrets.PGP_PRIVATE_KEY }}
 
       - name: Test
         env:
