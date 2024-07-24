@@ -13,7 +13,7 @@ object SchemaVersions {
     Version.VERSION_16
   )
 
-  val defaultSupportedVersion: Version = Version.VERSION_10
+  val defaultSupportedVersion: Version = Version.VERSION_12
 
   def supportedVersionByName(name: String): Option[Version] =
     supportedVersions.find(_.getVersionString == name)

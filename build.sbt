@@ -45,7 +45,7 @@ ThisBuild / credentials ++= (for {
 )).toList
 
 lazy val root = (project in file("."))
-  .enablePlugins(ScriptedPlugin)
+  .enablePlugins(ScriptedPlugin, BuildInfoPlugin)
   .settings(
     name := "sbt-bom",
     sbtPlugin := true,
@@ -56,6 +56,7 @@ lazy val root = (project in file("."))
       "org.scalatest" %% "scalatest" % "3.2.19" % Test,
       "org.scalamock" %% "scalamock" % "6.0.0" % Test
     ),
+    buildInfoPackage := "io.github.siculo.sbtbom",
     scriptedLaunchOpts := {
       scriptedLaunchOpts.value ++ Seq("-Xmx1024M", "-Dplugin.version=" + version.value, "-Dplugin.organization=" + organization.value)
     },

@@ -2,7 +2,7 @@ package io.github.siculo.sbtbom
 
 import com.github.packageurl.PackageURL
 import org.cyclonedx.Version
-import org.cyclonedx.model.{Bom, Component, License, LicenseChoice}
+import org.cyclonedx.model.{Bom, Component, License, LicenseChoice, Metadata, Tool}
 import sbt.*
 import sbt.librarymanagement.ModuleReport
 
@@ -18,8 +18,24 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
     if (settings.schemaVersion != Version.VERSION_10) {
       bom.setSerialNumber(serialNumber)
     }
+    bom.setMetadata(metadata)
     bom.setComponents(components.asJava)
     bom
+  }
+
+  private def metadata: Metadata = {
+    val metadata = new Metadata
+    if (settings.schemaVersion.getVersion >= Version.VERSION_12.getVersion) {
+      metadata.addTool(tool)
+    }
+    metadata
+  }
+
+  private def tool: Tool = {
+    val tool = new Tool
+    tool.setName("CycloneDX SBT plugin")
+    tool.setVersion(BuildInfo.version)
+    tool
   }
 
   private def components: Seq[Component] =
