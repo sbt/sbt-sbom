@@ -20,19 +20,19 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
   "LicenseRegister" should {
     "find no license by ref" in {
       val register = LicensesArchive.fromJsonString(json)
-      register.findByUrl("http://www.domain.com/missingLicense") shouldBe None
+      register.findByUrlIgnoreProtocol("http://www.domain.com/missingLicense") shouldBe None
     }
 
 
     "find licenses by ref" in {
       val register = LicensesArchive.fromJsonString(json)
-      val gps2 = register.findByUrl("https://opensource.org/licenses/GPL-2.0")
-      val zeroBsd = register.findByUrl("http://landley.net/toybox/license.html")
+      val gps2 = register.findByUrlIgnoreProtocol("https://opensource.org/licenses/GPL-2.0")
+      val zeroBsd = register.findByUrlIgnoreProtocol("http://landley.net/toybox/license.html")
 
       gps2.isDefined shouldBe true
-      gps2.get.id shouldBe Some("GPL-2.0-or-later")
+      gps2.get.id shouldBe "GPL-2.0-or-later"
       zeroBsd.isDefined shouldBe true
-      zeroBsd.get.id shouldBe Some("0BSD")
+      zeroBsd.get.id shouldBe "0BSD"
     }
 
     "find no licenses by id" in {
@@ -41,16 +41,16 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
     }
 
     "shoud read licenses from resource file" in {
-      val gpl2OrLater = LicensesArchive.bundled.findByUrl("https://opensource.org/licenses/GPL-2.0")
+      val gpl2OrLater = LicensesArchive.bundled.findByUrlIgnoreProtocol("https://opensource.org/licenses/GPL-2.0")
       gpl2OrLater.isDefined shouldBe true
-      gpl2OrLater.get.id shouldBe Some("GPL-2.0-or-later")
+      gpl2OrLater.get.id shouldBe "GPL-2.0-or-later"
     }
 
     "find licenses by id" in {
       val register = LicensesArchive.fromJsonString(json)
       val gpl2 = register.findById("GPL-2.0-or-later")
       gpl2.isDefined shouldBe true
-      gpl2.get.id shouldBe Some("GPL-2.0-or-later")
+      gpl2.get.id shouldBe "GPL-2.0-or-later"
     }
   }
 

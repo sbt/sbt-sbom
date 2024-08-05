@@ -26,8 +26,8 @@ object LicensesArchiveJsonParser {
   }
 
   private def licenseFromLicenseEntry(licenseEntry: LicenseJson): License = License(
-    id = Some(licenseEntry.licenseId),
-    name = Some(licenseEntry.name),
+    id = licenseEntry.licenseId,
+    name = licenseEntry.name,
     references = licenseEntry.seeAlso
   )
 

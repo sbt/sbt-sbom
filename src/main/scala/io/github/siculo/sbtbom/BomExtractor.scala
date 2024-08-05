@@ -2,8 +2,10 @@ package io.github.siculo.sbtbom
 
 import com.github.packageurl.PackageURL
 import org.cyclonedx.Version
-import org.cyclonedx.model.{Bom, Component, License, LicenseChoice, Metadata, Tool}
+import org.cyclonedx.model.{Hash, License, *}
 import sbt.*
+import _root_.io.github.siculo.sbtbom.licenses.LicensesArchive
+import org.cyclonedx.util.BomUtils
 import sbt.librarymanagement.ModuleReport
 
 import java.util
@@ -95,12 +97,12 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
         new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
       )
       component.setScope(Component.Scope.REQUIRED)
+      component.setHashes(hashes(artifactPaths(moduleReport)).asJava)
       licenseChoice.foreach(component.setLicenses)
 
       /*
         not returned component properties are (BOM version 1.0):
           - publisher: The person(s) or organization(s) that published the component
-          - hashes
           - copyright: An optional copyright notice informing users of the underlying claims to copyright ownership in a published work.
           - cpe: Specifies a well-formed CPE name. See https://nvd.nist.gov/products/cpe
           - components: Specifies optional sub-components. This is not a dependency tree. It simply provides an optional way to group large sets of components together.
@@ -112,24 +114,38 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
       component
     }
 
-    private def licenseChoice: Option[LicenseChoice] = {
-      val licenses: Seq[model.License] = moduleReport.licenses.map {
-        case (name, mayBeUrl) =>
-          model.License(name, mayBeUrl)
+    private def artifactPaths(moduleReport: ModuleReport): Seq[File] =
+      moduleReport.artifacts.map { case (_, file) =>
+        file
+      }.filter { file =>
+        file.exists() && file.isFile
       }
-      if (licenses.isEmpty)
-        None
+
+    private def hashes(files: Seq[File]): Seq[Hash] =
+      files.flatMap { file =>
+        BomUtils.calculateHashes(file, settings.schemaVersion).asScala
+      }
+
+    private def licenseChoice: Option[LicenseChoice] = {
+      val licenses: Seq[License] = moduleReport.licenses.map {
+        case (name, urlOption) =>
+          val license = new License()
+          license.setName(name)
+          urlOption.foreach { licenseUrl =>
+            LicensesArchive.bundled.findByUrlIgnoreProtocol(licenseUrl).foreach { archiveLicense =>
+              license.setId(archiveLicense.id)
+              license.setName(archiveLicense.name)
+            }
+            if (settings.schemaVersion != Version.VERSION_10) {
+              license.setUrl(licenseUrl)
+            }
+          }
+          license
+      }
+      if (licenses.isEmpty) None
       else {
         val choice = new LicenseChoice()
-        licenses.foreach {
-          modelLicense =>
-            val license = new License()
-            license.setName(modelLicense.name)
-            if (settings.schemaVersion != Version.VERSION_10) {
-              modelLicense.url.foreach(license.setUrl)
-            }
-            choice.addLicense(license)
-        }
+        licenses.foreach(choice.addLicense)
         Some(choice)
       }
     }

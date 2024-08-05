@@ -1,7 +1,7 @@
 package io.github.siculo.sbtbom.licenses
 
 case class License(
-                    id: Option[String],
-                    name: Option[String],
+                    id: String,
+                    name: String,
                     references: Seq[String]
                   )
