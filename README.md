@@ -19,7 +19,7 @@ The aim of this [project](https://siculo.github.io/sbt-bom/) is to:
 
 Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin` :
 
-`addSbtPlugin("de.lhns" %% "sbt-bom" % "0.4.1")`
+`addSbtPlugin("de.lhns" %% "sbt-bom" % "0.4.2")`
 
 ### BOM creation
 
