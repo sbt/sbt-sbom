@@ -20,14 +20,14 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
   "LicenseRegister" should {
     "find no license by ref" in {
       val register = LicensesArchive.fromJsonString(json)
-      register.findByUrlIgnoreProtocol("http://www.domain.com/missingLicense") shouldBe None
+      register.findByNormalizedUrl("http://www.domain.com/missingLicense") shouldBe None
     }
 
 
     "find licenses by ref" in {
       val register = LicensesArchive.fromJsonString(json)
-      val gps2 = register.findByUrlIgnoreProtocol("https://opensource.org/licenses/GPL-2.0")
-      val zeroBsd = register.findByUrlIgnoreProtocol("http://landley.net/toybox/license.html")
+      val gps2 = register.findByNormalizedUrl("https://opensource.org/licenses/GPL-2.0")
+      val zeroBsd = register.findByNormalizedUrl("http://landley.net/toybox/license.html")
 
       gps2.isDefined shouldBe true
       gps2.get.id shouldBe "GPL-2.0-or-later"
@@ -41,7 +41,7 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
     }
 
     "shoud read licenses from resource file" in {
-      val gpl2OrLater = LicensesArchive.bundled.findByUrlIgnoreProtocol("https://opensource.org/licenses/GPL-2.0")
+      val gpl2OrLater = LicensesArchive.bundled.findByNormalizedUrl("https://opensource.org/licenses/GPL-2.0")
       gpl2OrLater.isDefined shouldBe true
       gpl2OrLater.get.id shouldBe "GPL-2.0-or-later"
     }

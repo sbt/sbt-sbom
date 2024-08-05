@@ -1,24 +1,28 @@
 package io.github.siculo.sbtbom.licenses
 
-import io.github.siculo.sbtbom.licenses.LicensesArchive.normalizeProtocol
+import io.github.siculo.sbtbom.licenses.LicensesArchive.normalizeUrl
 
 import scala.io.Source
 
 class LicensesArchive(licenses: Seq[License]) {
-  private val licensesByUrlIgnoreProtocol: Map[String, License] =
+  private val licensesByNormalizedUrl: Map[String, License] =
     licenses.iterator.flatMap { license =>
       license.references.map { reference =>
-        (normalizeProtocol(reference), license)
+        (normalizeUrl(reference), license)
       }
     }.toMap
 
-  def findByUrlIgnoreProtocol(url: String): Option[License] = licensesByUrlIgnoreProtocol.get(normalizeProtocol(url))
+  def findByNormalizedUrl(url: String): Option[License] = licensesByNormalizedUrl.get(normalizeUrl(url))
 
   def findById(id: String): Option[License] = licenses.find(_.id.contains(id))
 }
 
 object LicensesArchive {
-  private def normalizeProtocol(url: String): String = url.replaceFirst("^https://", "http://")
+  private def normalizeUrl(url: String): String = url
+    .toLowerCase
+    .replaceFirst("^https://", "http://")
+    .replaceFirst("\\.html$", "")
+    .replaceFirst("\\.txt$", "")
 
   private def loadResourceAsString(resource: String): String = {
     val fileStream = getClass.getResourceAsStream(resource)

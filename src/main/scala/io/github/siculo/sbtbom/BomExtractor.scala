@@ -132,7 +132,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
           val license = new License()
           license.setName(name)
           urlOption.foreach { licenseUrl =>
-            LicensesArchive.bundled.findByUrlIgnoreProtocol(licenseUrl).foreach { archiveLicense =>
+            LicensesArchive.bundled.findByNormalizedUrl(licenseUrl).foreach { archiveLicense =>
               license.setId(archiveLicense.id)
               license.setName(archiveLicense.name)
             }
