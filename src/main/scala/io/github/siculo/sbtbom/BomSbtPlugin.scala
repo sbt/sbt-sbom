@@ -1,6 +1,7 @@
 package io.github.siculo.sbtbom
 
 import io.github.siculo.sbtbom.SchemaVersions.*
+import org.cyclonedx.Version
 import org.cyclonedx.model.Component
 import sbt.*
 import sbt.Keys.{artifact, configuration, packagedArtifacts, version}
@@ -20,10 +21,10 @@ object BomSbtPlugin extends AutoPlugin {
   object autoImport {
     lazy val bomFileName: SettingKey[String] = settingKey[String]("bom file name")
     lazy val bomSchemaVersion: SettingKey[String] = settingKey[String](s"bom schema version; must be one of ${supportedVersionsDescr}; default is ${defaultSupportedVersionDescr}")
+    lazy val bomFormat: SettingKey[String] = settingKey[String]("bom format; must be json or xml")
     lazy val makeBom: TaskKey[sbt.File] = taskKey[sbt.File]("Generates bom file")
     lazy val listBom: TaskKey[String] = taskKey[String]("Returns the bom")
     lazy val components: TaskKey[Component] = taskKey[Component]("Returns the bom")
-
 
     lazy val bomConfigurations: TaskKey[Seq[Configuration]] = taskKey[Seq[Configuration]]("Returns the list of configurations whose components are included in the generated bom")
   }
@@ -31,14 +32,34 @@ object BomSbtPlugin extends AutoPlugin {
   import autoImport.*
 
   override lazy val projectSettings: Seq[Setting[_]] = {
+    def defaultFormat(schemaVersionString: String): String =
+      supportedVersionByName(schemaVersionString) match {
+        case Some(version) if version.getVersion <= Version.VERSION_11.getVersion => "xml"
+        case _ => "json"
+      }
+
     val bomFileNameSetting = Def.setting {
       val artifactId = artifact.value.name
       val artifactVersion = version.value
-      s"${artifactId}-${artifactVersion}.bom.xml"
+      val schemaVersion = bomSchemaVersion.value
+      val format = defaultFormat(schemaVersion)
+      s"${artifactId}-${artifactVersion}.bom.${format}"
     }
+
+    val bomFormatSetting = Def.setting {
+      val fileName = bomFileName.value
+      val schemaVersion = bomSchemaVersion.value
+      fileName.toLowerCase match {
+        case ext if ext.endsWith(".xml") => "xml"
+        case ext if ext.endsWith(".json") => "json"
+        case _ => defaultFormat(schemaVersion)
+      }
+    }
+
     Seq(
       bomFileName := bomFileNameSetting.value,
       bomSchemaVersion := defaultSupportedVersion.getVersionString,
+      bomFormat := bomFormatSetting.value,
       makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Compile)).value,
       listBom := Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Compile)).value,
       Test / makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Test)).value,

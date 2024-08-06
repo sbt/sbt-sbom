@@ -12,39 +12,44 @@ import java.util
 import java.util.UUID
 import scala.collection.JavaConverters.*
 
-class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logger) {
+class BomExtractor(
+                    schemaVersion: Version,
+                    configuration: Configuration,
+                    report: UpdateReport,
+                    log: Logger
+                  ) {
   private val serialNumber: String = "urn:uuid:" + UUID.randomUUID.toString
 
   def bom: Bom = {
-    val bom = new Bom
-    if (settings.schemaVersion != Version.VERSION_10) {
+    val bom = new Bom()
+    if (schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
       bom.setSerialNumber(serialNumber)
     }
-    bom.setMetadata(metadata)
+    if (schemaVersion.getVersion >= Version.VERSION_12.getVersion) {
+      bom.setMetadata(metadata)
+    }
     bom.setComponents(components.asJava)
     bom
   }
 
   private def metadata: Metadata = {
-    val metadata = new Metadata
-    if (settings.schemaVersion.getVersion >= Version.VERSION_12.getVersion) {
-      metadata.addTool(tool)
-    }
+    val metadata = new Metadata()
+    metadata.addTool(tool)
     metadata
   }
 
   private def tool: Tool = {
-    val tool = new Tool
+    val tool = new Tool()
     tool.setName("CycloneDX SBT plugin")
     tool.setVersion(BuildInfo.version)
     tool
   }
 
   private def components: Seq[Component] =
-    configurationsForComponents(settings.configuration).foldLeft(Seq[Component]()) {
-      case (collected, configuration) =>
+    configurationsForComponents(configuration)
+      .foldLeft(Seq[Component]()) { case (collected, configuration) =>
         collected ++ componentsForConfiguration(configuration)
-    }
+      }
 
   private def configurationsForComponents(configuration: Configuration): Seq[sbt.Configuration] = {
     log.info(s"Current configuration = ${configuration.name}")
@@ -67,14 +72,12 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
   }
 
   private def componentsForConfiguration(configuration: Configuration): Seq[Component] = {
-    (report.configuration(configuration) map {
-      configurationReport =>
-        log.info(s"Configuration name = ${configurationReport.configuration.name}, modules: ${configurationReport.modules.size}")
-        configurationReport.modules.map {
-          module =>
-            new ComponentExtractor(module).component
-        }
-    }).getOrElse(Seq())
+    report.configuration(configuration).map { configurationReport =>
+      log.info(s"Configuration name = ${configurationReport.configuration.name}, modules: ${configurationReport.modules.size}")
+      configurationReport.modules.map { module =>
+        new ComponentExtractor(module).component
+      }
+    }.getOrElse(Seq())
   }
 
   class ComponentExtractor(moduleReport: ModuleReport) {
@@ -123,24 +126,23 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
 
     private def hashes(files: Seq[File]): Seq[Hash] =
       files.flatMap { file =>
-        BomUtils.calculateHashes(file, settings.schemaVersion).asScala
+        BomUtils.calculateHashes(file, schemaVersion).asScala
       }
 
     private def licenseChoice: Option[LicenseChoice] = {
-      val licenses: Seq[License] = moduleReport.licenses.map {
-        case (name, urlOption) =>
-          val license = new License()
-          license.setName(name)
-          urlOption.foreach { licenseUrl =>
-            LicensesArchive.bundled.findByNormalizedUrl(licenseUrl).foreach { archiveLicense =>
-              license.setId(archiveLicense.id)
-              license.setName(archiveLicense.name)
-            }
-            if (settings.schemaVersion != Version.VERSION_10) {
-              license.setUrl(licenseUrl)
-            }
+      val licenses: Seq[License] = moduleReport.licenses.map { case (name, urlOption) =>
+        val license = new License()
+        license.setName(name)
+        urlOption.foreach { licenseUrl =>
+          LicensesArchive.bundled.findByNormalizedUrl(licenseUrl).foreach { archiveLicense =>
+            license.setId(archiveLicense.id)
+            license.setName(archiveLicense.name)
           }
-          license
+          if (schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
+            license.setUrl(licenseUrl)
+          }
+        }
+        license
       }
       if (licenses.isEmpty) None
       else {

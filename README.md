@@ -10,12 +10,13 @@
 
 The aim of this [project](https://siculo.github.io/sbt-bom/) is to:
 
-- extract a valid [CycloneDx](https://cyclonedx.org/) bom file from [sbt](https://www.scala-sbt.org/) projects
-- ensure that the bom file is processable with Software Composition Analysis tools (like [Dependency Track](https://dependencytrack.org/))
+- extract a valid [CycloneDX](https://cyclonedx.org/) bom file from [sbt](https://www.scala-sbt.org/) projects
+- ensure that the bom file is processable with Software Composition Analysis tools (
+  like [Dependency Track](https://dependencytrack.org/))
 
-## usage
+## Usage
 
-### project setup
+### Project setup
 
 Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin` :
 
@@ -27,27 +28,34 @@ To create the bom for the default configuration use `makeBom` command:
 
 `> sbt makeBom`
 
-This create the BOM file inside the `target` directory. The name of the file created depends on the `name` and `version` property of the current project. For example, if name and version are `myArtifact` and `1.0`, the file name is `myArtifact-1.0.bom.xml`.
+This create the BOM file inside the `target` directory. The name of the file created depends on the `name` and `version`
+property of the current project. For example, if name and version are `myArtifact` and `1.0`, the file name
+is `myArtifact-1.0.bom.xml`.
 
-### scope selection
+### Scope selection
 
-It is possible to create the BOM for different scopes, so that all dependencies of the scopes are included in the generated BOM files. The default scope is `Compile`. For now the other supported scopes are `Test` and `IntegrationTest`. To generate the BOM for a certain scope, add the scope as a prefix to the `makeBom` command:
+It is possible to create the BOM for different scopes, so that all dependencies of the scopes are included in the
+generated BOM files. The default scope is `Compile`. For now the other supported scopes are `Test`
+and `IntegrationTest`. To generate the BOM for a certain scope, add the scope as a prefix to the `makeBom` command:
 
 `> sbt Test / makeBom`
 
 `> sbt IntegrationTest / makeBom`
 
-### listing BOM content
+### Listing BOM content
 
-The `listBom` command can be used to generate the contents of the BOM without writing it to a file. The BOM is returned as command output. To display the BOM content use: 
+The `listBom` command can be used to generate the contents of the BOM without writing it to a file. The BOM is returned
+as command output. To display the BOM content use:
 
 `> sbt show listBom`
 
-### configuration
+### Configuration
 
-| Setting     | Type        | Description   |
-| ----------- | ----------- | ------------- |
-| bomFileName | String      | bom file name |
+| Setting          | Type   | Description                                            |
+|------------------|--------|--------------------------------------------------------|
+| bomFileName      | String | bom file name                                          |
+| bomSchemaVersion | String | CycloneDX version (default: 1.2)                       |
+| bomFormat        | String | json or xml (default: json if bomSchemaVersion >= 1.2) |
 
 Sample configuration:
 
@@ -59,10 +67,6 @@ lazy val root = (project in file("."))
     IntegrationTest / bomFileName := "integrationTest.bom.xml",
   )
 ```
-
-## CycloneDX support
-
-Actually, only version 1.0 of the CycloneDX specification is supported. Support for later versions of the specification, such as for creating BOMs in json format, is expected later.
 
 ## Contributing
 
@@ -84,7 +88,7 @@ For each test it is necessary to create a specially crafted project. These proje
 
 Scripted tests are run using `scripted` comand.
 
-## changelog
+## Changelog
 
 See [Releases](https://github.com/lhns/sbt-bom/releases).
 
