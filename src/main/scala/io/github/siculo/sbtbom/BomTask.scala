@@ -2,9 +2,10 @@ package io.github.siculo.sbtbom
 
 import io.github.siculo.sbtbom.PluginConstants._
 import org.apache.commons.io.FileUtils
+import org.cyclonedx.Version
+import org.cyclonedx.generators.BomGeneratorFactory
 import org.cyclonedx.model.Bom
 import org.cyclonedx.parsers.XmlParser
-import org.cyclonedx.{ BomGeneratorFactory, CycloneDxSchema }
 import sbt._
 
 import java.nio.charset.Charset
@@ -75,7 +76,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
 
   protected def log: Logger = properties.log
 
-  protected lazy val schemaVersion: CycloneDxSchema.Version =
+  protected lazy val schemaVersion: Version =
     supportedVersions.find(_.getVersionString == properties.schemaVersion) match {
       case Some(foundVersion) => foundVersion
       case None =>

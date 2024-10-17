@@ -1,16 +1,16 @@
 package io.github.siculo.sbtbom
 
-import org.cyclonedx.CycloneDxSchema
+import org.cyclonedx.Version
 
 object PluginConstants {
-  val supportedVersions: Seq[CycloneDxSchema.Version] = Seq(
-    CycloneDxSchema.Version.VERSION_10,
-    CycloneDxSchema.Version.VERSION_11,
-    CycloneDxSchema.Version.VERSION_12,
-    CycloneDxSchema.Version.VERSION_13,
-    CycloneDxSchema.Version.VERSION_14
+  val supportedVersions: Seq[Version] = Seq(
+    Version.VERSION_10,
+    Version.VERSION_11,
+    Version.VERSION_12,
+    Version.VERSION_13,
+    Version.VERSION_14
   )
-  val defaultSupportedVersion = CycloneDxSchema.Version.VERSION_10
+  val defaultSupportedVersion = Version.VERSION_10
   val supportedVersionsDescr: String = {
     supportedVersions
       .take(supportedVersions.size - 1)
@@ -19,7 +19,7 @@ object PluginConstants {
   }
   val defaultSupportedVersionDescr: String = schemaVersionDescr(defaultSupportedVersion)
 
-  private def schemaVersionDescr(version: CycloneDxSchema.Version): String = {
+  private def schemaVersionDescr(version: Version): String = {
     s""""${version.getVersionString}""""
   }
 }

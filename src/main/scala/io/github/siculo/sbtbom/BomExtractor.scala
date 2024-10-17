@@ -1,7 +1,7 @@
 package io.github.siculo.sbtbom
 
 import com.github.packageurl.PackageURL
-import org.cyclonedx.CycloneDxSchema
+import org.cyclonedx.Version
 import org.cyclonedx.model.{ Bom, Component, License, LicenseChoice }
 import sbt.librarymanagement.ModuleReport
 import sbt._
@@ -16,7 +16,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
 
   def bom: Bom = {
     val bom = new Bom
-    if (settings.schemaVersion != CycloneDxSchema.Version.VERSION_10) {
+    if (settings.schemaVersion != Version.VERSION_10) {
       bom.setSerialNumber(serialNumber)
     }
     bom.setComponents(components.asJava)
@@ -107,7 +107,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
         licenses.foreach { modelLicense =>
           val license = new License()
           license.setName(modelLicense.name)
-          if (settings.schemaVersion != CycloneDxSchema.Version.VERSION_10) {
+          if (settings.schemaVersion != Version.VERSION_10) {
             modelLicense.url.foreach(license.setUrl)
           }
           choice.addLicense(license)
