@@ -1,7 +1,7 @@
 ThisBuild / organization := Organization.organization
 ThisBuild / organizationName := Organization.organizationName
 ThisBuild / organizationHomepage := Organization.organizationHomepage
-val scala212 = "2.12.19"
+val scala212 = "2.12.20"
 ThisBuild / scalaVersion := scala212
 ThisBuild / crossScalaVersions := Seq(scala212)
 ThisBuild / homepage := Project.homepage
