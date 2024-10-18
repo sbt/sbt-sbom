@@ -1,4 +1,4 @@
-package io.github.siculo.sbtbom.model
+package com.github.sbt.sbom.model
 
 import org.cyclonedx.model.Component.{ Scope, Type }
 

@@ -1,6 +1,6 @@
-package io.github.siculo.sbtbom
+package com.github.sbt.sbom
 
-import io.github.siculo.sbtbom.PluginConstants._
+import com.github.sbt.sbom.PluginConstants._
 import org.cyclonedx.model.Component
 import sbt.Keys.{ artifact, configuration, packagedArtifacts, version }
 import sbt.{ Def, _ }
