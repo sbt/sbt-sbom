@@ -12,7 +12,10 @@ object PluginConstants {
   )
   val defaultSupportedVersion = CycloneDxSchema.Version.VERSION_10
   val supportedVersionsDescr: String = {
-    supportedVersions.take(supportedVersions.size - 1).map(schemaVersionDescr).mkString(", ") + " or " + schemaVersionDescr(supportedVersions.last)
+    supportedVersions
+      .take(supportedVersions.size - 1)
+      .map(schemaVersionDescr)
+      .mkString(", ") + " or " + schemaVersionDescr(supportedVersions.last)
   }
   val defaultSupportedVersionDescr: String = schemaVersionDescr(defaultSupportedVersion)
 

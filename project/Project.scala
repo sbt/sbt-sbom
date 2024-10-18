@@ -18,9 +18,11 @@ object Project {
     )
 
   lazy val scmInfo: Option[ScmInfo] =
-    Some(ScmInfo(
-      url("https://github.com/siculo/sbt-bom/tree/master"),
-      "scm:git:git://github.com/siculo/sbt-bom.git",
-      Some("scm:git:ssh://github.com:siculo/sbt-bom.git")
-    ))
+    Some(
+      ScmInfo(
+        url("https://github.com/siculo/sbt-bom/tree/master"),
+        "scm:git:git://github.com/siculo/sbt-bom.git",
+        Some("scm:git:ssh://github.com:siculo/sbt-bom.git")
+      )
+    )
 }

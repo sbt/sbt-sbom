@@ -2,7 +2,7 @@ package io.github.siculo.sbtbom
 
 import com.github.packageurl.PackageURL
 import org.cyclonedx.CycloneDxSchema
-import org.cyclonedx.model.{Bom, Component, License, LicenseChoice}
+import org.cyclonedx.model.{ Bom, Component, License, LicenseChoice }
 import sbt.librarymanagement.ModuleReport
 import sbt._
 
@@ -24,9 +24,8 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
   }
 
   private def components: Seq[Component] =
-    configurationsForComponents(settings.configuration).foldLeft(Seq[Component]()) {
-      case (collected, configuration) =>
-        collected ++ componentsForConfiguration(configuration)
+    configurationsForComponents(settings.configuration).foldLeft(Seq[Component]()) { case (collected, configuration) =>
+      collected ++ componentsForConfiguration(configuration)
     }
 
   private def configurationsForComponents(configuration: Configuration): Seq[sbt.Configuration] = {
@@ -50,13 +49,13 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
   }
 
   private def componentsForConfiguration(configuration: Configuration): Seq[Component] = {
-    (report.configuration(configuration) map {
-      configurationReport =>
-        log.info(s"Configuration name = ${configurationReport.configuration.name}, modules: ${configurationReport.modules.size}")
-        configurationReport.modules.map {
-          module =>
-            new ComponentExtractor(module).component
-        }
+    (report.configuration(configuration) map { configurationReport =>
+      log.info(
+        s"Configuration name = ${configurationReport.configuration.name}, modules: ${configurationReport.modules.size}"
+      )
+      configurationReport.modules.map { module =>
+        new ComponentExtractor(module).component
+      }
     }).getOrElse(Seq())
   }
 
@@ -98,22 +97,20 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
     }
 
     private def licenseChoice: Option[LicenseChoice] = {
-      val licenses: Seq[model.License] = moduleReport.licenses.map {
-        case (name, mayBeUrl) =>
-          model.License(name, mayBeUrl)
+      val licenses: Seq[model.License] = moduleReport.licenses.map { case (name, mayBeUrl) =>
+        model.License(name, mayBeUrl)
       }
       if (licenses.isEmpty)
         None
       else {
         val choice = new LicenseChoice()
-        licenses.foreach {
-          modelLicense =>
-            val license = new License()
-            license.setName(modelLicense.name)
-            if (settings.schemaVersion != CycloneDxSchema.Version.VERSION_10) {
-              modelLicense.url.foreach(license.setUrl)
-            }
-            choice.addLicense(license)
+        licenses.foreach { modelLicense =>
+          val license = new License()
+          license.setName(modelLicense.name)
+          if (settings.schemaVersion != CycloneDxSchema.Version.VERSION_10) {
+            modelLicense.url.foreach(license.setUrl)
+          }
+          choice.addLicense(license)
         }
         Some(choice)
       }
@@ -121,8 +118,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
   }
 
   private def logComponent(component: Component): Unit = {
-    log.info(
-      s""""
+    log.info(s""""
          |${component.getGroup}" % "${component.getName}" % "${component.getVersion}",
          | Modified = ${component.getModified}, Component type = ${component.getType.getTypeName},
          | Scope = ${component.getScope.getScopeName}
