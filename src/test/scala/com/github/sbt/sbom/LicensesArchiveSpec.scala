@@ -1,8 +1,8 @@
-package io.github.siculo.sbtbom
+package com.github.sbt.sbom
 
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import io.github.siculo.sbtbom.licenses.{ LicensesArchive, LicensesArchiveParser }
+import com.github.sbt.sbom.licenses.{ LicensesArchive, LicensesArchiveParser }
 
 class LicensesArchiveSpec extends AnyWordSpec with Matchers {
   "LicensesArchiveParser" should {

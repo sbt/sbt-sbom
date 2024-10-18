@@ -1,6 +1,6 @@
-package io.github.siculo.sbtbom
+package com.github.sbt.sbom
 
-import io.github.siculo.sbtbom.PluginConstants._
+import com.github.sbt.sbom.PluginConstants._
 import org.apache.commons.io.FileUtils
 import org.cyclonedx.Version
 import org.cyclonedx.generators.BomGeneratorFactory
