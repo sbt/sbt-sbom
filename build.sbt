@@ -24,6 +24,7 @@ lazy val root = (project in file("."))
       )
     },
     scriptedBufferLog := false,
+    scriptedSbt := "1.10.2",
     dependencyOverrides += "org.typelevel" %% "jawn-parser" % "0.14.1"
   )
 
