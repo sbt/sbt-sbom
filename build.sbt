@@ -1,8 +1,9 @@
 ThisBuild / organization := Organization.organization
 ThisBuild / organizationName := Organization.organizationName
 ThisBuild / organizationHomepage := Organization.organizationHomepage
-ThisBuild / version := "0.4.0-SNAPSHOT"
-ThisBuild / scalaVersion := "2.12.19"
+val scala212 = "2.12.20"
+ThisBuild / scalaVersion := scala212
+ThisBuild / crossScalaVersions := Seq(scala212)
 ThisBuild / homepage := Project.homepage
 ThisBuild / developers := Project.developers
 ThisBuild / licenses := Project.licenses
@@ -23,13 +24,43 @@ lazy val root = (project in file("."))
       )
     },
     scriptedBufferLog := false,
+    scriptedSbt := "1.10.2",
     dependencyOverrides += "org.typelevel" %% "jawn-parser" % "0.14.1"
   )
 
-ThisBuild / pomIncludeRepository := { _ => false }
-ThisBuild / publishTo := {
-  val nexus = "https://s01.oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+ThisBuild / pomIncludeRepository := { _ =>
+  false
 }
 ThisBuild / publishMavenStyle := true
+
+ThisBuild / githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("test", "scripted")))
+
+ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
+ThisBuild / githubWorkflowPublishTargetBranches :=
+  Seq(
+    RefPredicate.StartsWith(Ref.Tag("v")),
+    RefPredicate.Equals(Ref.Branch("main"))
+  )
+ThisBuild / githubWorkflowPublish := Seq(
+  WorkflowStep.Sbt(
+    commands = List("ci-release"),
+    name = Some("Publish project"),
+    env = Map(
+      "PGP_PASSPHRASE" -> "${{ secrets.PGP_PASSPHRASE }}",
+      "PGP_SECRET" -> "${{ secrets.PGP_SECRET }}",
+      "SONATYPE_PASSWORD" -> "${{ secrets.SONATYPE_PASSWORD }}",
+      "SONATYPE_USERNAME" -> "${{ secrets.SONATYPE_USERNAME }}"
+    )
+  )
+)
+
+ThisBuild / githubWorkflowOSes := Seq("ubuntu-latest", "macos-latest", "windows-latest")
+
+ThisBuild / githubWorkflowJavaVersions := Seq(
+  JavaSpec.temurin("8"),
+  JavaSpec.temurin("11"),
+  JavaSpec.temurin("17"),
+  JavaSpec.temurin("21")
+)
+
+ThisBuild / githubWorkflowBuildMatrixExclusions += MatrixExclude(Map("java" -> "temurin@8", "os" -> "macos-latest"))

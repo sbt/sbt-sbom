@@ -4,14 +4,14 @@
     <component type="library">
       <group>org.scala-lang</group>
       <name>scala-library</name>
-      <version>2.12.8</version>
+      <version>2.12.20</version>
       <scope>required</scope>
       <licenses>
         <license>
           <name>Apache-2.0</name>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-library@2.12.8</purl>
+      <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -173,27 +173,27 @@
     <component type="library">
       <group>org.scala-lang</group>
       <name>scala-reflect</name>
-      <version>2.12.8</version>
+      <version>2.12.20</version>
       <scope>required</scope>
       <licenses>
         <license>
           <name>Apache-2.0</name>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.8</purl>
+      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <group>org.scala-lang</group>
       <name>scala-library</name>
-      <version>2.12.8</version>
+      <version>2.12.20</version>
       <scope>required</scope>
       <licenses>
         <license>
           <name>Apache-2.0</name>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-library@2.12.8</purl>
+      <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -355,14 +355,14 @@
     <component type="library">
       <group>org.scala-lang</group>
       <name>scala-reflect</name>
-      <version>2.12.8</version>
+      <version>2.12.20</version>
       <scope>required</scope>
       <licenses>
         <license>
           <name>Apache-2.0</name>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.8</purl>
+      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
       <modified>false</modified>
     </component>
   </components>
