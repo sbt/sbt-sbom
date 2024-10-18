@@ -11,7 +11,7 @@ import sbt._
 import java.nio.charset.Charset
 import scala.collection.JavaConverters._
 
-case class BomTaskProperties(
+final case class BomTaskProperties(
     report: UpdateReport,
     currentConfiguration: Configuration,
     log: Logger,
