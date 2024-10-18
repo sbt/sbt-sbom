@@ -1,7 +1,7 @@
 import sbt.url
 
 object Organization {
-  val organization: String = "io.github.siculo"
-  val organizationName: String = "Siculo"
-  val organizationHomepage: Option[sbt.URL] = Some(url("https://github.com/siculo"))
+  val organization: String = "com.github.sbt"
+  val organizationName: String = "sbt"
+  val organizationHomepage: Option[sbt.URL] = Some(url("https://www.scala-sbt.org/"))
 }

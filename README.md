@@ -1,8 +1,8 @@
-# sbt-bom
+# sbt-sbom
 
-*sbt bom.xml exporter*
+*sbt SBOM exporter*
 
-The aim of this [project](https://siculo.github.io/sbt-bom/) is to:
+The aim of this [project](https://github.com/sbt/sbt-sbom/) is to:
 
 - extract a valid [CycloneDx](https://cyclonedx.org/) bom file from [sbt](https://www.scala-sbt.org/) projects
 - ensure that the bom file is processable with Software Composition Analysis tools (like [Dependency Track](https://dependencytrack.org/))

@@ -3,7 +3,7 @@
   sys.props.get("plugin.organization")
 ) match {
   case (Some(version), Some(organization)) =>
-    addSbtPlugin(organization % "sbt-bom" % version)
+    addSbtPlugin(organization % "sbt-sbom" % version)
   case (None, _) =>
     sys.error(
       """|The system property 'plugin.version' is not defined.

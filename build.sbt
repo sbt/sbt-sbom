@@ -12,7 +12,7 @@ ThisBuild / description := Project.description
 lazy val root = (project in file("."))
   .enablePlugins(ScriptedPlugin)
   .settings(
-    name := "sbt-bom",
+    name := "sbt-sbom",
     sbtPlugin := true,
     libraryDependencies ++= Dependencies.library,
     scriptedLaunchOpts := {
