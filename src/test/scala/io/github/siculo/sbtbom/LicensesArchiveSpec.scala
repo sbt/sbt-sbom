@@ -2,11 +2,11 @@ package io.github.siculo.sbtbom
 
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import io.github.siculo.sbtbom.licenses.{LicensesArchive, LicensesArchiveParser}
+import io.github.siculo.sbtbom.licenses.{ LicensesArchive, LicensesArchiveParser }
 
 class LicensesArchiveSpec extends AnyWordSpec with Matchers {
   "LicensesArchiveParser" should {
-    "fail parsing a not valid archive"  in {
+    "fail parsing a not valid archive" in {
       new LicensesArchiveParser("").isValid shouldBe false
     }
 
@@ -20,7 +20,6 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
       val register = new LicensesArchive(new LicensesArchiveParser(xml).licenses)
       register.findByUrl("http://www.domain.com/missingLicense") shouldBe None
     }
-
 
     "find licenses by ref" in {
       val register = new LicensesArchive(new LicensesArchiveParser(xml).licenses)

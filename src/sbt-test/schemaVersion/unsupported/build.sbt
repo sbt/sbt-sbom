@@ -8,11 +8,13 @@ lazy val root = (project in file("."))
     Test / bomFileName := "bom.xml",
     scalaVersion := "2.12.8",
     bomSchemaVersion := "999",
-    check := Def.sequential(
-      Compile / clean,
-      Compile / compile,
-      checkTask
-    ).value
+    check := Def
+      .sequential(
+        Compile / clean,
+        Compile / compile,
+        checkTask
+      )
+      .value
   )
 
 lazy val check = taskKey[Unit]("check")

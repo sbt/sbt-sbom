@@ -4,13 +4,18 @@ import io.github.siculo.sbtbom.PluginConstants._
 import org.apache.commons.io.FileUtils
 import org.cyclonedx.model.Bom
 import org.cyclonedx.parsers.XmlParser
-import org.cyclonedx.{BomGeneratorFactory, CycloneDxSchema}
+import org.cyclonedx.{ BomGeneratorFactory, CycloneDxSchema }
 import sbt._
 
 import java.nio.charset.Charset
 import scala.collection.JavaConverters._
 
-case class BomTaskProperties(report: UpdateReport, currentConfiguration: Configuration, log: Logger, schemaVersion: String)
+case class BomTaskProperties(
+    report: UpdateReport,
+    currentConfiguration: Configuration,
+    log: Logger,
+    schemaVersion: String
+)
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
 
@@ -32,11 +37,11 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
     val parser = new XmlParser()
     val exceptions = parser.validate(bomFile, schemaVersion).asScala
     if (exceptions.nonEmpty) {
-      val message = s"The BOM file ${bomFile.getAbsolutePath} does not conform to the CycloneDX BOM standard as defined by the XSD"
+      val message =
+        s"The BOM file ${bomFile.getAbsolutePath} does not conform to the CycloneDX BOM standard as defined by the XSD"
       log.error(s"$message:")
-      exceptions.foreach {
-        exception =>
-          log.error(s"- ${exception.getMessage}")
+      exceptions.foreach { exception =>
+        log.error(s"- ${exception.getMessage}")
       }
       throw new BomError(message)
     }
