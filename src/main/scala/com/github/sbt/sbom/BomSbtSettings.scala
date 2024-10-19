@@ -8,14 +8,28 @@ object BomSbtSettings {
   def makeBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[sbt.File]] =
     Def.task[File] {
       new MakeBomTask(
-        BomTaskProperties(report, currentConfiguration, sLog.value, bomSchemaVersion.value),
+        BomTaskProperties(
+          report,
+          currentConfiguration,
+          sLog.value,
+          bomSchemaVersion.value,
+          includeBomSerialNumber.value
+        ),
         target.value / (currentConfiguration / bomFileName).value
       ).execute
     }
 
   def listBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[String]] =
     Def.task[String] {
-      new ListBomTask(BomTaskProperties(report, currentConfiguration, sLog.value, bomSchemaVersion.value)).execute
+      new ListBomTask(
+        BomTaskProperties(
+          report,
+          currentConfiguration,
+          sLog.value,
+          bomSchemaVersion.value,
+          includeBomSerialNumber.value
+        )
+      ).execute
     }
 
   def bomConfigurationTask(currentConfiguration: Option[Configuration]): Def.Initialize[Task[Seq[Configuration]]] =
