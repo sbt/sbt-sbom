@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.0">
+<bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.6">
   <components>
     <component type="library">
       <group>org.scala-lang</group>
@@ -9,6 +9,7 @@
       <licenses>
         <license>
           <name>Apache-2.0</name>
+          <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
@@ -22,6 +23,7 @@
       <licenses>
         <license>
           <name>Apache 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-core_2.12@0.10.0</purl>
@@ -35,6 +37,7 @@
       <licenses>
         <license>
           <name>Apache 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-generic_2.12@0.10.0</purl>
@@ -48,6 +51,7 @@
       <licenses>
         <license>
           <name>Apache 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-parser_2.12@0.10.0</purl>
@@ -61,6 +65,7 @@
       <licenses>
         <license>
           <name>Apache 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-numbers_2.12@0.10.0</purl>
@@ -74,6 +79,7 @@
       <licenses>
         <license>
           <name>MIT</name>
+          <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-core_2.12@1.4.0</purl>
@@ -87,6 +93,7 @@
       <licenses>
         <license>
           <name>Apache 2</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
       </licenses>
       <purl>pkg:maven/com.chuusai/shapeless_2.12@2.3.3</purl>
@@ -100,6 +107,7 @@
       <licenses>
         <license>
           <name>Apache 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-jawn_2.12@0.10.0</purl>
@@ -113,6 +121,7 @@
       <licenses>
         <license>
           <name>MIT</name>
+          <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-macros_2.12@1.4.0</purl>
@@ -126,6 +135,7 @@
       <licenses>
         <license>
           <name>MIT</name>
+          <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0</purl>
@@ -139,6 +149,7 @@
       <licenses>
         <license>
           <name>MIT</name>
+          <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/machinist_2.12@0.6.5</purl>
@@ -152,6 +163,7 @@
       <licenses>
         <license>
           <name>Apache 2</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/macro-compat_2.12@1.1.1</purl>
@@ -165,6 +177,7 @@
       <licenses>
         <license>
           <name>MIT</name>
+          <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0</purl>
@@ -178,6 +191,7 @@
       <licenses>
         <license>
           <name>Apache-2.0</name>
+          <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
