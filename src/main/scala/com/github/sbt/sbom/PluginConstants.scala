@@ -3,14 +3,8 @@ package com.github.sbt.sbom
 import org.cyclonedx.Version
 
 object PluginConstants {
-  val supportedVersions: Seq[Version] = Seq(
-    Version.VERSION_10,
-    Version.VERSION_11,
-    Version.VERSION_12,
-    Version.VERSION_13,
-    Version.VERSION_14
-  )
-  val defaultSupportedVersion = Version.VERSION_10
+  val supportedVersions: Seq[Version] = Version.values()
+  val defaultSupportedVersion: Version = supportedVersions.last
   val supportedVersionsDescr: String = {
     supportedVersions
       .take(supportedVersions.size - 1)
