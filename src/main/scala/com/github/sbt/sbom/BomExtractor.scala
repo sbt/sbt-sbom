@@ -117,7 +117,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
     }
   }
 
-  private def logComponent(component: Component): Unit = {
+  def logComponent(component: Component): Unit = {
     log.info(s""""
          |${component.getGroup}" % "${component.getName}" % "${component.getVersion}",
          | Modified = ${component.getModified}, Component type = ${component.getType.getTypeName},
