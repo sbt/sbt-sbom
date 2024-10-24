@@ -27,7 +27,7 @@ To create the bom for the default configuration use `makeBom` command:
 
 `> sbt makeBom`
 
-This create the BOM file inside the `target` directory. The name of the file created depends on the `name` and `version` property of the current project. For example, if name and version are `myArtifact` and `1.0`, the file name is `myArtifact-1.0.bom.xml`.
+This creates the BOM file inside the `target` directory. The name of the file created depends on the `name` and `version` property of the current project. For example, if name and version are `myArtifact` and `1.0`, the file name is `myArtifact-1.0.bom.xml`.
 
 ### scope selection
 
@@ -45,9 +45,9 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 ### configuration
 
-| Setting     | Type        | Description   |
-| ----------- | ----------- | ------------- |
-| bomFileName | String      | bom file name |
+| Setting     | Type   | Description   |
+|-------------|--------|---------------|
+| bomFileName | String | bom file name |
 
 Sample configuration:
 
@@ -82,16 +82,38 @@ executed.
 [Scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html) is a tool that allow you to test sbt plugins.
 For each test it is necessary to create a specially crafted project. These projects are inside src/sbt-test directory.
 
-Scripted tests are run using `scripted` comand.
+Scripted tests are run using `scripted` command.
 
-### scalafix
+### Formatting
+
+The codebase is formatted with [scalafmt](https://scalameta.org/scalafmt/), as such the codebase needs to be formatted
+before submitting a PR.
+
+Various runners for Scalafmt exist, such as
+* A [sbt scalafmt plugin](https://github.com/scalameta/sbt-scalafmt) that lets you run scalafmt directly within sbt using
+    * `scalafmt` to format base scala sources
+    * `test:scalafmt` to format test scala sources
+    * `scalafmtSbt` to format the `build.sbt` file
+    * `scalafmtAll` to format everything
+* IntelliJ IDEA and VSCode will automatically detect projects with scalafmt and prompt you whether to use Scalafmt. See
+  the [scalafmt installation guide][scalafmt-installation-link] for more details
+* There are native builds of Scalafmt that let you run a `scalafmt` as a CLI tool, see the CLI section in
+  [scalafmt installation guide][scalafmt-installation-link]
+
+Note that a [GitHub action exists](https://github.com/sbt/sbt-sbom/blob/main/.github/workflows/format.yml) which will
+check that your code is formatted whenever you create a PR.
+
+### Linting
 
 This project uses [scalafix](https://scalacenter.github.io/scalafix/) as a linter/style guide enforcer. To run scalafix
 you can simply do
 
 ```sbt
-scalafixAll
+clean test/clean scalafixAll
 ```
+
+Note that its possible that running scalafix may generate code that isn't compliant with scalafmt so it's
+a good idea to [run scalafmt](#formatting) on the code afterward
 
 ## changelog
 
@@ -110,3 +132,5 @@ scalafixAll
 
 ### v0.1.0
 - First release
+
+[scalafmt-installation-link]: https://scalameta.org/scalafmt/docs/installation.html
