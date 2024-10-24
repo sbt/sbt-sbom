@@ -24,7 +24,7 @@ lazy val root = (project in file("."))
       )
     },
     scriptedBufferLog := false,
-    scriptedSbt := "1.10.2",
+    scriptedSbt := "1.5.2",
     dependencyOverrides += "org.typelevel" %% "jawn-parser" % "0.14.1"
   )
 
@@ -59,8 +59,7 @@ ThisBuild / githubWorkflowOSes := Seq("ubuntu-latest", "macos-latest", "windows-
 ThisBuild / githubWorkflowJavaVersions := Seq(
   JavaSpec.temurin("8"),
   JavaSpec.temurin("11"),
-  JavaSpec.temurin("17"),
-  JavaSpec.temurin("21")
+  JavaSpec.temurin("17")
 )
 
 ThisBuild / githubWorkflowBuildMatrixExclusions += MatrixExclude(Map("java" -> "temurin@8", "os" -> "macos-latest"))

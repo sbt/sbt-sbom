@@ -19,6 +19,8 @@ Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin`
 
 `addSbtPlugin("io.github.siculo" %% "sbt-bom" % "0.3.0")`
 
+Note that the minimum supported version of sbt is 1.5.2 (this is what the [scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html#scripted+test+framework) tests target)
+
 ### BOM creation
 
 To create the bom for the default configuration use `makeBom` command:
