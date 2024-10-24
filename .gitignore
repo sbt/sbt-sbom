@@ -1,47 +1,20 @@
-public
-logs
-target
-*.ipr
-*.iws
-*.iml
-#scala worksheet
-*.sc
-.idea
-.idea_modules
-.classpath
-.project
-.settings
-.cache-main
-.cache-tests
+### SBT template
+# Simple Build Tool
+# http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
+
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
 .history
-.vscode
-RUNNING_PID
-project/project
-setEnvVars.sh
+.cache
+.lib/
+
+### Scala template
+*.class
 *.log
 
-~$*.*
-
-bin/
-node_modules/
-conf/application.local-personal.conf
-
-## Client / React
-
-client/coverage
-client/build
-client/node_modules
-client/stats.json
-client/reports
-client/buildStats.json
-node_modules/
-
-npm-debug.log.*
-npm-debug.log
-.DS_Store
-.sonar/
-
-.ensime
-.ensime_cache
-
-**/.bsp/sbt.json
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
