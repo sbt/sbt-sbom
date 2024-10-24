@@ -21,12 +21,8 @@ lazy val checkTask = Def.task {
   val s: TaskStreams = streams.value
   s.log.info("Verifying bom content...")
   val bomFile = (Test / makeBom).value
-  val context = thisProject.value
-  val expected = XML.loadFile(file(s"${context.base}/etc/bom.xml"))
-  s.log.info(s"${bomFile.getPath}")
-  val actual = XML.loadFile(bomFile)
-  val expectedComponents = expected \ "components"
-  val actualComponents = actual \ "components"
-  require(expectedComponents == actualComponents, s"${context.id} is failed.")
+
+  import scala.sys.process._
+  require(Seq("diff", "-w", bomFile.getPath, s"${thisProject.value.base}/etc/bom.xml").! == 0)
   s.log.info(s"${bomFile.getPath} content verified")
 }
