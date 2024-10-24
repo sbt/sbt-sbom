@@ -3,8 +3,8 @@ package com.github.sbt.sbom
 import com.github.sbt.sbom.PluginConstants._
 import org.cyclonedx.model.Component
 import sbt.Keys.{ artifact, configuration, packagedArtifacts, version }
-import sbt.{ Def, _ }
 import sbt.plugins.JvmPlugin
+import sbt.{ Def, _ }
 
 import scala.language.postfixOps
 

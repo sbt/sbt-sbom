@@ -3,13 +3,12 @@ package com.github.sbt.sbom
 import com.github.packageurl.PackageURL
 import org.cyclonedx.Version
 import org.cyclonedx.model.{ Bom, Component, License, LicenseChoice }
-import sbt.librarymanagement.ModuleReport
 import sbt._
+import sbt.librarymanagement.ModuleReport
 
 import java.util
 import java.util.UUID
 import scala.collection.JavaConverters._
-import scala.collection.immutable
 
 class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logger) {
   private val serialNumber: String = "urn:uuid:" + UUID.randomUUID.toString

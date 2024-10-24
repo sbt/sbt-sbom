@@ -1,8 +1,8 @@
 package com.github.sbt.sbom
 
+import com.github.sbt.sbom.licenses.{ LicensesArchive, LicensesArchiveParser }
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import com.github.sbt.sbom.licenses.{ LicensesArchive, LicensesArchiveParser }
 
 class LicensesArchiveSpec extends AnyWordSpec with Matchers {
   "LicensesArchiveParser" should {
@@ -51,7 +51,7 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
     }
   }
 
-  val xml =
+  val xml: String =
     """
       |<root>
       |  <licenseListVersion>v3.4-5-gb3d735f</licenseListVersion>
