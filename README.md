@@ -84,6 +84,15 @@ For each test it is necessary to create a specially crafted project. These proje
 
 Scripted tests are run using `scripted` comand.
 
+### scalafix
+
+This project uses [scalafix](https://scalacenter.github.io/scalafix/) as a linter/style guide enforcer. To run scalafix
+you can simply do
+
+```sbt
+scalafixAll
+```
+
 ## changelog
 
 ### v0.4.0

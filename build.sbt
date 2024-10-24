@@ -33,6 +33,10 @@ ThisBuild / pomIncludeRepository := { _ =>
 }
 ThisBuild / publishMavenStyle := true
 
+ThisBuild / githubWorkflowBuildPreamble := Seq(
+  WorkflowStep.Sbt(List("scalafixAll --check"), name = Some("Linter: Scalafix checks"))
+)
+
 ThisBuild / githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("test", "scripted")))
 
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
@@ -63,3 +67,15 @@ ThisBuild / githubWorkflowJavaVersions := Seq(
 )
 
 ThisBuild / githubWorkflowBuildMatrixExclusions += MatrixExclude(Map("java" -> "temurin@8", "os" -> "macos-latest"))
+
+// scalafix specific settings
+inThisBuild(
+  List(
+    semanticdbEnabled := true,
+    semanticdbVersion := scalafixSemanticdb.revision,
+    scalafixScalaBinaryVersion := scalaBinaryVersion.value,
+    scalacOptions ++= Seq(
+      "-Ywarn-unused"
+    )
+  )
+)
