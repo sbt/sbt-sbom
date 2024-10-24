@@ -16,7 +16,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
 
   def bom: Bom = {
     val bom = new Bom
-    if (settings.schemaVersion != Version.VERSION_10) {
+    if (settings.includeBomSerialNumber && settings.schemaVersion != Version.VERSION_10) {
       bom.setSerialNumber(serialNumber)
     }
     bom.setComponents(components.asJava)
