@@ -25,7 +25,7 @@ lazy val root = (project in file("."))
     },
     scriptedBufferLog := false,
     scriptedSbt := "1.5.2",
-    dependencyOverrides += "org.typelevel" %% "jawn-parser" % "0.14.3"
+    dependencyOverrides += "org.typelevel" %% "jawn-parser" % "1.6.0"
   )
 
 ThisBuild / pomIncludeRepository := { _ =>
