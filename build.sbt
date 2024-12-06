@@ -11,11 +11,12 @@ ThisBuild / scmInfo := Project.scmInfo
 ThisBuild / description := Project.description
 
 lazy val root = (project in file("."))
-  .enablePlugins(ScriptedPlugin)
+  .enablePlugins(ScriptedPlugin, BuildInfoPlugin)
   .settings(
     name := "sbt-sbom",
     sbtPlugin := true,
     libraryDependencies ++= Dependencies.library,
+    buildInfoPackage := "com.github.sbt.sbom",
     scriptedLaunchOpts := {
       scriptedLaunchOpts.value ++ Seq(
         "-Xmx1024M",
