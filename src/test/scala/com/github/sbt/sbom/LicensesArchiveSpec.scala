@@ -42,14 +42,14 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
     "shoud read licenses from resource file" in {
       val gpl2OrLater = LicensesArchive.bundled.findByNormalizedUrl("https://opensource.org/licenses/GPL-2.0")
       gpl2OrLater.isDefined shouldBe true
-      gpl2OrLater.get.id shouldBe "GPL-2.0"
+      gpl2OrLater.get.id shouldBe "GPL-2.0-or-later"
     }
 
     "find licenses by id" in {
       val register = LicensesArchive.fromJsonString(json)
-      val gpl2 = register.findById("GPL-2.0")
+      val gpl2 = register.findById("GPL-2.0-or-later")
       gpl2.isDefined shouldBe true
-      gpl2.get.id shouldBe "GPL-2.0"
+      gpl2.get.id shouldBe "GPL-2.0-or-later"
     }
   }
 
