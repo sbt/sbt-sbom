@@ -1,23 +1,36 @@
 package com.github.sbt.sbom.licenses
 
+import com.github.sbt.sbom.licenses.LicensesArchive.normalizeUrl
+
 import scala.io.Source
 
 class LicensesArchive(licenses: Seq[License]) {
-  private val licensesByUrl: Map[String, License] = licenses.foldLeft(Map[String, License]()) { (map, license) =>
-    map ++ license.references.foldLeft(Map[String, License]()) { (map, ref) =>
-      map + (ref -> license)
-    }
-  }
+  private val licensesByNormalizedUrl: Map[String, License] =
+    licenses.iterator.flatMap { license =>
+      license.references.map { reference =>
+        (normalizeUrl(reference), license)
+      }
+    }.toMap
 
-  def findByUrl(url: String): Option[License] = licensesByUrl.get(url)
+  def findByNormalizedUrl(url: String): Option[License] = licensesByNormalizedUrl.get(normalizeUrl(url))
 
   def findById(id: String): Option[License] = licenses.find(_.id.contains(id))
 }
 
 object LicensesArchive {
-  private lazy val fileStream = getClass.getResourceAsStream("/licenses.xml")
-  private lazy val archiveText = Source.fromInputStream(fileStream).mkString
-  private lazy val archive = new LicensesArchive(new LicensesArchiveParser(archiveText).licenses)
+  private def normalizeUrl(url: String): String = url.toLowerCase
+    .replaceFirst("^https://", "http://")
+    .replaceFirst("\\.html$", "")
+    .replaceFirst("\\.txt$", "")
 
-  def findByUrl(url: String): Option[License] = archive.findByUrl(url)
+  private def loadResourceAsString(resource: String): String = {
+    val fileStream = getClass.getResourceAsStream(resource)
+    Source.fromInputStream(fileStream).mkString
+  }
+
+  def fromJsonString(json: String): LicensesArchive =
+    new LicensesArchive(LicensesArchiveJsonParser.parseString(json))
+
+  lazy val bundled: LicensesArchive =
+    fromJsonString(loadResourceAsString("/licenses.json"))
 }
