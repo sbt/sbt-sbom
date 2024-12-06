@@ -2,7 +2,8 @@ package com.github.sbt.sbom
 
 import com.github.packageurl.PackageURL
 import org.cyclonedx.Version
-import org.cyclonedx.model.{ Bom, Component, License, LicenseChoice }
+import org.cyclonedx.model.{ Bom, Component, Hash, License, LicenseChoice, Metadata, Tool }
+import org.cyclonedx.util.BomUtils
 import sbt._
 import sbt.librarymanagement.ModuleReport
 
@@ -18,8 +19,25 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
     if (settings.includeBomSerialNumber && settings.schemaVersion != Version.VERSION_10) {
       bom.setSerialNumber(serialNumber)
     }
+    if (settings.schemaVersion.getVersion >= Version.VERSION_12.getVersion) {
+      bom.setMetadata(metadata)
+    }
     bom.setComponents(components.asJava)
     bom
+  }
+
+  private def metadata: Metadata = {
+    val metadata = new Metadata()
+    metadata.addTool(tool)
+    metadata
+  }
+
+  private def tool: Tool = {
+    val tool = new Tool()
+    // https://github.com/devops-kung-fu/bomber searches for string CycloneDX to detect format
+    tool.setName("CycloneDX SBT plugin")
+    tool.setVersion(BuildInfo.version)
+    tool
   }
 
   private def components: Seq[Component] =
@@ -48,14 +66,17 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
   }
 
   private def componentsForConfiguration(configuration: Configuration): Seq[Component] = {
-    (report.configuration(configuration) map { configurationReport =>
-      log.info(
-        s"Configuration name = ${configurationReport.configuration.name}, modules: ${configurationReport.modules.size}"
-      )
-      configurationReport.modules.map { module =>
-        new ComponentExtractor(module).component
+    report
+      .configuration(configuration)
+      .map { configurationReport =>
+        log.info(
+          s"Configuration name = ${configurationReport.configuration.name}, modules: ${configurationReport.modules.size}"
+        )
+        configurationReport.modules.map { module =>
+          new ComponentExtractor(module).component
+        }.distinct // in some cases modules are reported multiple times
       }
-    }).getOrElse(Seq())
+      .getOrElse(Seq())
   }
 
   class ComponentExtractor(moduleReport: ModuleReport) {
@@ -77,13 +98,16 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
       component.setPurl(
         new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
       )
+      if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
+        component.setBomRef(component.getPurl)
+      }
       component.setScope(Component.Scope.REQUIRED)
-      licenseChoice.foreach(component.setLicenseChoice)
+      component.setHashes(hashes(artifactPaths(moduleReport)).asJava)
+      licenseChoice.foreach(component.setLicenses)
 
       /*
         not returned component properties are (BOM version 1.0):
           - publisher: The person(s) or organization(s) that published the component
-          - hashes
           - copyright: An optional copyright notice informing users of the underlying claims to copyright ownership in a published work.
           - cpe: Specifies a well-formed CPE name. See https://nvd.nist.gov/products/cpe
           - components: Specifies optional sub-components. This is not a dependency tree. It simply provides an optional way to group large sets of components together.
@@ -95,22 +119,42 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
       component
     }
 
+    private def artifactPaths(moduleReport: ModuleReport): Seq[File] =
+      moduleReport.artifacts
+        .map { case (_, file) =>
+          file
+        }
+        .filter { file =>
+          file.exists() && file.isFile
+        }
+
+    private def hashes(files: Seq[File]): Seq[Hash] =
+      files.flatMap { file =>
+        BomUtils.calculateHashes(file, settings.schemaVersion).asScala
+      }
+
     private def licenseChoice: Option[LicenseChoice] = {
-      val licenses: Seq[model.License] = moduleReport.licenses.map { case (name, mayBeUrl) =>
-        model.License(name, mayBeUrl)
+      val licenses: Seq[License] = moduleReport.licenses.map { case (name, urlOption) =>
+        val license = new License()
+        urlOption.foreach { licenseUrl =>
+          /*TODO: LicensesArchive.bundled.findByNormalizedUrl(licenseUrl).foreach { archiveLicense =>
+            license.setId(archiveLicense.id)
+          }*/
+          if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
+            license.setUrl(licenseUrl)
+          }
+        }
+        if (license.getId == null) {
+          // must not be set if id is defined
+          license.setName(name)
+        }
+        license
       }
       if (licenses.isEmpty)
         None
       else {
         val choice = new LicenseChoice()
-        licenses.foreach { modelLicense =>
-          val license = new License()
-          license.setName(modelLicense.name)
-          if (settings.schemaVersion != Version.VERSION_10) {
-            modelLicense.url.foreach(license.setUrl)
-          }
-          choice.addLicense(license)
-        }
+        licenses.foreach(choice.addLicense)
         Some(choice)
       }
     }
