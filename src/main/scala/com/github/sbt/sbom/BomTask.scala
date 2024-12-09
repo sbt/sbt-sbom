@@ -17,6 +17,10 @@ final case class BomTaskProperties(
     log: Logger,
     schemaVersion: String,
     includeBomSerialNumber: Boolean,
+    includeBomTimestamp: Boolean,
+    includeBomToolVersion: Boolean,
+    includeBomHashes: Boolean,
+    enableBomSha3Hashes: Boolean,
 )
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
@@ -56,7 +60,15 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   }
 
   private def extractorParams(currentConfiguration: Configuration): BomExtractorParams =
-    BomExtractorParams(schemaVersion, currentConfiguration, includeBomSerialNumber)
+    BomExtractorParams(
+      schemaVersion,
+      currentConfiguration,
+      includeBomSerialNumber,
+      includeBomTimestamp,
+      includeBomToolVersion,
+      includeBomHashes,
+      enableBomSha3Hashes
+    )
 
   private def getXmlText(bom: Bom): String = {
     val bomGenerator = BomGeneratorFactory.createXml(schemaVersion, bom)
@@ -87,4 +99,12 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
     }
 
   protected lazy val includeBomSerialNumber: Boolean = properties.includeBomSerialNumber
+
+  protected lazy val includeBomTimestamp: Boolean = properties.includeBomTimestamp
+
+  protected lazy val includeBomToolVersion: Boolean = properties.includeBomToolVersion
+
+  protected lazy val includeBomHashes: Boolean = properties.includeBomHashes
+
+  protected lazy val enableBomSha3Hashes: Boolean = properties.enableBomSha3Hashes
 }

@@ -45,9 +45,14 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 ### configuration
 
-| Setting     | Type   | Description   |
-|-------------|--------|---------------|
-| bomFileName | String | bom file name |
+| Setting                | Type    | Default                                      | Description                    |
+|------------------------|---------|----------------------------------------------|--------------------------------|
+| bomFileName            | String  | `"${artifactId}-${artifactVersion}.bom.xml"` | bom file name                  |
+| bomSchemaVersion       | String  | `"1.6"`                                      | bom schema version             |
+| includeBomSerialNumber | Boolean | `false`                                      | include serial number in bom   |
+| includeBomTimestamp    | Boolean | `false`                                      | include timestamp in bom       |
+| includeBomToolVersion  | Boolean | `true`                                       | include tool version in bom    |
+| includeBomHashes       | Boolean | `true`                                       | include artifact hashes in bom |
 
 Sample configuration:
 
