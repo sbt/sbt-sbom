@@ -1,6 +1,7 @@
 package com.github.sbt.sbom
 
 import com.github.packageurl.PackageURL
+import com.github.sbt.sbom.licenses.LicensesArchive
 import org.cyclonedx.Version
 import org.cyclonedx.model.{ Bom, Component, Hash, License, LicenseChoice, Metadata, Tool }
 import org.cyclonedx.util.BomUtils
@@ -134,25 +135,31 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
       }
 
     private def licenseChoice: Option[LicenseChoice] = {
-      val licenses: Seq[License] = moduleReport.licenses.map { case (name, urlOption) =>
+      val licensesArchive = LicensesArchive.bundled
+      val licenses: Seq[License] = moduleReport.licenses.map { case (name, mayBeUrl) =>
         val license = new License()
-        urlOption.foreach { licenseUrl =>
-          /*TODO: LicensesArchive.bundled.findByNormalizedUrl(licenseUrl).foreach { archiveLicense =>
+        licensesArchive
+          .findById(name)
+          .orElse(mayBeUrl.map(licensesArchive.findByUrl).collect { case Seq(license) =>
+            license
+          })
+          .foreach { archiveLicense =>
             license.setId(archiveLicense.id)
-          }*/
-          if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
-            license.setUrl(licenseUrl)
           }
-        }
         if (license.getId == null) {
           // must not be set if id is defined
           license.setName(name)
         }
+        mayBeUrl.foreach { url =>
+          if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
+            license.setUrl(url)
+          }
+        }
         license
       }
-      if (licenses.isEmpty)
+      if (licenses.isEmpty) {
         None
-      else {
+      } else {
         val choice = new LicenseChoice()
         licenses.foreach(choice.addLicense)
         Some(choice)
