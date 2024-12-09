@@ -60,9 +60,11 @@ lazy val root = (project in file("."))
   )
 ```
 
-## CycloneDX support
+## Stability
 
-Actually, only version 1.0 of the CycloneDX specification is supported. Support for later versions of the specification, such as for creating BOMs in json format, is expected later.
+We believe this plugin is stable enough to be used in production, but
+we do not yet promise API stability: you may need to make configuration
+changes or encounter changed behaviour when updating the plugin.
 
 ## Contributing
 
