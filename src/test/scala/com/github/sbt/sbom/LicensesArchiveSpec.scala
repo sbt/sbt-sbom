@@ -20,18 +20,18 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
   "LicenseRegister" should {
     "find no license by ref" in {
       val register = LicensesArchive.fromJsonString(json)
-      register.findByNormalizedUrl("http://www.domain.com/missingLicense") shouldBe None
+      register.findByUrl("http://www.domain.com/missingLicense") shouldBe Seq.empty
     }
 
     "find licenses by ref" in {
       val register = LicensesArchive.fromJsonString(json)
-      val gps2 = register.findByNormalizedUrl("https://opensource.org/licenses/GPL-2.0")
-      val zeroBsd = register.findByNormalizedUrl("http://landley.net/toybox/license.html")
+      val gpl2 = register.findByUrl("https://opensource.org/licenses/GPL-2.0")
+      val zeroBsd = register.findByUrl("http://landley.net/toybox/license.html")
 
-      gps2.isDefined shouldBe true
-      gps2.get.id shouldBe "GPL-2.0-or-later"
-      zeroBsd.isDefined shouldBe true
-      zeroBsd.get.id shouldBe "0BSD"
+      gpl2.size shouldBe 1
+      gpl2.head.id shouldBe "GPL-2.0"
+      zeroBsd.size shouldBe 1
+      zeroBsd.head.id shouldBe "0BSD"
     }
 
     "find no licenses by id" in {
@@ -40,16 +40,16 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
     }
 
     "shoud read licenses from resource file" in {
-      val gpl2OrLater = LicensesArchive.bundled.findByNormalizedUrl("https://opensource.org/licenses/GPL-2.0")
-      gpl2OrLater.isDefined shouldBe true
-      gpl2OrLater.get.id shouldBe "GPL-2.0-or-later"
+      val gpl2 = LicensesArchive.bundled.findByUrl("https://opensource.org/licenses/GPL-2.0")
+      gpl2.nonEmpty shouldBe true
+      gpl2.exists(_.id == "GPL-2.0") shouldBe true
     }
 
     "find licenses by id" in {
       val register = LicensesArchive.fromJsonString(json)
-      val gpl2 = register.findById("GPL-2.0-or-later")
+      val gpl2 = register.findById("GPL-2.0")
       gpl2.isDefined shouldBe true
-      gpl2.get.id shouldBe "GPL-2.0-or-later"
+      gpl2.get.id shouldBe "GPL-2.0"
     }
   }
 
@@ -71,12 +71,12 @@ class LicensesArchiveSpec extends AnyWordSpec with Matchers {
       |      "isOsiApproved": true
       |    },
       |    {
-      |      "reference": "https://spdx.org/licenses/GPL-2.0-or-later.html",
-      |      "isDeprecatedLicenseId": false,
-      |      "detailsUrl": "https://spdx.org/licenses/GPL-2.0-or-later.json",
-      |      "referenceNumber": 629,
-      |      "name": "GNU General Public License v2.0 or later",
-      |      "licenseId": "GPL-2.0-or-later",
+      |      "reference": "https://spdx.org/licenses/GPL-2.0.html",
+      |      "isDeprecatedLicenseId": true,
+      |      "detailsUrl": "https://spdx.org/licenses/GPL-2.0.json",
+      |      "referenceNumber": 47,
+      |      "name": "GNU General Public License v2.0 only",
+      |      "licenseId": "GPL-2.0",
       |      "seeAlso": [
       |        "https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html",
       |        "https://opensource.org/licenses/GPL-2.0"
