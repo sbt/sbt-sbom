@@ -25,6 +25,9 @@ object BomSbtPlugin extends AutoPlugin {
     lazy val includeBomSerialNumber: SettingKey[Boolean] = settingKey[Boolean](
       "should the resulting BOM contain a serial number? default is false, because the current mechanism for determining the serial number is not reproducible"
     )
+    lazy val includeBomHashes: SettingKey[Boolean] = settingKey[Boolean](
+      "should the resulting BOM contain artifact hashes? default is true"
+    )
     lazy val makeBom: TaskKey[sbt.File] = taskKey[sbt.File]("Generates bom file")
     lazy val listBom: TaskKey[String] = taskKey[String]("Returns the bom")
     lazy val components: TaskKey[Component] = taskKey[Component]("Returns the bom")

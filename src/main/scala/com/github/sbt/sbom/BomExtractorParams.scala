@@ -7,4 +7,5 @@ final case class BomExtractorParams(
     schemaVersion: Version,
     configuration: Configuration,
     includeBomSerialNumber: Boolean,
+    includeBomHashes: Boolean,
 )

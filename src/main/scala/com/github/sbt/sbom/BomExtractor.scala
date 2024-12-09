@@ -27,15 +27,15 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
     bom
   }
 
-  private def metadata: Metadata = {
+  private lazy val metadata: Metadata = {
     val metadata = new Metadata()
     metadata.addTool(tool)
     metadata
   }
 
-  private def tool: Tool = {
+  private lazy val tool: Tool = {
     val tool = new Tool()
-    // https://github.com/devops-kung-fu/bomber searches for string CycloneDX to detect format
+    // https://github.com/devops-kung-fu/bomber/blob/main/lib/loader.go#L112 searches for string CycloneDX to detect format
     tool.setName("CycloneDX SBT plugin")
     tool.setVersion(BuildInfo.version)
     tool
@@ -103,7 +103,9 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
         component.setBomRef(component.getPurl)
       }
       component.setScope(Component.Scope.REQUIRED)
-      component.setHashes(hashes(artifactPaths(moduleReport)).asJava)
+      if (settings.includeBomHashes) {
+        component.setHashes(hashes(artifactPaths(moduleReport)).asJava)
+      }
       licenseChoice.foreach(component.setLicenses)
 
       /*

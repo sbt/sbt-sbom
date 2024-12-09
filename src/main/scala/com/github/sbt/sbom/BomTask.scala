@@ -17,6 +17,7 @@ final case class BomTaskProperties(
     log: Logger,
     schemaVersion: String,
     includeBomSerialNumber: Boolean,
+    includeBomHashes: Boolean,
 )
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
@@ -56,7 +57,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   }
 
   private def extractorParams(currentConfiguration: Configuration): BomExtractorParams =
-    BomExtractorParams(schemaVersion, currentConfiguration, includeBomSerialNumber)
+    BomExtractorParams(schemaVersion, currentConfiguration, includeBomSerialNumber, includeBomHashes)
 
   private def getXmlText(bom: Bom): String = {
     val bomGenerator = BomGeneratorFactory.createXml(schemaVersion, bom)
@@ -87,4 +88,6 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
     }
 
   protected lazy val includeBomSerialNumber: Boolean = properties.includeBomSerialNumber
+
+  protected lazy val includeBomHashes: Boolean = properties.includeBomHashes
 }
