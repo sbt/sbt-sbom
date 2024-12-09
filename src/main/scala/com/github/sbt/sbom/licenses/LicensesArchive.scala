@@ -31,10 +31,9 @@ class LicensesArchive(licenses: Seq[License]) {
 
 object LicensesArchive {
   private def normalizeUrl(url: String): String = url.toLowerCase
-    .replaceFirst("^http://", "https://")
+    .replaceFirst("^https?://(www\\.)?", "https://")
     .replaceFirst("/$", "")
-    .replaceFirst("\\.html$", "")
-    .replaceFirst("\\.txt$", "")
+    .replaceFirst("\\.(html|txt)$", "")
 
   // Apache-2.0 will be normalized to apache 2, BSD 3-Clause will be normalized to bsd 3 clause
   private def normalizeId(id: String): String = id.toLowerCase
