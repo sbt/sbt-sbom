@@ -7,6 +7,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Dependencies.library,
     bomFileName := "bom.xml",
     includeBomToolVersion := false,
+    enableBomSha3Hashes := false,
     scalaVersion := "2.12.20",
     check := Def
       .sequential(

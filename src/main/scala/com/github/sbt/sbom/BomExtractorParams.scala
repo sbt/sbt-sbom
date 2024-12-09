@@ -10,4 +10,5 @@ final case class BomExtractorParams(
     includeBomTimestamp: Boolean,
     includeBomToolVersion: Boolean,
     includeBomHashes: Boolean,
+    enableBomSha3Hashes: Boolean,
 )

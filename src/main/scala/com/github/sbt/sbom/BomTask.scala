@@ -20,6 +20,7 @@ final case class BomTaskProperties(
     includeBomTimestamp: Boolean,
     includeBomToolVersion: Boolean,
     includeBomHashes: Boolean,
+    enableBomSha3Hashes: Boolean,
 )
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
@@ -65,7 +66,8 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
       includeBomSerialNumber,
       includeBomTimestamp,
       includeBomToolVersion,
-      includeBomHashes
+      includeBomHashes,
+      enableBomSha3Hashes
     )
 
   private def getXmlText(bom: Bom): String = {
@@ -103,4 +105,6 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected lazy val includeBomToolVersion: Boolean = properties.includeBomToolVersion
 
   protected lazy val includeBomHashes: Boolean = properties.includeBomHashes
+
+  protected lazy val enableBomSha3Hashes: Boolean = properties.enableBomSha3Hashes
 }

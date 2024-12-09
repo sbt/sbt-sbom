@@ -148,7 +148,12 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
 
     private def hashes(files: Seq[File]): Seq[Hash] =
       files.flatMap { file =>
-        BomUtils.calculateHashes(file, settings.schemaVersion).asScala
+        val hashes = BomUtils.calculateHashes(file, settings.schemaVersion).asScala
+        if (settings.enableBomSha3Hashes) {
+          hashes
+        } else {
+          hashes.filterNot(_.getAlgorithm.matches("(?i)SHA3-.*"))
+        }
       }
 
     private def licenseChoice: Option[LicenseChoice] = {
