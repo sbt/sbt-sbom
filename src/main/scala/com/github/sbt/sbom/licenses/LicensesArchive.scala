@@ -38,7 +38,7 @@ object LicensesArchive {
   // Apache-2.0 will be normalized to apache 2, BSD 3-Clause will be normalized to bsd 3 clause
   private def normalizeId(id: String): String = id.toLowerCase
     .replace("-", " ")
-    .replaceFirst("(?<=\\d)\\.0", "")
+    .replaceFirst("(?<=\\d)\\.0$", "")
 
   private def loadResourceAsString(resource: String): String = {
     val fileStream = getClass.getResourceAsStream(resource)
