@@ -29,6 +29,9 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
 
   private lazy val metadata: Metadata = {
     val metadata = new Metadata()
+    if (!settings.includeBomTimestamp) {
+      metadata.setTimestamp(null)
+    }
     metadata.addTool(tool)
     metadata
   }
@@ -37,14 +40,25 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
     val tool = new Tool()
     // https://github.com/devops-kung-fu/bomber/blob/main/lib/loader.go#L112 searches for string CycloneDX to detect format
     tool.setName("CycloneDX SBT plugin")
-    tool.setVersion(BuildInfo.version)
+    if (settings.includeBomToolVersion) {
+      tool.setVersion(BuildInfo.version)
+    }
     tool
   }
 
-  private def components: Seq[Component] =
-    configurationsForComponents(settings.configuration).foldLeft(Seq[Component]()) { case (collected, configuration) =>
-      collected ++ componentsForConfiguration(configuration)
+  private def components: Seq[Component] = {
+    val components = configurationsForComponents(settings.configuration).flatMap { configuration =>
+      componentsForConfiguration(configuration)
+    }.distinct // deduplicate components reported by multiple configurations
+    components.groupBy(_.getBomRef).foreach {
+      case (null, _)   => () // ignore empty bom-refs
+      case (_, Seq(_)) => () // no duplicate bom-refs
+      case (bomRef, components) => // duplicate bom-refs
+        log.warn(s"bom-ref must be distinct: $bomRef")
+        components.foreach(_.setBomRef(null))
     }
+    components
+  }
 
   private def configurationsForComponents(configuration: Configuration): Seq[sbt.Configuration] = {
     log.info(s"Current configuration = ${configuration.name}")
@@ -75,7 +89,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
         )
         configurationReport.modules.map { module =>
           new ComponentExtractor(module).component
-        }.distinct // in some cases modules are reported multiple times
+        }
       }
       .getOrElse(Seq())
   }
@@ -100,6 +114,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
         new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
       )
       if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
+        // component bom-refs must be unique
         component.setBomRef(component.getPurl)
       }
       component.setScope(Component.Scope.REQUIRED)

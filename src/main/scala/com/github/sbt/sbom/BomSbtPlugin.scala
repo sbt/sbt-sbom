@@ -25,6 +25,12 @@ object BomSbtPlugin extends AutoPlugin {
     lazy val includeBomSerialNumber: SettingKey[Boolean] = settingKey[Boolean](
       "should the resulting BOM contain a serial number? default is false, because the current mechanism for determining the serial number is not reproducible"
     )
+    lazy val includeBomTimestamp: SettingKey[Boolean] = settingKey[Boolean](
+      "should the resulting BOM contain a timestamp? default is false, because the timestamp is not reproducible"
+    )
+    lazy val includeBomToolVersion: SettingKey[Boolean] = settingKey[Boolean](
+      "should the resulting BOM contain the tool version? default is true"
+    )
     lazy val includeBomHashes: SettingKey[Boolean] = settingKey[Boolean](
       "should the resulting BOM contain artifact hashes? default is true"
     )
@@ -49,6 +55,9 @@ object BomSbtPlugin extends AutoPlugin {
       bomFileName := bomFileNameSetting.value,
       bomSchemaVersion := defaultSupportedVersion.getVersionString,
       includeBomSerialNumber := false,
+      includeBomTimestamp := false,
+      includeBomToolVersion := true,
+      includeBomHashes := true,
       makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Compile)).value,
       listBom := Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Compile)).value,
       Test / makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Test)).value,
