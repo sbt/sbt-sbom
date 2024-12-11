@@ -1,4 +1,4 @@
 > clean
 > compile
 > makeBom
-$ exists target/exists-0.1.bom.xml
+$ exists target/exists-0.1.bom.json

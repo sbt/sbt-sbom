@@ -45,9 +45,10 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 ### configuration
 
-| Setting     | Type   | Description   |
-|-------------|--------|---------------|
-| bomFileName | String | bom file name |
+| Setting     | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+| bomFileName | String | bom file name                                                               |
+| bomFormat   | String | bom format, json or xml, defaults to the format of bomFileName or else json |
 
 Sample configuration:
 
@@ -62,7 +63,7 @@ lazy val root = (project in file("."))
 
 ## CycloneDX support
 
-Actually, only version 1.0 of the CycloneDX specification is supported. Support for later versions of the specification, such as for creating BOMs in json format, is expected later.
+This plugin supports the CycloneDX XML and JSON BOM formats.
 
 ## Contributing
 
