@@ -16,7 +16,7 @@ final case class BomTaskProperties(
     currentConfiguration: Configuration,
     log: Logger,
     schemaVersion: String,
-    jsonFormat: Boolean,
+    bomFormat: BomFormat,
     includeBomSerialNumber: Boolean,
 )
 
@@ -27,10 +27,9 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected def getBomText: String = {
     val params: BomExtractorParams = extractorParams(currentConfiguration)
     val bom: Bom = new BomExtractor(params, report, log).bom
-    val bomText: String = if (properties.jsonFormat) {
-      BomGeneratorFactory.createJson(schemaVersion, bom).toJsonString
-    } else {
-      BomGeneratorFactory.createXml(schemaVersion, bom).toXmlString
+    val bomText: String = bomFormat match {
+      case BomFormat.Json => BomGeneratorFactory.createJson(schemaVersion, bom).toJsonString
+      case BomFormat.Xml  => BomGeneratorFactory.createXml(schemaVersion, bom).toXmlString
     }
     logBomInfo(params, bom)
     bomText
@@ -41,10 +40,9 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   }
 
   protected def validateBomFile(bomFile: File): Unit = {
-    val parser = if (properties.jsonFormat) {
-      new JsonParser()
-    } else {
-      new XmlParser()
+    val parser = bomFormat match {
+      case BomFormat.Json => new JsonParser()
+      case BomFormat.Xml  => new XmlParser()
     }
     val exceptions = parser.validate(bomFile, schemaVersion).asScala
     if (exceptions.nonEmpty) {
@@ -87,6 +85,8 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
         log.error(message)
         throw new BomError(message)
     }
+
+  protected lazy val bomFormat: BomFormat = properties.bomFormat
 
   protected lazy val includeBomSerialNumber: Boolean = properties.includeBomSerialNumber
 }

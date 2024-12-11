@@ -45,9 +45,10 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 ### configuration
 
-| Setting     | Type   | Description   |
-|-------------|--------|---------------|
-| bomFileName | String | bom file name |
+| Setting     | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+| bomFileName | String | bom file name                                                               |
+| bomFormat   | String | bom format, json or xml, defaults to the format of bomFileName or else json |
 
 Sample configuration:
 

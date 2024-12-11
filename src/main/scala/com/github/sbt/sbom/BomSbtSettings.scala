@@ -7,15 +7,18 @@ import sbt._
 object BomSbtSettings {
   def makeBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[sbt.File]] =
     Def.task[File] {
-      val log = sLog.value
-      val jsonFormat = formatIsJson((bomFileName / bomFormat).value, log)
+      val format = BomFormat.fromSettings(
+          (currentConfiguration / bomFormat).?.value,
+          (currentConfiguration / bomFileName).?.value,
+          bomSchemaVersion.value
+      )
       new MakeBomTask(
         BomTaskProperties(
           report,
           currentConfiguration,
-          log,
+          sLog.value,
           bomSchemaVersion.value,
-          jsonFormat,
+          format,
           includeBomSerialNumber.value
         ),
         target.value / (currentConfiguration / bomFileName).value
@@ -24,28 +27,21 @@ object BomSbtSettings {
 
   def listBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[String]] =
     Def.task[String] {
-      val log = sLog.value
-      val jsonFormat = formatIsJson((bomFileName / bomFormat).value, log)
+      val format = BomFormat.fromSettings(
+          (currentConfiguration / bomFormat).?.value,
+          (currentConfiguration / bomFileName).?.value,
+          bomSchemaVersion.value
+      )
       new ListBomTask(
         BomTaskProperties(
           report,
           currentConfiguration,
-          log,
+          sLog.value,
           bomSchemaVersion.value,
-          jsonFormat,
+          format,
           includeBomSerialNumber.value
         )
       ).execute
-    }
-
-  private def formatIsJson(format: String, log: Logger): Boolean =
-    format match {
-      case "json" => true
-      case "xml"  => false
-      case _ =>
-        val message = s"Unsupported format ${format}"
-        log.error(message)
-        throw new BomError(message)
     }
 
   def bomConfigurationTask(currentConfiguration: Option[Configuration]): Def.Initialize[Task[Seq[Configuration]]] =

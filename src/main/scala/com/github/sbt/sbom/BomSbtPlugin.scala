@@ -1,7 +1,6 @@
 package com.github.sbt.sbom
 
 import com.github.sbt.sbom.PluginConstants._
-import org.cyclonedx.Version
 import org.cyclonedx.model.Component
 import sbt.Keys.{ artifact, configuration, packagedArtifacts, version }
 import sbt.plugins.JvmPlugin
@@ -41,30 +40,15 @@ object BomSbtPlugin extends AutoPlugin {
   import autoImport._
 
   override lazy val projectSettings: Seq[Setting[_]] = {
-    def defaultFormat(schemaVersion: String): String =
-      supportedVersions.find(_.getVersionString == schemaVersion) match {
-        case Some(foundVersion) if foundVersion.getVersion > Version.VERSION_11.getVersion => "json"
-        case _                                                                             => "xml"
-      }
     val bomFileNameSetting = Def.setting {
       val artifactId = artifact.value.name
       val artifactVersion = version.value
       val schemaVersion = bomSchemaVersion.value
-      val format = bomFormat.??(defaultFormat(schemaVersion)).value
-      s"${artifactId}-${artifactVersion}.bom.${format}"
-    }
-    val bomFormatFromFileNameSetting = Def.setting {
-      val fileName = bomFileName.value
-      val schemaVersion = bomSchemaVersion.value
-      fileName.toLowerCase match {
-        case ext if ext.endsWith(".xml")  => "xml"
-        case ext if ext.endsWith(".json") => "json"
-        case _                            => defaultFormat(schemaVersion)
-      }
+      val format = BomFormat.fromSettings(bomFormat.?.value, None, schemaVersion)
+      s"${artifactId}-${artifactVersion}.bom.${format.string}"
     }
     Seq(
       bomFileName := bomFileNameSetting.value,
-      bomFileName / bomFormat := bomFormat.or(bomFormatFromFileNameSetting).value,
       bomSchemaVersion := defaultSupportedVersion.getVersionString,
       includeBomSerialNumber := false,
       makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Compile)).value,
