@@ -8,9 +8,9 @@ object BomSbtSettings {
   def makeBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[sbt.File]] =
     Def.task[File] {
       val format = BomFormat.fromSettings(
-          (currentConfiguration / bomFormat).?.value,
-          (currentConfiguration / bomFileName).?.value,
-          bomSchemaVersion.value
+        (currentConfiguration / bomFormat).?.value,
+        (currentConfiguration / bomFileName).?.value,
+        bomSchemaVersion.value
       )
       new MakeBomTask(
         BomTaskProperties(
@@ -28,9 +28,9 @@ object BomSbtSettings {
   def listBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[String]] =
     Def.task[String] {
       val format = BomFormat.fromSettings(
-          (currentConfiguration / bomFormat).?.value,
-          (currentConfiguration / bomFileName).?.value,
-          bomSchemaVersion.value
+        (currentConfiguration / bomFormat).?.value,
+        (currentConfiguration / bomFileName).?.value,
+        bomSchemaVersion.value
       )
       new ListBomTask(
         BomTaskProperties(

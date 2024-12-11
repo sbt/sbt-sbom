@@ -23,9 +23,11 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
   }
 
   private def components: Seq[Component] =
-    configurationsForComponents(settings.configuration).foldLeft(Seq[Component]()) { case (collected, configuration) =>
-      collected ++ componentsForConfiguration(configuration)
-    }.distinct
+    configurationsForComponents(settings.configuration)
+      .foldLeft(Seq[Component]()) { case (collected, configuration) =>
+        collected ++ componentsForConfiguration(configuration)
+      }
+      .distinct
 
   private def configurationsForComponents(configuration: Configuration): Seq[sbt.Configuration] = {
     log.info(s"Current configuration = ${configuration.name}")
