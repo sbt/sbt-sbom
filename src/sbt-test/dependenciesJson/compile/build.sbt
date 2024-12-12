@@ -1,11 +1,11 @@
-import scala.xml.XML
-
 lazy val root = (project in file("."))
   .settings(
     name := "dependencies",
     version := "0.1",
     libraryDependencies ++= Dependencies.library,
     bomFileName := "bom.json",
+    includeBomToolVersion := false,
+    enableBomSha3Hashes := false,
     scalaVersion := "2.12.20",
     check := Def
       .sequential(
