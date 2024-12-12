@@ -1,238 +1,364 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.6">
+  <metadata>
+    <tools>
+      <tool>
+        <name>CycloneDX SBT plugin</name>
+      </tool>
+    </tools>
+  </metadata>
   <components>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.20">
       <group>org.scala-lang</group>
       <name>scala-library</name>
       <version>2.12.20</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">6c78ebf7399f0bb5f449b72322453eb6</hash>
+        <hash alg="SHA-1">562dc9629943eec010e27898c3be65ffa9210558</hash>
+        <hash alg="SHA-256">4d8a8f984cce31a329a24f10b0bf336f042cb62aeb435290a1b20243154cfccb</hash>
+        <hash alg="SHA-512">32f566686e83ba54e24d6679667f9e699485ce360b2513def7be69b91122ac6c1f40b08411cfb933c64a6a92985ca719190e2cf3825eb68ffdffe47348f40b89</hash>
+        <hash alg="SHA-384">d5f770f83025aabf1257f043692dc4a942112313e878f12f495e76cb6715a06462a98e67e9c934797f1efeda8eec172f</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache-2.0</name>
+          <id>Apache-2.0</id>
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-core_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-core_2.12</name>
       <version>0.10.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">6178c7c6dc2a134d8a6c9eced6d3c2d6</hash>
+        <hash alg="SHA-1">c602b4fc3b221407a63f0f2c832bdba0da8309dd</hash>
+        <hash alg="SHA-256">71d7866949089afbd925d14c1810182e9c43dd6d5031a8da067e4aa717cc9703</hash>
+        <hash alg="SHA-512">ac5c383dbf97e8da2f7c3642d6446e151310e3644396e5b6183f977fdb1ab8cd5305422074cae4acf2d14ab80e424569352c14e9bf4d3c26de38502081d0f3e7</hash>
+        <hash alg="SHA-384">7edbca13c4c58e97876b367ddb531b9eccda8fa9930b01b3261447b70ac8ac6b4404e94d45797b5e2246c8fff7b0ca00</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache 2.0</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-core_2.12@0.10.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-generic_2.12</name>
       <version>0.10.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">6529f9b6d17052e1b2969f1dd29e451f</hash>
+        <hash alg="SHA-1">53844268ad4bbd79ddeae4d768267de17baa02be</hash>
+        <hash alg="SHA-256">f3cea34efd423c092293d7eef76820c9445517b385430697befbc7ed2a714e9f</hash>
+        <hash alg="SHA-512">512693f15466e83a8d971d1ac61842c75f2b61bcfc9c8f0c8277e96a4623f18ab7b3b66d23639e94d546c053af8277c72541b23cc884eac8ac653d7a7fd3e628</hash>
+        <hash alg="SHA-384">b23f9867d5fa52486a3d578f5c028767a2825bbb16b0fa9393f2fccd6442f1fed180b9bea46f972925aac93e285235a1</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache 2.0</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-generic_2.12@0.10.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-parser_2.12</name>
       <version>0.10.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">aa1c3a734b5e548c2d70373d8dfbac54</hash>
+        <hash alg="SHA-1">a5508300b924dffebbb09f3350014089dd40d7ff</hash>
+        <hash alg="SHA-256">27c58a6bee47df9eeda409373870283c42a9321a5c7859f6ec49dadc802aa520</hash>
+        <hash alg="SHA-512">083fa871ae2b3da51554f8915c77c3792c4b836f92d1ede5cb6bdcdc074f29739f4ea20fd27a4eb2659e69f7f837b80e5f5e87652533cc516719778593d750a5</hash>
+        <hash alg="SHA-384">ce01c27ace5772de1a42bd0c7375465110501cf409e8467e8a5cb3b0be56b34cca6dd682379725abd5887351535ea0d7</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache 2.0</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-parser_2.12@0.10.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.scalatest/scalatest_2.12@3.0.5">
       <group>org.scalatest</group>
       <name>scalatest_2.12</name>
       <version>3.0.5</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">a6556b913fde52a8c4c42b527558b349</hash>
+        <hash alg="SHA-1">7bb56c0f7a3c60c465e36c6b8022a95b883d7434</hash>
+        <hash alg="SHA-256">b416b5bcef6720da469a8d8a5726e457fc2d1cd5d316e1bc283aa75a2ae005e5</hash>
+        <hash alg="SHA-512">34acff9bf76a22d4baebc52edb2d1c962869f606e4e2f006f0727dc392b19ff49fe66a129f6512b7cde7cd9a53669245c48605847ecd4dce989547a369a5d6dd</hash>
+        <hash alg="SHA-384">3fd3ec4a828a3ebb5fd0ec4aed3a9e24c80f65044e6886fe77b9d2d58f6d9771ac27a047f5b47a859d6381e7227da027</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>the Apache License, ASL Version 2.0</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.scalatest/scalatest_2.12@3.0.5</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-numbers_2.12</name>
       <version>0.10.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">f3e3c4a14b3016deb670d94d86481060</hash>
+        <hash alg="SHA-1">8c87ded057189cbeee0d7c2e9f55cc4dac487ee1</hash>
+        <hash alg="SHA-256">d7845d065c7320892f82bbc4d360e99de1f91892c32202115b09d96541fcb868</hash>
+        <hash alg="SHA-512">6026234fb7f08e54631f7b297e16810d7999580ad44d1f7b6136b0d9b1f331fc0920b4ef1461c92507a22b963d88cd16341ab649b9c76ec84cd7d4ea6c9a4cc1</hash>
+        <hash alg="SHA-384">78f487d65ae2feea7ca33d0e58054e31ca1984b9925ad64a95eb613e4a8282e118ad59ada2295d4bd5f2e3ff29d88596</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache 2.0</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-numbers_2.12@0.10.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0">
       <group>org.typelevel</group>
       <name>cats-core_2.12</name>
       <version>1.4.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">6d99f15cd7419e8b3cc72ffd38a5815e</hash>
+        <hash alg="SHA-1">e9be08c0a1b39f39d8a9130a856c9b184dd1ec2f</hash>
+        <hash alg="SHA-256">ab9eeca930b3e51bd063d45c1ec51097a41dd6f61d155d880f5f14be0ab14f35</hash>
+        <hash alg="SHA-512">376efe8fc921a2268c27ce56885f230aa016531f624b87cae30676b1f06965a8794699a9c5c99816b326f6ca1df2981668a4373c3da0c3b8a39cc1ed0b06a535</hash>
+        <hash alg="SHA-384">3bbcf83eeed4bf1dca3c08aa6ea9d5deb57429de844a6e385aeff4a6eb5ea1149c7616011f5cabbc692f7779e696d86d</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>MIT</name>
+          <id>MIT</id>
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-core_2.12@1.4.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3">
       <group>com.chuusai</group>
       <name>shapeless_2.12</name>
       <version>2.3.3</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">002995e4aa53f59d06e99734826cc960</hash>
+        <hash alg="SHA-1">6041e2c4871650c556a9c6842e43c04ed462b11f</hash>
+        <hash alg="SHA-256">312e301432375132ab49592bd8d22b9cd42a338a6300c6157fb4eafd1e3d5033</hash>
+        <hash alg="SHA-512">58043efb20dd5490d07b188b2876509b521e77fc77b4c3ea2f9f88bc03030620dbea5a28ea4c769fde8593165eb210df1194b0f3845cbcdf78683ab553dbe186</hash>
+        <hash alg="SHA-384">6e0536bbbec29990b9de1f6fcf5526cb694596bb22603dd4c6d95a2c92bc3c27891af223a3a0d4a1e3dea96188bdd4be</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache 2</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
       </licenses>
       <purl>pkg:maven/com.chuusai/shapeless_2.12@2.3.3</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-jawn_2.12</name>
       <version>0.10.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">3514a887a30482ecda106bfffd400b8f</hash>
+        <hash alg="SHA-1">979ce1dc1d26ae0bf33601e0bb4d3a49dba549d9</hash>
+        <hash alg="SHA-256">8ebc3204f91e25b28fa8fb0ae17c58c2826f3fb4c3cb0a6f10d3c95760ecb600</hash>
+        <hash alg="SHA-512">9d6cdd7e0ff044537567ad0dc4d349dd545cfeda7d4aea0febbb3ed61e460f3ce79f89c87c9b7f93f09b49a5a1ced1bd0fad25a1b9704dac037b0017c9217599</hash>
+        <hash alg="SHA-384">45d8a33e61952899e78dd41c304a30fd6b3175c2f6d0843b33ea6ccd61d5768d4a09aa10010a2b868eccf1ed2e6e9057</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache 2.0</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/io.circe/circe-jawn_2.12@0.10.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.scalactic/scalactic_2.12@3.0.5">
       <group>org.scalactic</group>
       <name>scalactic_2.12</name>
       <version>3.0.5</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">db045c3a125662d76f210001158bfbbf</hash>
+        <hash alg="SHA-1">edec43902cdc7c753001501e0d8c2de78394fb03</hash>
+        <hash alg="SHA-256">57e25b4fd969b1758fe042595112c874dfea99dca5cc48eebe07ac38772a0c41</hash>
+        <hash alg="SHA-512">2b6026204793c960c6475f7e94975b0e3546db8be2c39d1bafa68f3c9460668d870cb0ab8fa85ff128ecbcb1dbdcddde922d281e7ec33d9b0ae83f7db07ee35c</hash>
+        <hash alg="SHA-384">3b2653fb93fc59fa018c87c95ba2a9db1d1c445f0f9d9de6b266fce6c618db585b95ad01019bc4342849127cdbbdabf0</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>the Apache License, ASL Version 2.0</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.scalactic/scalactic_2.12@3.0.5</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
       <group>org.scala-lang</group>
       <name>scala-reflect</name>
       <version>2.12.20</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">c809ef0d711bb6ef6f4cfc5247fcd6df</hash>
+        <hash alg="SHA-1">f923933d1c168535e66ca825c18207a8db2b20a6</hash>
+        <hash alg="SHA-256">5f1914cdc7a70580ea6038d929ebb25736ecf2234f677e2d47f8a4b2bc81e1fb</hash>
+        <hash alg="SHA-512">ef2d1215e47b4921597f4f21aa4ff66434bcbfce3325b48567b0ca44e0184aff22097874bc1023142a2e0b4b1c963148f50509ee56371ecd2c7610f28c00f63c</hash>
+        <hash alg="SHA-384">24a908a2d59f64796ba2e602b3702cefcfe471264caa6038163c523692e17becc5a7316e82610359c697727889548391</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache-2.0</name>
+          <id>Apache-2.0</id>
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6">
       <group>org.scala-lang.modules</group>
       <name>scala-xml_2.12</name>
       <version>1.0.6</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">ac867dfb81feb7c874f2cbc953453700</hash>
+        <hash alg="SHA-1">e22de3366a698a9f744106fb6dda4335838cf6a7</hash>
+        <hash alg="SHA-256">7cc3b6ceb56e879cb977e8e043f4bfe2e062f78795efd7efa09f85003cb3230a</hash>
+        <hash alg="SHA-512">9bbb05828f532ab17e7ad36021996e1eaedb2296298ded4f323d7f471dede76487a67f32eda57aeaa0cd3d4c4996c80453ca6b3d0b81cd6314df0416d59d2138</hash>
+        <hash alg="SHA-384">4b6d6f4628c826e81b18710a50915819a2a332b9c61ba4624a965af0f7f42e144cfbefe4c93e247c29b464ad49b7b5c4</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>BSD 3-clause</name>
+          <id>BSD-3-Clause</id>
           <url>http://opensource.org/licenses/BSD-3-Clause</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
       <group>org.typelevel</group>
       <name>cats-macros_2.12</name>
       <version>1.4.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">d6909c57983d748597c1d4c08d7aeae4</hash>
+        <hash alg="SHA-1">2436705a12dd4a9999c7568db4f54e4f1b95ac23</hash>
+        <hash alg="SHA-256">28d318d6265ed08f15f61af407a22bacbe6f5e139075cc06df21e6d48a7a7eb2</hash>
+        <hash alg="SHA-512">b76c63d66265c3b910bea35bac86f5b788601adbbd72eb8f6a4f9fbaa2b7f8385c859b29661853555c10076c4b3aaad6941f89ad471a718ee3ef0772078c3651</hash>
+        <hash alg="SHA-384">8315ca4c6e07a2295368c0ecd148ac5797669c7c716db7a37ed88f60cdeb0c87b638275cd49dcc3bb59cebd167df8144</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>MIT</name>
+          <id>MIT</id>
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-macros_2.12@1.4.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
       <group>org.typelevel</group>
       <name>cats-kernel_2.12</name>
       <version>1.4.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">78d0958b2a31998e2d5f5b00f6632706</hash>
+        <hash alg="SHA-1">af8aea4585e5bd90fe071324f98c461ac7b62907</hash>
+        <hash alg="SHA-256">118074e737f810edd004588f0c681efb7d0d216ae9c481e3c952a07e47d3578b</hash>
+        <hash alg="SHA-512">9e34a66d68f5d4a5f35922162b29c0ba48b9769d47e858cb65aea885574c3757ebeeb7eeceb992a703e6ed1d247e53251899010a9738b389d5baf59077fbac2c</hash>
+        <hash alg="SHA-384">245d6916298e3ad164dd0ad61cc49e64caacb7d35c633706ca9e25c3eece2dd6abb2a425f97bcbdd3fa9da106e0fb44a</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>MIT</name>
+          <id>MIT</id>
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
       <group>org.typelevel</group>
       <name>machinist_2.12</name>
       <version>0.6.5</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">caf84ca04bbf75e7f48cf740b59d05dd</hash>
+        <hash alg="SHA-1">abf43203c83e1c39532e24e87d279712c0ddf823</hash>
+        <hash alg="SHA-256">9b449314637d967b8acf1bcb744b605e118fe6ac6c7d08e8db68b7f39267d8e5</hash>
+        <hash alg="SHA-512">66ab34632201528e68221f269222f30c0648330bf2874e166081544daa500e575d2ee5699b9a48cdd14ca39b8df6539a7773f5eb4c5ab8f09b13bd08fa183ea0</hash>
+        <hash alg="SHA-384">5acbdede736ec7a94d42e6c0a8e0dd8a151b20676e49af97fe3d065e62ebdf681c24aabcf849a1e3c50e0d9ffcfd5116</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>MIT</name>
+          <id>MIT</id>
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/machinist_2.12@0.6.5</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
       <group>org.typelevel</group>
       <name>macro-compat_2.12</name>
       <version>1.1.1</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">c6c8927e9d6b7e3e4f60c019f146d099</hash>
+        <hash alg="SHA-1">ed809d26ef4237d7c079ae6cf7ebd0dfa7986adf</hash>
+        <hash alg="SHA-256">8b1514ec99ac9c7eded284367b6c9f8f17a097198a44e6f24488706d66bbd2b8</hash>
+        <hash alg="SHA-512">6e9a616ed2771fe68c8390b85dd30cac910c6f33b15e32638a082358a860e9bdef6e1235aed423bfd718198dffb5bf8c48b5a461e19023c98f39294e6bba2482</hash>
+        <hash alg="SHA-384">8e1d59c356d27364b8d36ff178ffc10efe4df56b27a42735c9ef14f633ee3b2b7abf71ba4cbb38e9f5fe394453a3262f</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>Apache 2</name>
+          <id>Apache-2.0</id>
           <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
       </licenses>
       <purl>pkg:maven/org.typelevel/macro-compat_2.12@1.1.1</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
+    <component type="library" bom-ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
       <group>org.spire-math</group>
       <name>jawn-parser_2.12</name>
       <version>0.13.0</version>
       <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">85a145b9224a5eb625a795536609ca37</hash>
+        <hash alg="SHA-1">4a2e53bbe3c6f467384327abc9bab25d7cdcada4</hash>
+        <hash alg="SHA-256">4aa94d58b2b36f1df8270e1dbfc46b07cc4d9850a963b6f82d9c654a71f5ec53</hash>
+        <hash alg="SHA-512">49cac3420253f280b6dccc70cd2805c6b14bd43a862392a6766cf6412948ebde4add69e1876efb3335f18f1b24c9064323b17d87c6abb6a41edd7e9b2b3e01fa</hash>
+        <hash alg="SHA-384">cee97b1aff168ea812eba4a1f136a2fdd27258bf53177c566489fbd88d8167ce92f84d0872ee84ce8d24291089a6e4a8</hash>
+      </hashes>
       <licenses>
         <license>
-          <name>MIT</name>
+          <id>MIT</id>
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>

@@ -18,6 +18,10 @@ final case class BomTaskProperties(
     schemaVersion: String,
     bomFormat: BomFormat,
     includeBomSerialNumber: Boolean,
+    includeBomTimestamp: Boolean,
+    includeBomToolVersion: Boolean,
+    includeBomHashes: Boolean,
+    enableBomSha3Hashes: Boolean,
 )
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
@@ -63,7 +67,15 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   }
 
   private def extractorParams(currentConfiguration: Configuration): BomExtractorParams =
-    BomExtractorParams(schemaVersion, currentConfiguration, includeBomSerialNumber)
+    BomExtractorParams(
+      schemaVersion,
+      currentConfiguration,
+      includeBomSerialNumber,
+      includeBomTimestamp,
+      includeBomToolVersion,
+      includeBomHashes,
+      enableBomSha3Hashes
+    )
 
   protected def logBomInfo(params: BomExtractorParams, bom: Bom): Unit = {
     log.info(s"Schema version: ${schemaVersion.getVersionString}")
@@ -89,4 +101,12 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected lazy val bomFormat: BomFormat = properties.bomFormat
 
   protected lazy val includeBomSerialNumber: Boolean = properties.includeBomSerialNumber
+
+  protected lazy val includeBomTimestamp: Boolean = properties.includeBomTimestamp
+
+  protected lazy val includeBomToolVersion: Boolean = properties.includeBomToolVersion
+
+  protected lazy val includeBomHashes: Boolean = properties.includeBomHashes
+
+  protected lazy val enableBomSha3Hashes: Boolean = properties.enableBomSha3Hashes
 }

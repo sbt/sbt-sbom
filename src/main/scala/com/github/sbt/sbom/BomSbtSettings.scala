@@ -19,7 +19,11 @@ object BomSbtSettings {
           sLog.value,
           bomSchemaVersion.value,
           format,
-          includeBomSerialNumber.value
+          includeBomSerialNumber.value,
+          includeBomTimestamp.value,
+          includeBomToolVersion.value,
+          includeBomHashes.value,
+          enableBomSha3Hashes.value
         ),
         target.value / (currentConfiguration / bomFileName).value
       ).execute
@@ -39,7 +43,11 @@ object BomSbtSettings {
           sLog.value,
           bomSchemaVersion.value,
           format,
-          includeBomSerialNumber.value
+          includeBomSerialNumber.value,
+          includeBomTimestamp.value,
+          includeBomToolVersion.value,
+          includeBomHashes.value,
+          enableBomSha3Hashes.value
         )
       ).execute
     }

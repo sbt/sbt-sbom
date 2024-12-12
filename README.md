@@ -45,10 +45,16 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 ### configuration
 
-| Setting     | Type   | Description                                                                 |
-|-------------|--------|-----------------------------------------------------------------------------|
-| bomFileName | String | bom file name                                                               |
-| bomFormat   | String | bom format, json or xml, defaults to the format of bomFileName or else json |
+| Setting                | Type    | Default                                                                | Description                                                    |
+|------------------------|---------|------------------------------------------------------------------------|----------------------------------------------------------------|
+| bomFileName            | String  | `"${artifactId}-${artifactVersion}.bom.xml"`                           | bom file name                                                  |
+| bomFormat              | String  | `json` or `xml`, defaults to the format of bomFileName or else `json`  | bom format                                                     |
+| bomSchemaVersion       | String  | `"1.6"`                                                                | bom schema version                                             |
+| includeBomSerialNumber | Boolean | `false`                                                                | include serial number in bom                                   |
+| includeBomTimestamp    | Boolean | `false`                                                                | include timestamp in bom                                       |
+| includeBomToolVersion  | Boolean | `true`                                                                 | include tool version in bom                                    |
+| includeBomHashes       | Boolean | `true`                                                                 | include artifact hashes in bom                                 |
+| enableBomSha3Hashes    | Boolean | `true`                                                                 | enable the generation of sha3 hashes (not available on java 8) |
 
 Sample configuration:
 
