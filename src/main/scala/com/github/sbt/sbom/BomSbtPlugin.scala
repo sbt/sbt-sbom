@@ -22,6 +22,9 @@ object BomSbtPlugin extends AutoPlugin {
     lazy val bomSchemaVersion: SettingKey[String] = settingKey[String](
       s"bom schema version; must be one of ${supportedVersionsDescr}; default is ${defaultSupportedVersionDescr}"
     )
+    lazy val bomFormat: SettingKey[String] = settingKey[String](
+      "bom format; must be json or xml"
+    )
     lazy val includeBomSerialNumber: SettingKey[Boolean] = settingKey[Boolean](
       "should the resulting BOM contain a serial number? default is false, because the current mechanism for determining the serial number is not reproducible"
     )
@@ -52,7 +55,9 @@ object BomSbtPlugin extends AutoPlugin {
     val bomFileNameSetting = Def.setting {
       val artifactId = artifact.value.name
       val artifactVersion = version.value
-      s"${artifactId}-${artifactVersion}.bom.xml"
+      val schemaVersion = bomSchemaVersion.value
+      val format = BomFormat.fromSettings(bomFormat.?.value, None, schemaVersion)
+      s"${artifactId}-${artifactVersion}.bom.${format.string}"
     }
     Seq(
       bomFileName := bomFileNameSetting.value,

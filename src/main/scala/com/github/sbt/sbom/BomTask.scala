@@ -5,7 +5,7 @@ import org.apache.commons.io.FileUtils
 import org.cyclonedx.Version
 import org.cyclonedx.generators.BomGeneratorFactory
 import org.cyclonedx.model.Bom
-import org.cyclonedx.parsers.XmlParser
+import org.cyclonedx.parsers.{ JsonParser, XmlParser }
 import sbt._
 
 import java.nio.charset.Charset
@@ -16,6 +16,7 @@ final case class BomTaskProperties(
     currentConfiguration: Configuration,
     log: Logger,
     schemaVersion: String,
+    bomFormat: BomFormat,
     includeBomSerialNumber: Boolean,
     includeBomTimestamp: Boolean,
     includeBomToolVersion: Boolean,
@@ -30,7 +31,10 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected def getBomText: String = {
     val params: BomExtractorParams = extractorParams(currentConfiguration)
     val bom: Bom = new BomExtractor(params, report, log).bom
-    val bomText: String = getXmlText(bom)
+    val bomText: String = bomFormat match {
+      case BomFormat.Json => BomGeneratorFactory.createJson(schemaVersion, bom).toJsonString
+      case BomFormat.Xml  => BomGeneratorFactory.createXml(schemaVersion, bom).toXmlString
+    }
     logBomInfo(params, bom)
     bomText
   }
@@ -40,11 +44,14 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   }
 
   protected def validateBomFile(bomFile: File): Unit = {
-    val parser = new XmlParser()
+    val parser = bomFormat match {
+      case BomFormat.Json => new JsonParser()
+      case BomFormat.Xml  => new XmlParser()
+    }
     val exceptions = parser.validate(bomFile, schemaVersion).asScala
     if (exceptions.nonEmpty) {
       val message =
-        s"The BOM file ${bomFile.getAbsolutePath} does not conform to the CycloneDX BOM standard as defined by the XSD"
+        s"The BOM file ${bomFile.getAbsolutePath} does not conform to the CycloneDX BOM standard as defined by the Schema"
       log.error(s"$message:")
       exceptions.foreach { exception =>
         log.error(s"- ${exception.getMessage}")
@@ -70,13 +77,6 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
       enableBomSha3Hashes
     )
 
-  private def getXmlText(bom: Bom): String = {
-    val bomGenerator = BomGeneratorFactory.createXml(schemaVersion, bom)
-    bomGenerator.generate
-    val bomText = bomGenerator.toXmlString
-    bomText
-  }
-
   protected def logBomInfo(params: BomExtractorParams, bom: Bom): Unit = {
     log.info(s"Schema version: ${schemaVersion.getVersionString}")
     // log.info(s"Serial number : ${bom.getSerialNumber}")
@@ -97,6 +97,8 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
         log.error(message)
         throw new BomError(message)
     }
+
+  protected lazy val bomFormat: BomFormat = properties.bomFormat
 
   protected lazy val includeBomSerialNumber: Boolean = properties.includeBomSerialNumber
 

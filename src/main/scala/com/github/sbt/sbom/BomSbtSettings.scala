@@ -7,12 +7,18 @@ import sbt._
 object BomSbtSettings {
   def makeBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[sbt.File]] =
     Def.task[File] {
+      val format = BomFormat.fromSettings(
+        (currentConfiguration / bomFormat).?.value,
+        (currentConfiguration / bomFileName).?.value,
+        bomSchemaVersion.value
+      )
       new MakeBomTask(
         BomTaskProperties(
           report,
           currentConfiguration,
           sLog.value,
           bomSchemaVersion.value,
+          format,
           includeBomSerialNumber.value,
           includeBomTimestamp.value,
           includeBomToolVersion.value,
@@ -25,12 +31,18 @@ object BomSbtSettings {
 
   def listBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[String]] =
     Def.task[String] {
+      val format = BomFormat.fromSettings(
+        (currentConfiguration / bomFormat).?.value,
+        (currentConfiguration / bomFileName).?.value,
+        bomSchemaVersion.value
+      )
       new ListBomTask(
         BomTaskProperties(
           report,
           currentConfiguration,
           sLog.value,
           bomSchemaVersion.value,
+          format,
           includeBomSerialNumber.value,
           includeBomTimestamp.value,
           includeBomToolVersion.value,

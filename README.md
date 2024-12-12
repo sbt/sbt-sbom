@@ -45,15 +45,16 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 ### configuration
 
-| Setting                | Type    | Default                                      | Description                                                     |
-|------------------------|---------|----------------------------------------------|-----------------------------------------------------------------|
-| bomFileName            | String  | `"${artifactId}-${artifactVersion}.bom.xml"` | bom file name                                                   |
-| bomSchemaVersion       | String  | `"1.6"`                                      | bom schema version                                              |
-| includeBomSerialNumber | Boolean | `false`                                      | include serial number in bom                                    |
-| includeBomTimestamp    | Boolean | `false`                                      | include timestamp in bom                                        |
-| includeBomToolVersion  | Boolean | `true`                                       | include tool version in bom                                     |
-| includeBomHashes       | Boolean | `true`                                       | include artifact hashes in bom                                  |
-| enableBomSha3Hashes    | Boolean | `true`                                       | enable the generation of sha3 hashes (not available on java 8)  |
+| Setting                | Type    | Default                                                                | Description                                                    |
+|------------------------|---------|------------------------------------------------------------------------|----------------------------------------------------------------|
+| bomFileName            | String  | `"${artifactId}-${artifactVersion}.bom.xml"`                           | bom file name                                                  |
+| bomFormat              | String  | `json` or `xml`, defaults to the format of bomFileName or else `json`  | bom format                                                     |
+| bomSchemaVersion       | String  | `"1.6"`                                                                | bom schema version                                             |
+| includeBomSerialNumber | Boolean | `false`                                                                | include serial number in bom                                   |
+| includeBomTimestamp    | Boolean | `false`                                                                | include timestamp in bom                                       |
+| includeBomToolVersion  | Boolean | `true`                                                                 | include tool version in bom                                    |
+| includeBomHashes       | Boolean | `true`                                                                 | include artifact hashes in bom                                 |
+| enableBomSha3Hashes    | Boolean | `true`                                                                 | enable the generation of sha3 hashes (not available on java 8) |
 
 Sample configuration:
 
@@ -68,7 +69,7 @@ lazy val root = (project in file("."))
 
 ## CycloneDX support
 
-Actually, only version 1.0 of the CycloneDX specification is supported. Support for later versions of the specification, such as for creating BOMs in json format, is expected later.
+This plugin supports the CycloneDX XML and JSON BOM formats.
 
 ## Contributing
 
