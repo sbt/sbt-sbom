@@ -71,6 +71,12 @@ lazy val root = (project in file("."))
 
 This plugin supports the CycloneDX XML and JSON BOM formats.
 
+## Stability
+
+We believe this plugin is stable enough to be used in production, but
+we do not yet promise API stability: you may need to make configuration
+changes or encounter changed behaviour when updating the plugin.
+
 ## Contributing
 
 ### testing
