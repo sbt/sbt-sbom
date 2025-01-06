@@ -40,7 +40,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
     }
     bom.setComponents(components.asJava)
     if (settings.includeBomDependencyTree && settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
-      bom.setDependencies(dependencies.asJava)
+      bom.setDependencies(dependencyTree.asJava)
     }
     bom
   }
@@ -216,29 +216,25 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
   private def purl(group: String, name: String, version: String): String =
     new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
 
-  private def dependencies: Seq[Dependency] = {
-    val dependencies = configurationsForComponents(settings.configuration).flatMap { configuration =>
-      dependenciesForConfiguration(configuration)
+  private def dependencyTree: Seq[Dependency] = {
+    val dependencyTree = configurationsForComponents(settings.configuration).flatMap { configuration =>
+      dependencyTreeForConfiguration(configuration)
     }.distinct // deduplicate dependencies reported by multiple configurations
 
-    dependencies
+    dependencyTree
   }
 
-  private def dependenciesForConfiguration(configuration: Configuration): Seq[Dependency] = {
+  private def dependencyTreeForConfiguration(configuration: Configuration): Seq[Dependency] = {
     report
       .configuration(configuration)
       .toSeq
       .flatMap { configurationReport =>
-        log.info(
-          s"Configuration name = ${configurationReport.configuration.name}, details: ${configurationReport.details.size}"
-        )
-
-        new DependenciesExtractor(configurationReport).dependencies
+        new DependencyTreeExtractor(configurationReport).dependencyTree
       }
   }
 
-  class DependenciesExtractor(configurationReport: ConfigurationReport) {
-    def dependencies: Seq[Dependency] =
+  class DependencyTreeExtractor(configurationReport: ConfigurationReport) {
+    def dependencyTree: Seq[Dependency] =
       moduleGraph.nodes
         .sortBy(_.id.idString)
         .map { node =>
