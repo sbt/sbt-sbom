@@ -102,7 +102,7 @@ executed.
 [Scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html) is a tool that allow you to test sbt plugins.
 For each test it is necessary to create a specially crafted project. These projects are inside src/sbt-test directory.
 
-Scripted tests are run using `scripted` command.
+Scripted tests are run using `scripted` command. Note that these fail on JDK 21 due to the old version of sbt.
 
 ### Formatting
 

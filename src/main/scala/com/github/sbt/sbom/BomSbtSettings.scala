@@ -5,7 +5,7 @@
 package com.github.sbt.sbom
 
 import com.github.sbt.sbom.BomSbtPlugin.autoImport._
-import sbt.Keys.{ sLog, target }
+import sbt.Keys.{ sLog, target, scalaVersion, scalaBinaryVersion, projectID }
 import sbt._
 
 object BomSbtSettings {
@@ -20,6 +20,9 @@ object BomSbtSettings {
         BomTaskProperties(
           report,
           currentConfiguration,
+          CrossVersion(scalaVersion.value, scalaBinaryVersion.value)(
+            projectID.value
+          ),
           sLog.value,
           bomSchemaVersion.value,
           format,
@@ -45,6 +48,9 @@ object BomSbtSettings {
         BomTaskProperties(
           report,
           currentConfiguration,
+          CrossVersion(scalaVersion.value, scalaBinaryVersion.value)(
+            projectID.value
+          ),
           sLog.value,
           bomSchemaVersion.value,
           format,

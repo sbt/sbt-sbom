@@ -18,6 +18,7 @@ import scala.collection.JavaConverters._
 final case class BomTaskProperties(
     report: UpdateReport,
     currentConfiguration: Configuration,
+    rootModuleID: ModuleID,
     log: Logger,
     schemaVersion: String,
     bomFormat: BomFormat,
@@ -35,7 +36,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
 
   protected def getBomText: String = {
     val params: BomExtractorParams = extractorParams(currentConfiguration)
-    val bom: Bom = new BomExtractor(params, report, log).bom
+    val bom: Bom = new BomExtractor(params, report, rootModuleID, log).bom
     val bomText: String = bomFormat match {
       case BomFormat.Json => BomGeneratorFactory.createJson(schemaVersion, bom).toJsonString
       case BomFormat.Xml  => BomGeneratorFactory.createXml(schemaVersion, bom).toXmlString
@@ -92,6 +93,8 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected def report: UpdateReport = properties.report
 
   protected def currentConfiguration: Configuration = properties.currentConfiguration
+
+  protected def rootModuleID: ModuleID = properties.rootModuleID
 
   protected def log: Logger = properties.log
 
