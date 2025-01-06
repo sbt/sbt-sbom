@@ -51,17 +51,18 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 ### configuration
 
-| Setting                      | Type    | Default                                                                | Description                                                    |
-|------------------------------|---------|------------------------------------------------------------------------|----------------------------------------------------------------|
-| bomFileName                  | String  | `"${artifactId}-${artifactVersion}.bom.xml"`                           | bom file name                                                  |
-| bomFormat                    | String  | `json` or `xml`, defaults to the format of bomFileName or else `json`  | bom format                                                     |
-| bomSchemaVersion             | String  | `"1.6"`                                                                | bom schema version                                             |
-| includeBomSerialNumber       | Boolean | `false`                                                                | include serial number in bom                                   |
-| includeBomTimestamp          | Boolean | `false`                                                                | include timestamp in bom                                       |
-| includeBomToolVersion        | Boolean | `true`                                                                 | include tool version in bom                                    |
-| includeBomHashes             | Boolean | `true`                                                                 | include artifact hashes in bom                                 |
-| enableBomSha3Hashes          | Boolean | `true`                                                                 | enable the generation of sha3 hashes (not available on java 8) |
-| includeBomExternalReferences | Boolean | `true`                                                                 | include external references in bom                             |
+| Setting                      | Type    | Default                                                                | Description                                                     |
+|------------------------------|---------|------------------------------------------------------------------------|-----------------------------------------------------------------|
+| bomFileName                  | String  | `"${artifactId}-${artifactVersion}.bom.xml"`                           | bom file name                                                   |
+| bomFormat                    | String  | `json` or `xml`, defaults to the format of bomFileName or else `json`  | bom format                                                      |
+| bomSchemaVersion             | String  | `"1.6"`                                                                | bom schema version                                              |
+| includeBomSerialNumber       | Boolean | `false`                                                                | include serial number in bom                                    |
+| includeBomTimestamp          | Boolean | `false`                                                                | include timestamp in bom                                        |
+| includeBomToolVersion        | Boolean | `true`                                                                 | include tool version in bom                                     |
+| includeBomHashes             | Boolean | `true`                                                                 | include artifact hashes in bom                                  |
+| enableBomSha3Hashes          | Boolean | `true`                                                                 | enable the generation of sha3 hashes (not available on java 8)  |
+| includeBomExternalReferences | Boolean | `true`                                                                 | include external references in bom                              |
+| includeBomDependencyTree     | Boolean | `true`                                                                 | include dependency tree in bom (bomSchemaVersion 1.1 and later) |
 
 Sample configuration:
 
