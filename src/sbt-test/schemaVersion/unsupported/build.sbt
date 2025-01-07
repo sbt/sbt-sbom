@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: The sbt-sbom team
+//
+// SPDX-License-Identifier: MIT
+
 import sbt.Keys._
 
 lazy val root = (project in file("."))

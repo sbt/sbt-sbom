@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: The sbt-sbom team
+//
+// SPDX-License-Identifier: MIT
+
 ThisBuild / organization := Organization.organization
 ThisBuild / organizationName := Organization.organizationName
 ThisBuild / organizationHomepage := Organization.organizationHomepage
