@@ -22,5 +22,5 @@ lazy val checkTask = Def.task {
   s.log.info("Verifying bom content...")
   makeBom.value
   import scala.sys.process._
-  require(Seq("diff", "-w", "target/bom.json", s"${thisProject.value.base}/etc/bom.json").! == 0)
+  require(Seq("diff", "target/bom.json", s"${thisProject.value.base}/etc/bom.json").! == 0)
 }

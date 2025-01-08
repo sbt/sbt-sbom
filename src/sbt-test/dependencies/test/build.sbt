@@ -23,6 +23,6 @@ lazy val checkTask = Def.task {
   val bomFile = (Test / makeBom).value
 
   import scala.sys.process._
-  require(Seq("diff", "-w", bomFile.getPath, s"${thisProject.value.base}/etc/bom.xml").! == 0)
+  require(Seq("diff", bomFile.getPath, s"${thisProject.value.base}/etc/bom.xml").! == 0)
   s.log.info(s"${bomFile.getPath} content verified")
 }
