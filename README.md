@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: The sbt-sbom team
+
+SPDX-License-Identifier: MIT
+-->
+
 # sbt-sbom
 
 *sbt SBOM exporter*

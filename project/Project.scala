@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: The sbt-sbom team
+//
+// SPDX-License-Identifier: MIT
+
 import sbt._
 
 object Project {

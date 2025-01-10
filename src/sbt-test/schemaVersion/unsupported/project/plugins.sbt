@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: The sbt-sbom team
+//
+// SPDX-License-Identifier: MIT
+
 (
   sys.props.get("plugin.version"),
   sys.props.get("plugin.organization")

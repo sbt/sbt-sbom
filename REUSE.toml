@@ -1,0 +1,28 @@
+version=1
+
+[[annotations]]
+path = [
+  ".gitignore",
+  ".scalafix.conf",
+  ".scalafmt.conf",
+
+  ".github/workflows/clean.yml",
+  ".github/workflows/ci.yml",
+  ".github/workflows/dependency-graph.yml",
+  ".github/workflows/format.yml",
+
+  "project/build.properties",
+
+  "src/main/resources/licenses.readme.md",
+
+  "src/test/resources/*.txt",
+  "src/sbt-test/*/*/etc/bom.json",
+  "src/sbt-test/*/*/etc/bom.xml",
+]
+SPDX-FileCopyrightText = "the sbt-sbom team"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = [ "src/main/resources/licenses.json", ]
+SPDX-FileCopyrightText = "SPDX Workgroup"
+SPDX-License-Identifier = "Apache-2.0"

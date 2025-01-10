@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: The sbt-sbom team
+//
+// SPDX-License-Identifier: MIT
+
 lazy val root = (project in file("."))
   .settings(
     name := "exists",

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: The sbt-sbom team
+//
+// SPDX-License-Identifier: MIT
+
 package com.github.sbt.sbom.model
 
 import org.cyclonedx.model.Component.{ Scope, Type }
