@@ -28,6 +28,11 @@
       </licenses>
       <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.scala-lang.org/</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/io.circe/circe-core_2.12@0.10.0">
       <group>io.circe</group>
@@ -49,6 +54,11 @@
       </licenses>
       <purl>pkg:maven/io.circe/circe-core_2.12@0.10.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/circe/circe</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0">
       <group>io.circe</group>
@@ -70,6 +80,11 @@
       </licenses>
       <purl>pkg:maven/io.circe/circe-generic_2.12@0.10.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/circe/circe</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0">
       <group>io.circe</group>
@@ -91,6 +106,11 @@
       </licenses>
       <purl>pkg:maven/io.circe/circe-parser_2.12@0.10.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/circe/circe</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.scalatest/scalatest_2.12@3.0.5">
       <group>org.scalatest</group>
@@ -112,6 +132,11 @@
       </licenses>
       <purl>pkg:maven/org.scalatest/scalatest_2.12@3.0.5</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.scalatest.org</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0">
       <group>io.circe</group>
@@ -133,6 +158,11 @@
       </licenses>
       <purl>pkg:maven/io.circe/circe-numbers_2.12@0.10.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/circe/circe</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0">
       <group>org.typelevel</group>
@@ -154,6 +184,11 @@
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-core_2.12@1.4.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/typelevel/cats</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3">
       <group>com.chuusai</group>
@@ -175,6 +210,11 @@
       </licenses>
       <purl>pkg:maven/com.chuusai/shapeless_2.12@2.3.3</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/milessabin/shapeless</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0">
       <group>io.circe</group>
@@ -196,6 +236,11 @@
       </licenses>
       <purl>pkg:maven/io.circe/circe-jawn_2.12@0.10.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/circe/circe</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.scalactic/scalactic_2.12@3.0.5">
       <group>org.scalactic</group>
@@ -217,6 +262,11 @@
       </licenses>
       <purl>pkg:maven/org.scalactic/scalactic_2.12@3.0.5</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.scalatest.org</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
       <group>org.scala-lang</group>
@@ -238,6 +288,11 @@
       </licenses>
       <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.scala-lang.org/</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6">
       <group>org.scala-lang.modules</group>
@@ -259,6 +314,11 @@
       </licenses>
       <purl>pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.scala-lang.org/</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
       <group>org.typelevel</group>
@@ -280,6 +340,11 @@
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-macros_2.12@1.4.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/typelevel/cats</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
       <group>org.typelevel</group>
@@ -301,6 +366,11 @@
       </licenses>
       <purl>pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/typelevel/cats</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
       <group>org.typelevel</group>
@@ -322,6 +392,11 @@
       </licenses>
       <purl>pkg:maven/org.typelevel/machinist_2.12@0.6.5</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>http://github.com/typelevel/machinist</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
       <group>org.typelevel</group>
@@ -343,6 +418,11 @@
       </licenses>
       <purl>pkg:maven/org.typelevel/macro-compat_2.12@1.1.1</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/milessabin/macro-compat</url>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
       <group>org.spire-math</group>
@@ -364,6 +444,11 @@
       </licenses>
       <purl>pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0</purl>
       <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+          <url>http://github.com/non/jawn</url>
+        </reference>
+      </externalReferences>
     </component>
   </components>
 </bom>

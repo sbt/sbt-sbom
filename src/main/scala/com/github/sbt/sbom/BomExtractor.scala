@@ -7,7 +7,7 @@ package com.github.sbt.sbom
 import com.github.packageurl.PackageURL
 import com.github.sbt.sbom.licenses.LicensesArchive
 import org.cyclonedx.Version
-import org.cyclonedx.model.{ Bom, Component, Hash, License, LicenseChoice, Metadata, Tool }
+import org.cyclonedx.model.{ Bom, Component, ExternalReference, Hash, License, LicenseChoice, Metadata, Tool }
 import org.cyclonedx.util.BomUtils
 import sbt._
 import sbt.librarymanagement.ModuleReport
@@ -126,6 +126,14 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
         component.setHashes(hashes(artifactPaths(moduleReport)).asJava)
       }
       licenseChoice.foreach(component.setLicenses)
+      if (settings.includeBomExternalReferences && settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
+        moduleReport.homepage.foreach { url =>
+          val homepage = new ExternalReference()
+          homepage.setType(ExternalReference.Type.WEBSITE)
+          homepage.setUrl(url)
+          component.addExternalReference(homepage)
+        }
+      }
 
       /*
         not returned component properties are (BOM version 1.0):
