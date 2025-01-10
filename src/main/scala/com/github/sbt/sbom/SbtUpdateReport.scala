@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023, Scala center, 2011 - 2022, Lightbend, Inc., 2008 - 2010, Mark Harrah
+//
+// SPDX-License-Identifier: Apache-2.0
+
 package com.github.sbt.sbom
 
 import sbt.librarymanagement.{ ConfigurationReport, ModuleID, ModuleReport }
