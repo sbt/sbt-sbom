@@ -48,7 +48,13 @@
         }
       ],
       "purl" : "pkg:maven/org.scala-lang/scala-library@2.12.20",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://www.scala-lang.org/"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -88,7 +94,13 @@
         }
       ],
       "purl" : "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/circe/circe"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -128,7 +140,13 @@
         }
       ],
       "purl" : "pkg:maven/io.circe/circe-generic_2.12@0.10.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/circe/circe"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -168,7 +186,13 @@
         }
       ],
       "purl" : "pkg:maven/io.circe/circe-parser_2.12@0.10.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/circe/circe"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -208,7 +232,13 @@
         }
       ],
       "purl" : "pkg:maven/io.circe/circe-numbers_2.12@0.10.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/circe/circe"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -248,7 +278,13 @@
         }
       ],
       "purl" : "pkg:maven/org.typelevel/cats-core_2.12@1.4.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/typelevel/cats"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -288,7 +324,13 @@
         }
       ],
       "purl" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/milessabin/shapeless"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -328,7 +370,13 @@
         }
       ],
       "purl" : "pkg:maven/io.circe/circe-jawn_2.12@0.10.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/circe/circe"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -368,7 +416,13 @@
         }
       ],
       "purl" : "pkg:maven/org.typelevel/cats-macros_2.12@1.4.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/typelevel/cats"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -408,7 +462,13 @@
         }
       ],
       "purl" : "pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/typelevel/cats"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -448,7 +508,13 @@
         }
       ],
       "purl" : "pkg:maven/org.typelevel/machinist_2.12@0.6.5",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://github.com/typelevel/machinist"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -488,7 +554,13 @@
         }
       ],
       "purl" : "pkg:maven/org.typelevel/macro-compat_2.12@1.1.1",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/milessabin/macro-compat"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -528,7 +600,13 @@
         }
       ],
       "purl" : "pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://github.com/non/jawn"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -568,7 +646,13 @@
         }
       ],
       "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
-      "modified" : false
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://www.scala-lang.org/"
+        }
+      ]
     }
   ]
 }

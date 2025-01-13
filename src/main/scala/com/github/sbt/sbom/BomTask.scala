@@ -26,6 +26,7 @@ final case class BomTaskProperties(
     includeBomToolVersion: Boolean,
     includeBomHashes: Boolean,
     enableBomSha3Hashes: Boolean,
+    includeBomExternalReferences: Boolean,
 )
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
@@ -78,7 +79,8 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
       includeBomTimestamp,
       includeBomToolVersion,
       includeBomHashes,
-      enableBomSha3Hashes
+      enableBomSha3Hashes,
+      includeBomExternalReferences,
     )
 
   protected def logBomInfo(params: BomExtractorParams, bom: Bom): Unit = {
@@ -113,4 +115,6 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected lazy val includeBomHashes: Boolean = properties.includeBomHashes
 
   protected lazy val enableBomSha3Hashes: Boolean = properties.enableBomSha3Hashes
+
+  protected lazy val includeBomExternalReferences: Boolean = properties.includeBomExternalReferences
 }
