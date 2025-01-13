@@ -16,4 +16,5 @@ final case class BomExtractorParams(
     includeBomHashes: Boolean,
     enableBomSha3Hashes: Boolean,
     includeBomExternalReferences: Boolean,
+    includeBomDependencyTree: Boolean,
 )

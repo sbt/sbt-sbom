@@ -7,7 +7,17 @@ package com.github.sbt.sbom
 import com.github.packageurl.PackageURL
 import com.github.sbt.sbom.licenses.LicensesArchive
 import org.cyclonedx.Version
-import org.cyclonedx.model.{ Bom, Component, ExternalReference, Hash, License, LicenseChoice, Metadata, Tool }
+import org.cyclonedx.model.{
+  Bom,
+  Component,
+  Dependency,
+  ExternalReference,
+  Hash,
+  License,
+  LicenseChoice,
+  Metadata,
+  Tool
+}
 import org.cyclonedx.util.BomUtils
 import sbt._
 import sbt.librarymanagement.ModuleReport
@@ -16,7 +26,9 @@ import java.util
 import java.util.UUID
 import scala.collection.JavaConverters._
 
-class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logger) {
+import SbtUpdateReport.ModuleGraph
+
+class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModuleID: ModuleID, log: Logger) {
   private val serialNumber: String = "urn:uuid:" + UUID.randomUUID.toString
 
   def bom: Bom = {
@@ -28,6 +40,9 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
       bom.setMetadata(metadata)
     }
     bom.setComponents(components.asJava)
+    if (settings.includeBomDependencyTree && settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
+      bom.setDependencies(dependencyTree.asJava)
+    }
     bom
   }
 
@@ -114,9 +129,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
       component.setVersion(version)
       component.setModified(false)
       component.setType(Component.Type.LIBRARY)
-      component.setPurl(
-        new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
-      )
+      component.setPurl(purl(group, name, version))
       if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
         // component bom-refs must be unique
         component.setBomRef(component.getPurl)
@@ -201,6 +214,46 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, log: Logg
     }
   }
 
+  private def purl(group: String, name: String, version: String): String =
+    new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
+
+  private def dependencyTree: Seq[Dependency] = {
+    val dependencyTree = configurationsForComponents(settings.configuration).flatMap { configuration =>
+      dependencyTreeForConfiguration(configuration)
+    }.distinct // deduplicate dependencies reported by multiple configurations
+
+    dependencyTree
+  }
+
+  private def dependencyTreeForConfiguration(configuration: Configuration): Seq[Dependency] = {
+    report
+      .configuration(configuration)
+      .toSeq
+      .flatMap { configurationReport =>
+        new DependencyTreeExtractor(configurationReport).dependencyTree
+      }
+  }
+
+  class DependencyTreeExtractor(configurationReport: ConfigurationReport) {
+    def dependencyTree: Seq[Dependency] =
+      moduleGraph.nodes
+        .sortBy(_.id.idString)
+        .map { node =>
+          val bomRef = purl(node.id.organization, node.id.name, node.id.version)
+
+          val dependency = new Dependency(bomRef)
+
+          val dependsOn = moduleGraph.dependencyMap.getOrElse(node.id, Nil).sortBy(_.id.idString)
+          dependsOn.foreach { module =>
+            val bomRef = purl(module.id.organization, module.id.name, module.id.version)
+            dependency.addDependency(new Dependency(bomRef))
+          }
+
+          dependency
+        }
+
+    private def moduleGraph: ModuleGraph = SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID)
+  }
   def logComponent(component: Component): Unit = {
     log.info(s""""
          |${component.getGroup}" % "${component.getName}" % "${component.getVersion}",

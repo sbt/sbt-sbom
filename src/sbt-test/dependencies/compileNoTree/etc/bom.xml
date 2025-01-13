@@ -56,7 +56,7 @@
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/circe/circe</url>
+	  <url>https://github.com/circe/circe</url>
         </reference>
       </externalReferences>
     </component>
@@ -82,7 +82,7 @@
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/circe/circe</url>
+	  <url>https://github.com/circe/circe</url>
         </reference>
       </externalReferences>
     </component>
@@ -108,33 +108,7 @@
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/circe/circe</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:maven/org.scalatest/scalatest_2.12@3.0.5">
-      <group>org.scalatest</group>
-      <name>scalatest_2.12</name>
-      <version>3.0.5</version>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="MD5">a6556b913fde52a8c4c42b527558b349</hash>
-        <hash alg="SHA-1">7bb56c0f7a3c60c465e36c6b8022a95b883d7434</hash>
-        <hash alg="SHA-256">b416b5bcef6720da469a8d8a5726e457fc2d1cd5d316e1bc283aa75a2ae005e5</hash>
-        <hash alg="SHA-512">34acff9bf76a22d4baebc52edb2d1c962869f606e4e2f006f0727dc392b19ff49fe66a129f6512b7cde7cd9a53669245c48605847ecd4dce989547a369a5d6dd</hash>
-        <hash alg="SHA-384">3fd3ec4a828a3ebb5fd0ec4aed3a9e24c80f65044e6886fe77b9d2d58f6d9771ac27a047f5b47a859d6381e7227da027</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>Apache-2.0</id>
-          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-      </licenses>
-      <purl>pkg:maven/org.scalatest/scalatest_2.12@3.0.5</purl>
-      <modified>false</modified>
-      <externalReferences>
-        <reference type="website">
-          <url>http://www.scalatest.org</url>
+	  <url>https://github.com/circe/circe</url>
         </reference>
       </externalReferences>
     </component>
@@ -160,7 +134,7 @@
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/circe/circe</url>
+	  <url>https://github.com/circe/circe</url>
         </reference>
       </externalReferences>
     </component>
@@ -186,7 +160,7 @@
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/typelevel/cats</url>
+	  <url>https://github.com/typelevel/cats</url>
         </reference>
       </externalReferences>
     </component>
@@ -212,7 +186,7 @@
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/milessabin/shapeless</url>
+	  <url>https://github.com/milessabin/shapeless</url>
         </reference>
       </externalReferences>
     </component>
@@ -238,33 +212,137 @@
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/circe/circe</url>
+	  <url>https://github.com/circe/circe</url>
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.scalactic/scalactic_2.12@3.0.5">
-      <group>org.scalactic</group>
-      <name>scalactic_2.12</name>
-      <version>3.0.5</version>
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
+      <group>org.typelevel</group>
+      <name>cats-macros_2.12</name>
+      <version>1.4.0</version>
       <scope>required</scope>
       <hashes>
-        <hash alg="MD5">db045c3a125662d76f210001158bfbbf</hash>
-        <hash alg="SHA-1">edec43902cdc7c753001501e0d8c2de78394fb03</hash>
-        <hash alg="SHA-256">57e25b4fd969b1758fe042595112c874dfea99dca5cc48eebe07ac38772a0c41</hash>
-        <hash alg="SHA-512">2b6026204793c960c6475f7e94975b0e3546db8be2c39d1bafa68f3c9460668d870cb0ab8fa85ff128ecbcb1dbdcddde922d281e7ec33d9b0ae83f7db07ee35c</hash>
-        <hash alg="SHA-384">3b2653fb93fc59fa018c87c95ba2a9db1d1c445f0f9d9de6b266fce6c618db585b95ad01019bc4342849127cdbbdabf0</hash>
+        <hash alg="MD5">d6909c57983d748597c1d4c08d7aeae4</hash>
+        <hash alg="SHA-1">2436705a12dd4a9999c7568db4f54e4f1b95ac23</hash>
+        <hash alg="SHA-256">28d318d6265ed08f15f61af407a22bacbe6f5e139075cc06df21e6d48a7a7eb2</hash>
+        <hash alg="SHA-512">b76c63d66265c3b910bea35bac86f5b788601adbbd72eb8f6a4f9fbaa2b7f8385c859b29661853555c10076c4b3aaad6941f89ad471a718ee3ef0772078c3651</hash>
+        <hash alg="SHA-384">8315ca4c6e07a2295368c0ecd148ac5797669c7c716db7a37ed88f60cdeb0c87b638275cd49dcc3bb59cebd167df8144</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>MIT</id>
+          <url>http://opensource.org/licenses/MIT</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.typelevel/cats-macros_2.12@1.4.0</purl>
+      <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+	  <url>https://github.com/typelevel/cats</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
+      <group>org.typelevel</group>
+      <name>cats-kernel_2.12</name>
+      <version>1.4.0</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">78d0958b2a31998e2d5f5b00f6632706</hash>
+        <hash alg="SHA-1">af8aea4585e5bd90fe071324f98c461ac7b62907</hash>
+        <hash alg="SHA-256">118074e737f810edd004588f0c681efb7d0d216ae9c481e3c952a07e47d3578b</hash>
+        <hash alg="SHA-512">9e34a66d68f5d4a5f35922162b29c0ba48b9769d47e858cb65aea885574c3757ebeeb7eeceb992a703e6ed1d247e53251899010a9738b389d5baf59077fbac2c</hash>
+        <hash alg="SHA-384">245d6916298e3ad164dd0ad61cc49e64caacb7d35c633706ca9e25c3eece2dd6abb2a425f97bcbdd3fa9da106e0fb44a</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>MIT</id>
+          <url>http://opensource.org/licenses/MIT</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0</purl>
+      <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+	  <url>https://github.com/typelevel/cats</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
+      <group>org.typelevel</group>
+      <name>machinist_2.12</name>
+      <version>0.6.5</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">caf84ca04bbf75e7f48cf740b59d05dd</hash>
+        <hash alg="SHA-1">abf43203c83e1c39532e24e87d279712c0ddf823</hash>
+        <hash alg="SHA-256">9b449314637d967b8acf1bcb744b605e118fe6ac6c7d08e8db68b7f39267d8e5</hash>
+        <hash alg="SHA-512">66ab34632201528e68221f269222f30c0648330bf2874e166081544daa500e575d2ee5699b9a48cdd14ca39b8df6539a7773f5eb4c5ab8f09b13bd08fa183ea0</hash>
+        <hash alg="SHA-384">5acbdede736ec7a94d42e6c0a8e0dd8a151b20676e49af97fe3d065e62ebdf681c24aabcf849a1e3c50e0d9ffcfd5116</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>MIT</id>
+          <url>http://opensource.org/licenses/MIT</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.typelevel/machinist_2.12@0.6.5</purl>
+      <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+	  <url>http://github.com/typelevel/machinist</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
+      <group>org.typelevel</group>
+      <name>macro-compat_2.12</name>
+      <version>1.1.1</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">c6c8927e9d6b7e3e4f60c019f146d099</hash>
+        <hash alg="SHA-1">ed809d26ef4237d7c079ae6cf7ebd0dfa7986adf</hash>
+        <hash alg="SHA-256">8b1514ec99ac9c7eded284367b6c9f8f17a097198a44e6f24488706d66bbd2b8</hash>
+        <hash alg="SHA-512">6e9a616ed2771fe68c8390b85dd30cac910c6f33b15e32638a082358a860e9bdef6e1235aed423bfd718198dffb5bf8c48b5a461e19023c98f39294e6bba2482</hash>
+        <hash alg="SHA-384">8e1d59c356d27364b8d36ff178ffc10efe4df56b27a42735c9ef14f633ee3b2b7abf71ba4cbb38e9f5fe394453a3262f</hash>
       </hashes>
       <licenses>
         <license>
           <id>Apache-2.0</id>
-          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scalactic/scalactic_2.12@3.0.5</purl>
+      <purl>pkg:maven/org.typelevel/macro-compat_2.12@1.1.1</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
-          <url>http://www.scalatest.org</url>
+	  <url>https://github.com/milessabin/macro-compat</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
+      <group>org.spire-math</group>
+      <name>jawn-parser_2.12</name>
+      <version>0.13.0</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">85a145b9224a5eb625a795536609ca37</hash>
+        <hash alg="SHA-1">4a2e53bbe3c6f467384327abc9bab25d7cdcada4</hash>
+        <hash alg="SHA-256">4aa94d58b2b36f1df8270e1dbfc46b07cc4d9850a963b6f82d9c654a71f5ec53</hash>
+        <hash alg="SHA-512">49cac3420253f280b6dccc70cd2805c6b14bd43a862392a6766cf6412948ebde4add69e1876efb3335f18f1b24c9064323b17d87c6abb6a41edd7e9b2b3e01fa</hash>
+        <hash alg="SHA-384">cee97b1aff168ea812eba4a1f136a2fdd27258bf53177c566489fbd88d8167ce92f84d0872ee84ce8d24291089a6e4a8</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>MIT</id>
+          <url>http://opensource.org/licenses/MIT</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0</purl>
+      <modified>false</modified>
+      <externalReferences>
+        <reference type="website">
+	  <url>http://github.com/non/jawn</url>
         </reference>
       </externalReferences>
     </component>
@@ -294,237 +372,5 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6">
-      <group>org.scala-lang.modules</group>
-      <name>scala-xml_2.12</name>
-      <version>1.0.6</version>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="MD5">ac867dfb81feb7c874f2cbc953453700</hash>
-        <hash alg="SHA-1">e22de3366a698a9f744106fb6dda4335838cf6a7</hash>
-        <hash alg="SHA-256">7cc3b6ceb56e879cb977e8e043f4bfe2e062f78795efd7efa09f85003cb3230a</hash>
-        <hash alg="SHA-512">9bbb05828f532ab17e7ad36021996e1eaedb2296298ded4f323d7f471dede76487a67f32eda57aeaa0cd3d4c4996c80453ca6b3d0b81cd6314df0416d59d2138</hash>
-        <hash alg="SHA-384">4b6d6f4628c826e81b18710a50915819a2a332b9c61ba4624a965af0f7f42e144cfbefe4c93e247c29b464ad49b7b5c4</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>BSD-3-Clause</id>
-          <url>http://opensource.org/licenses/BSD-3-Clause</url>
-        </license>
-      </licenses>
-      <purl>pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6</purl>
-      <modified>false</modified>
-      <externalReferences>
-        <reference type="website">
-          <url>http://www.scala-lang.org/</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
-      <group>org.typelevel</group>
-      <name>cats-macros_2.12</name>
-      <version>1.4.0</version>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="MD5">d6909c57983d748597c1d4c08d7aeae4</hash>
-        <hash alg="SHA-1">2436705a12dd4a9999c7568db4f54e4f1b95ac23</hash>
-        <hash alg="SHA-256">28d318d6265ed08f15f61af407a22bacbe6f5e139075cc06df21e6d48a7a7eb2</hash>
-        <hash alg="SHA-512">b76c63d66265c3b910bea35bac86f5b788601adbbd72eb8f6a4f9fbaa2b7f8385c859b29661853555c10076c4b3aaad6941f89ad471a718ee3ef0772078c3651</hash>
-        <hash alg="SHA-384">8315ca4c6e07a2295368c0ecd148ac5797669c7c716db7a37ed88f60cdeb0c87b638275cd49dcc3bb59cebd167df8144</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>MIT</id>
-          <url>http://opensource.org/licenses/MIT</url>
-        </license>
-      </licenses>
-      <purl>pkg:maven/org.typelevel/cats-macros_2.12@1.4.0</purl>
-      <modified>false</modified>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/typelevel/cats</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
-      <group>org.typelevel</group>
-      <name>cats-kernel_2.12</name>
-      <version>1.4.0</version>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="MD5">78d0958b2a31998e2d5f5b00f6632706</hash>
-        <hash alg="SHA-1">af8aea4585e5bd90fe071324f98c461ac7b62907</hash>
-        <hash alg="SHA-256">118074e737f810edd004588f0c681efb7d0d216ae9c481e3c952a07e47d3578b</hash>
-        <hash alg="SHA-512">9e34a66d68f5d4a5f35922162b29c0ba48b9769d47e858cb65aea885574c3757ebeeb7eeceb992a703e6ed1d247e53251899010a9738b389d5baf59077fbac2c</hash>
-        <hash alg="SHA-384">245d6916298e3ad164dd0ad61cc49e64caacb7d35c633706ca9e25c3eece2dd6abb2a425f97bcbdd3fa9da106e0fb44a</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>MIT</id>
-          <url>http://opensource.org/licenses/MIT</url>
-        </license>
-      </licenses>
-      <purl>pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0</purl>
-      <modified>false</modified>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/typelevel/cats</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
-      <group>org.typelevel</group>
-      <name>machinist_2.12</name>
-      <version>0.6.5</version>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="MD5">caf84ca04bbf75e7f48cf740b59d05dd</hash>
-        <hash alg="SHA-1">abf43203c83e1c39532e24e87d279712c0ddf823</hash>
-        <hash alg="SHA-256">9b449314637d967b8acf1bcb744b605e118fe6ac6c7d08e8db68b7f39267d8e5</hash>
-        <hash alg="SHA-512">66ab34632201528e68221f269222f30c0648330bf2874e166081544daa500e575d2ee5699b9a48cdd14ca39b8df6539a7773f5eb4c5ab8f09b13bd08fa183ea0</hash>
-        <hash alg="SHA-384">5acbdede736ec7a94d42e6c0a8e0dd8a151b20676e49af97fe3d065e62ebdf681c24aabcf849a1e3c50e0d9ffcfd5116</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>MIT</id>
-          <url>http://opensource.org/licenses/MIT</url>
-        </license>
-      </licenses>
-      <purl>pkg:maven/org.typelevel/machinist_2.12@0.6.5</purl>
-      <modified>false</modified>
-      <externalReferences>
-        <reference type="website">
-          <url>http://github.com/typelevel/machinist</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
-      <group>org.typelevel</group>
-      <name>macro-compat_2.12</name>
-      <version>1.1.1</version>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="MD5">c6c8927e9d6b7e3e4f60c019f146d099</hash>
-        <hash alg="SHA-1">ed809d26ef4237d7c079ae6cf7ebd0dfa7986adf</hash>
-        <hash alg="SHA-256">8b1514ec99ac9c7eded284367b6c9f8f17a097198a44e6f24488706d66bbd2b8</hash>
-        <hash alg="SHA-512">6e9a616ed2771fe68c8390b85dd30cac910c6f33b15e32638a082358a860e9bdef6e1235aed423bfd718198dffb5bf8c48b5a461e19023c98f39294e6bba2482</hash>
-        <hash alg="SHA-384">8e1d59c356d27364b8d36ff178ffc10efe4df56b27a42735c9ef14f633ee3b2b7abf71ba4cbb38e9f5fe394453a3262f</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>Apache-2.0</id>
-          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-      </licenses>
-      <purl>pkg:maven/org.typelevel/macro-compat_2.12@1.1.1</purl>
-      <modified>false</modified>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/milessabin/macro-compat</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
-      <group>org.spire-math</group>
-      <name>jawn-parser_2.12</name>
-      <version>0.13.0</version>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="MD5">85a145b9224a5eb625a795536609ca37</hash>
-        <hash alg="SHA-1">4a2e53bbe3c6f467384327abc9bab25d7cdcada4</hash>
-        <hash alg="SHA-256">4aa94d58b2b36f1df8270e1dbfc46b07cc4d9850a963b6f82d9c654a71f5ec53</hash>
-        <hash alg="SHA-512">49cac3420253f280b6dccc70cd2805c6b14bd43a862392a6766cf6412948ebde4add69e1876efb3335f18f1b24c9064323b17d87c6abb6a41edd7e9b2b3e01fa</hash>
-        <hash alg="SHA-384">cee97b1aff168ea812eba4a1f136a2fdd27258bf53177c566489fbd88d8167ce92f84d0872ee84ce8d24291089a6e4a8</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>MIT</id>
-          <url>http://opensource.org/licenses/MIT</url>
-        </license>
-      </licenses>
-      <purl>pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0</purl>
-      <modified>false</modified>
-      <externalReferences>
-        <reference type="website">
-          <url>http://github.com/non/jawn</url>
-        </reference>
-      </externalReferences>
-    </component>
   </components>
-  <dependencies>
-    <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1"/>
-    </dependency>
-    <dependency ref="pkg:maven/dependencies/dependencies_2.12@0.1">
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.scalatest/scalatest_2.12@3.0.5"/>
-    </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0">
-      <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0"/>
-    </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0">
-      <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3"/>
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0">
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0"/>
-    </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0">
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.scalactic/scalactic_2.12@3.0.5">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.scalatest/scalatest_2.12@3.0.5">
-      <dependency ref="pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20"/>
-      <dependency ref="pkg:maven/org.scalactic/scalactic_2.12@3.0.5"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0"/>
-      <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0"/>
-      <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20"/>
-    </dependency>
-    <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    </dependency>
-  </dependencies>
 </bom>

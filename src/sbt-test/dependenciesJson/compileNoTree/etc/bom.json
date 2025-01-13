@@ -196,52 +196,6 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/org.scalatest/scalatest_2.12@3.0.5",
-      "group" : "org.scalatest",
-      "name" : "scalatest_2.12",
-      "version" : "3.0.5",
-      "scope" : "required",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "a6556b913fde52a8c4c42b527558b349"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "7bb56c0f7a3c60c465e36c6b8022a95b883d7434"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "b416b5bcef6720da469a8d8a5726e457fc2d1cd5d316e1bc283aa75a2ae005e5"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "34acff9bf76a22d4baebc52edb2d1c962869f606e4e2f006f0727dc392b19ff49fe66a129f6512b7cde7cd9a53669245c48605847ecd4dce989547a369a5d6dd"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "3fd3ec4a828a3ebb5fd0ec4aed3a9e24c80f65044e6886fe77b9d2d58f6d9771ac27a047f5b47a859d6381e7227da027"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0",
-            "url" : "http://www.apache.org/licenses/LICENSE-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.scalatest/scalatest_2.12@3.0.5",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "website",
-          "url" : "http://www.scalatest.org"
-        }
-      ]
-    },
-    {
-      "type" : "library",
       "bom-ref" : "pkg:maven/io.circe/circe-numbers_2.12@0.10.0",
       "group" : "io.circe",
       "name" : "circe-numbers_2.12",
@@ -421,144 +375,6 @@
         {
           "type" : "website",
           "url" : "https://github.com/circe/circe"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.scalactic/scalactic_2.12@3.0.5",
-      "group" : "org.scalactic",
-      "name" : "scalactic_2.12",
-      "version" : "3.0.5",
-      "scope" : "required",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "db045c3a125662d76f210001158bfbbf"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "edec43902cdc7c753001501e0d8c2de78394fb03"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "57e25b4fd969b1758fe042595112c874dfea99dca5cc48eebe07ac38772a0c41"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "2b6026204793c960c6475f7e94975b0e3546db8be2c39d1bafa68f3c9460668d870cb0ab8fa85ff128ecbcb1dbdcddde922d281e7ec33d9b0ae83f7db07ee35c"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "3b2653fb93fc59fa018c87c95ba2a9db1d1c445f0f9d9de6b266fce6c618db585b95ad01019bc4342849127cdbbdabf0"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0",
-            "url" : "http://www.apache.org/licenses/LICENSE-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.scalactic/scalactic_2.12@3.0.5",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "website",
-          "url" : "http://www.scalatest.org"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
-      "group" : "org.scala-lang",
-      "name" : "scala-reflect",
-      "version" : "2.12.20",
-      "scope" : "required",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "c809ef0d711bb6ef6f4cfc5247fcd6df"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "f923933d1c168535e66ca825c18207a8db2b20a6"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "5f1914cdc7a70580ea6038d929ebb25736ecf2234f677e2d47f8a4b2bc81e1fb"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "ef2d1215e47b4921597f4f21aa4ff66434bcbfce3325b48567b0ca44e0184aff22097874bc1023142a2e0b4b1c963148f50509ee56371ecd2c7610f28c00f63c"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "24a908a2d59f64796ba2e602b3702cefcfe471264caa6038163c523692e17becc5a7316e82610359c697727889548391"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0",
-            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "website",
-          "url" : "https://www.scala-lang.org/"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6",
-      "group" : "org.scala-lang.modules",
-      "name" : "scala-xml_2.12",
-      "version" : "1.0.6",
-      "scope" : "required",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "ac867dfb81feb7c874f2cbc953453700"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "e22de3366a698a9f744106fb6dda4335838cf6a7"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "7cc3b6ceb56e879cb977e8e043f4bfe2e062f78795efd7efa09f85003cb3230a"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "9bbb05828f532ab17e7ad36021996e1eaedb2296298ded4f323d7f471dede76487a67f32eda57aeaa0cd3d4c4996c80453ca6b3d0b81cd6314df0416d59d2138"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "4b6d6f4628c826e81b18710a50915819a2a332b9c61ba4624a965af0f7f42e144cfbefe4c93e247c29b464ad49b7b5c4"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "BSD-3-Clause",
-            "url" : "http://opensource.org/licenses/BSD-3-Clause"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "website",
-          "url" : "http://www.scala-lang.org/"
         }
       ]
     },
@@ -791,135 +607,51 @@
           "url" : "http://github.com/non/jawn"
         }
       ]
-    }
-  ],
-  "dependencies" : [
-    {
-      "ref" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.typelevel/macro-compat_2.12@1.1.1"
-      ]
     },
     {
-      "ref" : "pkg:maven/dependencies/dependencies_2.12@0.1",
-      "dependsOn" : [
-        "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-        "pkg:maven/io.circe/circe-generic_2.12@0.10.0",
-        "pkg:maven/io.circe/circe-parser_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.scalatest/scalatest_2.12@3.0.5"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-      "dependsOn" : [
-        "pkg:maven/io.circe/circe-numbers_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.typelevel/cats-core_2.12@1.4.0"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/io.circe/circe-generic_2.12@0.10.0",
-      "dependsOn" : [
-        "pkg:maven/com.chuusai/shapeless_2.12@2.3.3",
-        "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/io.circe/circe-jawn_2.12@0.10.0",
-      "dependsOn" : [
-        "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/io.circe/circe-numbers_2.12@0.10.0",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/io.circe/circe-parser_2.12@0.10.0",
-      "dependsOn" : [
-        "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-        "pkg:maven/io.circe/circe-jawn_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.scala-lang/scala-library@2.12.20",
-      "dependsOn" : [ ]
-    },
-    {
-      "ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.scalactic/scalactic_2.12@3.0.5",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.scala-lang/scala-reflect@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.scalatest/scalatest_2.12@3.0.5",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
-        "pkg:maven/org.scalactic/scalactic_2.12@3.0.5"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.typelevel/cats-core_2.12@1.4.0",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0",
-        "pkg:maven/org.typelevel/cats-macros_2.12@1.4.0",
-        "pkg:maven/org.typelevel/machinist_2.12@0.6.5"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.typelevel/cats-macros_2.12@1.4.0",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.typelevel/machinist_2.12@0.6.5"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.typelevel/machinist_2.12@0.6.5",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.scala-lang/scala-reflect@2.12.20"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/org.typelevel/macro-compat_2.12@1.1.1",
-      "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
+      "group" : "org.scala-lang",
+      "name" : "scala-reflect",
+      "version" : "2.12.20",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "c809ef0d711bb6ef6f4cfc5247fcd6df"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "f923933d1c168535e66ca825c18207a8db2b20a6"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "5f1914cdc7a70580ea6038d929ebb25736ecf2234f677e2d47f8a4b2bc81e1fb"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "ef2d1215e47b4921597f4f21aa4ff66434bcbfce3325b48567b0ca44e0184aff22097874bc1023142a2e0b4b1c963148f50509ee56371ecd2c7610f28c00f63c"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "24a908a2d59f64796ba2e602b3702cefcfe471264caa6038163c523692e17becc5a7316e82610359c697727889548391"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://www.scala-lang.org/"
+        }
       ]
     }
   ]

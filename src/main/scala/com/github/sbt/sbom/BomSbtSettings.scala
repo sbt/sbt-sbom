@@ -5,7 +5,7 @@
 package com.github.sbt.sbom
 
 import com.github.sbt.sbom.BomSbtPlugin.autoImport._
-import sbt.Keys.{ sLog, target }
+import sbt.Keys.{ projectID, sLog, scalaBinaryVersion, scalaVersion, target }
 import sbt._
 
 object BomSbtSettings {
@@ -20,6 +20,9 @@ object BomSbtSettings {
         BomTaskProperties(
           report,
           currentConfiguration,
+          CrossVersion(scalaVersion.value, scalaBinaryVersion.value)(
+            projectID.value
+          ),
           sLog.value,
           bomSchemaVersion.value,
           format,
@@ -29,6 +32,7 @@ object BomSbtSettings {
           includeBomHashes.value,
           enableBomSha3Hashes.value,
           includeBomExternalReferences.value,
+          includeBomDependencyTree.value,
         ),
         target.value / (currentConfiguration / bomFileName).value
       ).execute
@@ -45,6 +49,9 @@ object BomSbtSettings {
         BomTaskProperties(
           report,
           currentConfiguration,
+          CrossVersion(scalaVersion.value, scalaBinaryVersion.value)(
+            projectID.value
+          ),
           sLog.value,
           bomSchemaVersion.value,
           format,
@@ -54,6 +61,7 @@ object BomSbtSettings {
           includeBomHashes.value,
           enableBomSha3Hashes.value,
           includeBomExternalReferences.value,
+          includeBomDependencyTree.value,
         )
       ).execute
     }
