@@ -91,7 +91,12 @@ object BomSbtPlugin extends AutoPlugin {
         .value,
       bomConfigurations := Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value,
       packagedArtifacts += {
-        Artifact(artifact.value.name, "cyclonedx", "xml", "cyclonedx") -> makeBom.value
+        Artifact(
+          artifact.value.name,
+          "cyclonedx",
+          BomFormat.fromSettings(bomFormat.?.value, None, bomSchemaVersion.value).string,
+          "cyclonedx"
+        ) -> makeBom.value
       },
     )
   }
