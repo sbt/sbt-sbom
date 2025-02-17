@@ -13,7 +13,7 @@ The aim of this [project](https://github.com/sbt/sbt-sbom/) is to:
 - extract a valid [CycloneDx](https://cyclonedx.org/) bom file from [sbt](https://www.scala-sbt.org/) projects
 - ensure that the bom file is processable with Software Composition Analysis tools (like [Dependency Track](https://dependencytrack.org/))
 
-Current version of the plugin is 0.3.0, published to the Central Repository.
+Current version of the plugin is 0.4.0, published to the Central Repository.
 
 Snapshot version are published to the [Sonatype Repository](https://s01.oss.sonatype.org/content/repositories/snapshots).
 
@@ -23,7 +23,7 @@ Snapshot version are published to the [Sonatype Repository](https://s01.oss.sona
 
 Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin` :
 
-`addSbtPlugin("io.github.siculo" %% "sbt-bom" % "0.3.0")`
+`addSbtPlugin("com.github.sbt" %% "sbt-sbom" % "0.4.0")`
 
 Note that the minimum supported version of sbt is 1.5.2 (this is what the [scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html#scripted+test+framework) tests target)
 
@@ -33,7 +33,7 @@ To create the bom for the default configuration use `makeBom` command:
 
 `> sbt makeBom`
 
-This creates the BOM file inside the `target` directory. The name of the file created depends on the `name` and `version` property of the current project. For example, if name and version are `myArtifact` and `1.0`, the file name is `myArtifact-1.0.bom.xml`.
+This creates the BOM file inside the `target` directory. The name of the file created depends on the `name` and `version` property of the current project. For example, if name and version are `myArtifact` and `1.0`, the file name is `myArtifact-1.0.bom.json`.
 
 ### scope selection
 
@@ -53,7 +53,7 @@ The `listBom` command can be used to generate the contents of the BOM without wr
 
 | Setting                      | Type    | Default                                                                | Description                                                     |
 |------------------------------|---------|------------------------------------------------------------------------|-----------------------------------------------------------------|
-| bomFileName                  | String  | `"${artifactId}-${artifactVersion}.bom.xml"`                           | bom file name                                                   |
+| bomFileName                  | String  | `"${artifactId}-${artifactVersion}.bom.json"`                          | bom file name                                                   |
 | bomFormat                    | String  | `json` or `xml`, defaults to the format of bomFileName or else `json`  | bom format                                                      |
 | bomSchemaVersion             | String  | `"1.6"`                                                                | bom schema version                                              |
 | includeBomSerialNumber       | Boolean | `false`                                                                | include serial number in bom                                    |
@@ -140,12 +140,17 @@ a good idea to [run scalafmt](#formatting) on the code afterward
 
 ### v0.4.0
 
+- Generate the latest supported CycloneDX version (1.6)
+- Default BOM file name is `${artifactId}-${version}.bom.json`
+- GroupId has been changed to `com.github.sbt`
+- SBOM extractor improvements
+
 ### v0.3.0
 - The BOM is generated so that it takes into account the Scope (Compile, Test...) and its dependencies
 - targetBomFile setting replaced by bomFileName
 - default BOM file name is ${artifactId}-${version}.bom.xml
 - GroupId has been changed to io.github.siculo
-- Generated BOM is a valid 1.0 BOM file (removed unespected properties like BOM serial number and license URL)
+- Generated BOM is a valid 1.0 BOM file (removed unexpected properties like BOM serial number and license URL)
 
 ### v0.2.0
 - The cyclonedx-core-java library has been integrated and is used to generate the BOM
