@@ -103,7 +103,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
   protected lazy val schemaVersion: Version =
     supportedVersions.find(_.getVersionString == properties.schemaVersion) match {
       case Some(foundVersion) => foundVersion
-      case None =>
+      case None               =>
         val message = s"Unsupported schema version ${properties.schemaVersion}"
         log.error(message)
         throw new BomError(message)

@@ -70,8 +70,8 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
       componentsForConfiguration(configuration)
     }.distinct // deduplicate components reported by multiple configurations
     components.groupBy(_.getBomRef).foreach {
-      case (null, _)   => () // ignore empty bom-refs
-      case (_, Seq(_)) => () // no duplicate bom-refs
+      case (null, _)            => () // ignore empty bom-refs
+      case (_, Seq(_))          => () // no duplicate bom-refs
       case (bomRef, components) => // duplicate bom-refs
         log.warn(s"bom-ref must be distinct: $bomRef")
         components.foreach(_.setBomRef(null))

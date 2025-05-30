@@ -18,7 +18,7 @@ object BomFormat {
       .collect {
         case Json.string => Json
         case Xml.string  => Xml
-        case format =>
+        case format      =>
           throw new BomError(s"Unsupported format ${format}")
       }
       .orElse {
