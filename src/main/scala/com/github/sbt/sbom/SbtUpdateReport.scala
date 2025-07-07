@@ -5,9 +5,11 @@
 package com.github.sbt.sbom
 
 import sbt.librarymanagement.{ ConfigurationReport, ModuleID, ModuleReport }
-import sbt.{ File, OrganizationArtifactReport }
+import sbt.{ File, OrganizationArtifactReport, Logger }
 
 import scala.collection.mutable
+
+import java.util.TreeMap as TM
 
 /*
  * taken from sbt at https://github.com/sbt/sbt/blob/1.10.x/main/src/main/scala/sbt/internal/graph/backend/SbtUpdateReport.scala
@@ -24,7 +26,8 @@ object SbtUpdateReport {
       extraInfo: String = "",
       evictedByVersion: Option[String] = None,
       jarFile: Option[File] = None,
-      error: Option[String] = None
+      error: Option[String] = None,
+      qualifier: TM[String, String] = new TM()
   )
 
   private type Edge = (GraphModuleId, GraphModuleId)
@@ -62,7 +65,31 @@ object SbtUpdateReport {
       GraphModuleId(sbtId.organization, sbtId.name, sbtId.revision)
   }
 
-  def fromConfigurationReport(report: ConfigurationReport, rootInfo: ModuleID): ModuleGraph = {
+
+  def getModuleQualifier(moduleReport: ModuleReport, log: Option[Logger] = None): TM[String, String] = {
+    val qualifier : TM[String, String] = new TM()
+
+    // Getting artifact with the same name as module name as purl qualifier
+    val moduleArtifacts = moduleReport.artifacts.filter(ar =>{
+      ar._1.name.equals(moduleReport.module.name)
+    })
+
+    moduleArtifacts.size match {
+      case 0 => () // ignore empty found artifacts
+      case x =>
+        if (x > 1 && log.isDefined) {
+          log.foreach(_.warn("Multiple artifacts with the same name as module name are detected. Taking the first artifact match as Purl qualifier."))
+        }
+        if (moduleArtifacts.head._1.`type`.nonEmpty) qualifier.put("type", moduleArtifacts.head._1.`type`)
+        moduleArtifacts.head._1.classifier.foreach(classifier => if (classifier.nonEmpty) {
+          qualifier.put("classifier", classifier)
+        })
+    }
+
+    qualifier
+  }
+
+  def fromConfigurationReport(report: ConfigurationReport, rootInfo: ModuleID, log: Logger): ModuleGraph = {
     def moduleEdges(orgArt: OrganizationArtifactReport): Seq[(Module, Seq[Edge])] = {
       val chosenVersion = orgArt.modules.find(!_.evicted).map(_.module.revision)
       orgArt.modules.map(moduleEdge(chosenVersion))
@@ -80,11 +107,13 @@ object SbtUpdateReport {
           license = report.licenses.headOption.map(_._1),
           evictedByVersion = evictedByVersion,
           jarFile = jarFile,
-          error = report.problem
+          error = report.problem,
+          qualifier = getModuleQualifier(report)
         ),
         report.callers.map(caller => Edge(GraphModuleId(caller.caller), GraphModuleId(report.module)))
       )
     }
+
     val (nodes, edges) = report.details.flatMap(moduleEdges).unzip
     val root = Module(GraphModuleId(rootInfo))
 

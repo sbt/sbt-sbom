@@ -22,11 +22,11 @@ import org.cyclonedx.util.BomUtils
 import sbt._
 import sbt.librarymanagement.ModuleReport
 
-import java.util
+import java.util.TreeMap as TM
 import java.util.UUID
 import scala.collection.JavaConverters._
 
-import SbtUpdateReport.ModuleGraph
+import SbtUpdateReport.{ModuleGraph, getModuleQualifier}
 
 class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModuleID: ModuleID, log: Logger) {
   private val serialNumber: String = "urn:uuid:" + UUID.randomUUID.toString
@@ -52,7 +52,24 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
       metadata.setTimestamp(null)
     }
     metadata.addTool(tool)
+    metadata.setComponent(metadataComponent)
     metadata
+  }
+
+  private lazy val metadataComponent: Component = {
+    val metadataComponent = new Component ()
+    val group : String = rootModuleID.organization
+    val name : String = rootModuleID.name
+    val version : String = rootModuleID.revision
+
+    metadataComponent.setGroup(group)
+    metadataComponent.setName(name)
+    metadataComponent.setBomRef(enrichedPurl(group, name, version))
+    metadataComponent.setVersion(version)
+    metadataComponent.setType(Component.Type.valueOf(settings.projectType.trim().toUpperCase()))
+    metadataComponent.setPurl(enrichedPurl(group, name, version))
+
+    metadataComponent
   }
 
   private lazy val tool: Tool = {
@@ -123,17 +140,20 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
           - "info.apiURL"
           - "info.versionScheme"
        */
+
       val component = new Component()
       component.setGroup(group)
       component.setName(name)
       component.setVersion(version)
       component.setModified(false)
       component.setType(Component.Type.LIBRARY)
-      component.setPurl(purl(group, name, version))
+
+      component.setPurl(enrichedPurl(group, name, version, getModuleQualifier(moduleReport, Some(log))))
       if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
         // component bom-refs must be unique
         component.setBomRef(component.getPurl)
       }
+
       component.setScope(Component.Scope.REQUIRED)
       if (settings.includeBomHashes) {
         component.setHashes(hashes(artifactPaths(moduleReport)).asJava)
@@ -214,8 +234,10 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
     }
   }
 
-  private def purl(group: String, name: String, version: String): String =
-    new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, new util.TreeMap(), null).canonicalize()
+  private[sbom] def enrichedPurl(group: String, name: String, version: String, qualifier: TM[String, String] = new TM()): String = {
+    new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, qualifier, null).canonicalize()
+  }
+
 
   private def dependencyTree: Seq[Dependency] = {
     val dependencyTree = configurationsForComponents(settings.configuration).flatMap { configuration =>
@@ -235,24 +257,29 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
   }
 
   class DependencyTreeExtractor(configurationReport: ConfigurationReport) {
-    def dependencyTree: Seq[Dependency] =
+    def dependencyTree: Seq[Dependency] = {
       moduleGraph.nodes
+        .filter(_.evictedByVersion.isEmpty)
         .sortBy(_.id.idString)
         .map { node =>
-          val bomRef = purl(node.id.organization, node.id.name, node.id.version)
+          val bomRef = enrichedPurl(node.id.organization, node.id.name, node.id.version, node.qualifier)
 
           val dependency = new Dependency(bomRef)
 
           val dependsOn = moduleGraph.dependencyMap.getOrElse(node.id, Nil).sortBy(_.id.idString)
           dependsOn.foreach { module =>
-            val bomRef = purl(module.id.organization, module.id.name, module.id.version)
-            dependency.addDependency(new Dependency(bomRef))
+            if (module.evictedByVersion.isEmpty){
+              val bomRef = enrichedPurl(module.id.organization, module.id.name, module.id.version, module.qualifier)
+
+              dependency.addDependency(new Dependency(bomRef))
+            }
           }
 
           dependency
         }
+    }
 
-    private def moduleGraph: ModuleGraph = SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID)
+    private def moduleGraph: ModuleGraph = SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID, log)
   }
   def logComponent(component: Component): Unit = {
     log.info(s""""
@@ -262,4 +289,8 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
          | """.stripMargin)
   }
 
+}
+
+object BomExtractor {
+  // Companion object for test
 }
