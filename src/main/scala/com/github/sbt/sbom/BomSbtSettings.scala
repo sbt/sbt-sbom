@@ -16,6 +16,13 @@ object BomSbtSettings {
         (currentConfiguration / bomFileName).?.value,
         bomSchemaVersion.value
       )
+
+      val outputPath = if (bomOutputPath.value.isEmpty) {
+        target.value
+      } else {
+        sbt.file(bomOutputPath.value)
+      }
+
       new MakeBomTask(
         BomTaskProperties(
           report,
@@ -33,8 +40,10 @@ object BomSbtSettings {
           enableBomSha3Hashes.value,
           includeBomExternalReferences.value,
           includeBomDependencyTree.value,
+          projectType.value,
+          bomOutputPath.value
         ),
-        target.value / (currentConfiguration / bomFileName).value
+        outputPath / (currentConfiguration / bomFileName).value
       ).execute
     }
 
@@ -62,6 +71,8 @@ object BomSbtSettings {
           enableBomSha3Hashes.value,
           includeBomExternalReferences.value,
           includeBomDependencyTree.value,
+          projectType.value,
+          bomOutputPath.value
         )
       ).execute
     }
