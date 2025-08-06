@@ -5,6 +5,7 @@
 package com.github.sbt.sbom
 
 import com.github.packageurl.PackageURL
+import com.github.sbt.sbom.BomExtractor.purl
 import com.github.sbt.sbom.licenses.LicensesArchive
 import org.cyclonedx.Version
 import org.cyclonedx.model.{
@@ -22,12 +23,10 @@ import org.cyclonedx.util.BomUtils
 import sbt._
 import sbt.librarymanagement.ModuleReport
 
-import java.util.TreeMap as TM
-import java.util.UUID
+import java.util.{UUID, TreeMap as TM}
 import scala.collection.JavaConverters._
 
 import SbtUpdateReport.{ModuleGraph, getModuleQualifier}
-import com.github.sbt.sbom.BomExtractor.enrichedPurl
 
 class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModuleID: ModuleID, log: Logger) {
   private val serialNumber: String = "urn:uuid:" + UUID.randomUUID.toString
@@ -65,10 +64,10 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
 
     metadataComponent.setGroup(group)
     metadataComponent.setName(name)
-    metadataComponent.setBomRef(enrichedPurl(group, name, version))
+    metadataComponent.setBomRef(purl(group, name, version))
     metadataComponent.setVersion(version)
-    metadataComponent.setType(Component.Type.valueOf(settings.projectType.trim().toUpperCase()))
-    metadataComponent.setPurl(enrichedPurl(group, name, version))
+    metadataComponent.setType(toCycloneDxProjectType(settings.projectType))
+    metadataComponent.setPurl(purl(group, name, version))
 
     metadataComponent
   }
@@ -149,7 +148,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
       component.setModified(false)
       component.setType(Component.Type.LIBRARY)
 
-      component.setPurl(enrichedPurl(group, name, version, getModuleQualifier(moduleReport, Some(log))))
+      component.setPurl(purl(group, name, version, getModuleQualifier(moduleReport, Some(log))))
       if (settings.schemaVersion.getVersion >= Version.VERSION_11.getVersion) {
         // component bom-refs must be unique
         component.setBomRef(component.getPurl)
@@ -258,14 +257,14 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
         .filter(_.evictedByVersion.isEmpty)
         .sortBy(_.id.idString)
         .map { node =>
-          val bomRef = enrichedPurl(node.id.organization, node.id.name, node.id.version, node.qualifier)
+          val bomRef = purl(node.id.organization, node.id.name, node.id.version, node.qualifier)
 
           val dependency = new Dependency(bomRef)
 
           val dependsOn = moduleGraph.dependencyMap.getOrElse(node.id, Nil).sortBy(_.id.idString)
           dependsOn.foreach { module =>
             if (module.evictedByVersion.isEmpty){
-              val bomRef = enrichedPurl(module.id.organization, module.id.name, module.id.version, module.qualifier)
+              val bomRef = purl(module.id.organization, module.id.name, module.id.version, module.qualifier)
 
               dependency.addDependency(new Dependency(bomRef))
             }
@@ -277,6 +276,31 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
 
     private def moduleGraph: ModuleGraph = SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID, log)
   }
+
+  private def toCycloneDxProjectType(e: ProjectType): Component.Type = {
+    e match {
+      case APPLICATION            => Component.Type.APPLICATION
+      case FRAMEWORK              => Component.Type.FRAMEWORK
+      case LIBRARY                => Component.Type.LIBRARY
+      case CONTAINER              => Component.Type.CONTAINER
+      case PLATFORM               => Component.Type.PLATFORM
+      case OPERATING_SYSTEM       => Component.Type.OPERATING_SYSTEM
+      case DEVICE                 => Component.Type.DEVICE
+      case DEVICE_DRIVER          => Component.Type.DEVICE_DRIVER
+      case FIRMWARE               => Component.Type.FIRMWARE
+      case FILE                   => Component.Type.FILE
+      case MACHINE_LEARNING_MODEL => Component.Type.MACHINE_LEARNING_MODEL
+      case DATA                   => Component.Type.DATA
+      case CRYPTOGRAPHIC_ASSET    =>
+        if (settings.schemaVersion.getVersion < Version.VERSION_16.getVersion)
+          throw new UnsupportedOperationException(
+            "Current cyclonedx version does not support CRYPTOGRAPHIC_ASSET. Use 1.6 or newer"
+          )
+        else Component.Type.CRYPTOGRAPHIC_ASSET
+
+    }
+  }
+
   def logComponent(component: Component): Unit = {
     log.info(s""""
          |${component.getGroup}" % "${component.getName}" % "${component.getVersion}",
@@ -288,9 +312,10 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
 }
 
 object BomExtractor {
-  private[sbom] def enrichedPurl(group: String, name: String, version: String, qualifier: Map[String, String] = Map[String, String]()): String = {
+  private[sbom] def purl(group: String, name: String, version: String, qualifier: Map[String, String] = Map[String, String]()): String = {
     val convertedMap = new TM[String, String](qualifier.asJava)
-    
+
     new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, convertedMap, null).canonicalize()
   }
 }
+
