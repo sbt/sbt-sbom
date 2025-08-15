@@ -17,4 +17,7 @@ final case class BomExtractorParams(
     enableBomSha3Hashes: Boolean,
     includeBomExternalReferences: Boolean,
     includeBomDependencyTree: Boolean,
+    projectType: ProjectType,
+    bomOutputPath: sbt.File
 )
+
