@@ -20,3 +20,4 @@ final case class BomExtractorParams(
     projectType: ProjectType,
     bomOutputPath: sbt.File
 )
+

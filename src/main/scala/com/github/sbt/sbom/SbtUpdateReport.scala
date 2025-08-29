@@ -69,9 +69,9 @@ object SbtUpdateReport {
     // Getting artifact with the same name as module name as purl qualifier
     val moduleArtifacts = moduleReport.artifacts.filter(ar => {
       ar._1.name.equals(moduleReport.module.name)
-    })
+    }).sortBy { x => (x._1.`type`, x._1.classifier, x._1.hashCode()) }
 
-    moduleArtifacts.sortBy { x => (x._1.`type`, x._1.classifier, x._1.hashCode()) }.size match {
+    moduleArtifacts.size match {
       case 0 => () // ignore empty found artifacts
       case x =>
         if (x > 1 && log.isDefined) {
@@ -122,3 +122,4 @@ object SbtUpdateReport {
     ModuleGraph(root +: nodes, edges.flatten)
   }
 }
+
