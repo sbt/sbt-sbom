@@ -122,3 +122,4 @@ object SbtUpdateReport {
     ModuleGraph(root +: nodes, edges.flatten)
   }
 }
+
