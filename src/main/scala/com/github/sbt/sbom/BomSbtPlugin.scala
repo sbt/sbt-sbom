@@ -109,4 +109,3 @@ object BomSbtPlugin extends AutoPlugin {
     )
   }
 }
-

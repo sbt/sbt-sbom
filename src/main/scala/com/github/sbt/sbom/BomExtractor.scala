@@ -274,7 +274,8 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
         }
     }
 
-    private def moduleGraph: ModuleGraph = SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID, log)
+    private def moduleGraph: ModuleGraph =
+      SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID, log)
   }
 
   private def toCycloneDxProjectType(e: ProjectType): Component.Type = {
@@ -312,7 +313,12 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
 }
 
 object BomExtractor {
-  private[sbom] def purl(group: String, name: String, version: String, qualifier: Map[String, String] = Map[String, String]()): String = {
+  private[sbom] def purl(
+      group: String,
+      name: String,
+      version: String,
+      qualifier: Map[String, String] = Map[String, String]()
+  ): String = {
     val convertedMap = new TM[String, String](qualifier.asJava)
 
     new PackageURL(PackageURL.StandardTypes.MAVEN, group, name, version, convertedMap, null).canonicalize()

@@ -133,4 +133,3 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
 
   protected lazy val bomOutputPath: sbt.File = properties.bomOutputPath
 }
-

@@ -67,15 +67,21 @@ object SbtUpdateReport {
     val qualifier = new mutable.HashMap[String, String]()
 
     // Getting artifact with the same name as module name as purl qualifier
-    val moduleArtifacts = moduleReport.artifacts.filter(ar => {
-      ar._1.name.equals(moduleReport.module.name)
-    }).sortBy { x => (x._1.`type`, x._1.classifier, x._1.hashCode()) }
+    val moduleArtifacts = moduleReport.artifacts
+      .filter(ar => {
+        ar._1.name.equals(moduleReport.module.name)
+      })
+      .sortBy { x => (x._1.`type`, x._1.classifier, x._1.hashCode()) }
 
     moduleArtifacts.size match {
       case 0 => () // ignore empty found artifacts
       case x =>
         if (x > 1 && log.isDefined) {
-          log.foreach(_.warn("Multiple artifacts with the same name as module name are detected. Taking the first artifact match as Purl qualifier."))
+          log.foreach(
+            _.warn(
+              "Multiple artifacts with the same name as module name are detected. Taking the first artifact match as Purl qualifier."
+            )
+          )
         }
         if (moduleArtifacts.head._1.`type`.nonEmpty) {
           // "jar" type will not be shown, since it's the default value of an artifact.
@@ -83,9 +89,11 @@ object SbtUpdateReport {
             qualifier.put("type", moduleArtifacts.head._1.`type`)
           }
         }
-        moduleArtifacts.head._1.classifier.foreach(classifier => if (classifier.nonEmpty) {
-          qualifier.put("classifier", classifier)
-        })
+        moduleArtifacts.head._1.classifier.foreach(classifier =>
+          if (classifier.nonEmpty) {
+            qualifier.put("classifier", classifier)
+          }
+        )
     }
 
     qualifier.toMap
@@ -122,4 +130,3 @@ object SbtUpdateReport {
     ModuleGraph(root +: nodes, edges.flatten)
   }
 }
-
