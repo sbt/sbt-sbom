@@ -14,7 +14,7 @@
     </component>
   </metadata>
   <components>
-    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.20">
       <group>org.scala-lang</group>
       <name>scala-library</name>
       <version>2.12.20</version>
@@ -32,7 +32,7 @@
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar</purl>
+      <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -40,7 +40,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/io.circe/circe-core_2.12@0.10.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-core_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-core_2.12</name>
       <version>0.10.0</version>
@@ -58,7 +58,7 @@
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/io.circe/circe-core_2.12@0.10.0?type=jar</purl>
+      <purl>pkg:maven/io.circe/circe-core_2.12@0.10.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -66,7 +66,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-generic_2.12</name>
       <version>0.10.0</version>
@@ -84,7 +84,7 @@
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/io.circe/circe-generic_2.12@0.10.0?type=jar</purl>
+      <purl>pkg:maven/io.circe/circe-generic_2.12@0.10.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -92,7 +92,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-parser_2.12</name>
       <version>0.10.0</version>
@@ -110,7 +110,7 @@
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/io.circe/circe-parser_2.12@0.10.0?type=jar</purl>
+      <purl>pkg:maven/io.circe/circe-parser_2.12@0.10.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -118,7 +118,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-numbers_2.12</name>
       <version>0.10.0</version>
@@ -136,7 +136,7 @@
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/io.circe/circe-numbers_2.12@0.10.0?type=jar</purl>
+      <purl>pkg:maven/io.circe/circe-numbers_2.12@0.10.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -144,7 +144,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0">
       <group>org.typelevel</group>
       <name>cats-core_2.12</name>
       <version>1.4.0</version>
@@ -162,7 +162,7 @@
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.typelevel/cats-core_2.12@1.4.0?type=jar</purl>
+      <purl>pkg:maven/org.typelevel/cats-core_2.12@1.4.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -196,7 +196,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0">
       <group>io.circe</group>
       <name>circe-jawn_2.12</name>
       <version>0.10.0</version>
@@ -214,7 +214,7 @@
           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/io.circe/circe-jawn_2.12@0.10.0?type=jar</purl>
+      <purl>pkg:maven/io.circe/circe-jawn_2.12@0.10.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -222,7 +222,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
       <group>org.typelevel</group>
       <name>cats-macros_2.12</name>
       <version>1.4.0</version>
@@ -240,7 +240,7 @@
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.typelevel/cats-macros_2.12@1.4.0?type=jar</purl>
+      <purl>pkg:maven/org.typelevel/cats-macros_2.12@1.4.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -248,7 +248,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
       <group>org.typelevel</group>
       <name>cats-kernel_2.12</name>
       <version>1.4.0</version>
@@ -266,7 +266,7 @@
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0?type=jar</purl>
+      <purl>pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -274,7 +274,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
       <group>org.typelevel</group>
       <name>machinist_2.12</name>
       <version>0.6.5</version>
@@ -292,7 +292,7 @@
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.typelevel/machinist_2.12@0.6.5?type=jar</purl>
+      <purl>pkg:maven/org.typelevel/machinist_2.12@0.6.5</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -300,7 +300,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
       <group>org.typelevel</group>
       <name>macro-compat_2.12</name>
       <version>1.1.1</version>
@@ -318,7 +318,7 @@
           <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.typelevel/macro-compat_2.12@1.1.1?type=jar</purl>
+      <purl>pkg:maven/org.typelevel/macro-compat_2.12@1.1.1</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -326,7 +326,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
       <group>org.spire-math</group>
       <name>jawn-parser_2.12</name>
       <version>0.13.0</version>
@@ -344,7 +344,7 @@
           <url>http://opensource.org/licenses/MIT</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0?type=jar</purl>
+      <purl>pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -352,7 +352,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20?type=jar">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
       <group>org.scala-lang</group>
       <name>scala-reflect</name>
       <version>2.12.20</version>
@@ -370,7 +370,7 @@
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20?type=jar</purl>
+      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -381,64 +381,64 @@
   </components>
   <dependencies>
     <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
-      <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1?type=jar"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1"/>
     </dependency>
     <dependency ref="pkg:maven/dependencies/dependencies_2.12@0.1">
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0?type=jar">
-      <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
-      <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0?type=jar"/>
+    <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0">
+      <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0"/>
     </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0?type=jar">
+    <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0">
       <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle"/>
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0?type=jar">
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
-      <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0?type=jar"/>
+    <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0">
+      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0"/>
     </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+    <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0?type=jar">
-      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0?type=jar"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+    <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0">
+      <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
-    <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+    <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+    <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+    <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
-      <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0?type=jar"/>
-      <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0?type=jar"/>
-      <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5?type=jar"/>
+    <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0"/>
+      <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0"/>
+      <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5"/>
     </dependency>
-    <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+    <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
-      <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5?type=jar"/>
+    <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5"/>
     </dependency>
-    <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20?type=jar"/>
+    <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20"/>
     </dependency>
-    <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1?type=jar">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20?type=jar"/>
+    <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>
   </dependencies>
 </bom>

@@ -5,7 +5,7 @@
 package com.github.sbt.sbom
 
 import sbt.librarymanagement.{ ConfigurationReport, ModuleID, ModuleReport }
-import sbt.{ File, OrganizationArtifactReport, Logger }
+import sbt.{ File, Logger, OrganizationArtifactReport }
 
 import scala.collection.mutable
 
@@ -63,22 +63,26 @@ object SbtUpdateReport {
       GraphModuleId(sbtId.organization, sbtId.name, sbtId.revision)
   }
 
-
   def getModuleQualifier(moduleReport: ModuleReport, log: Option[Logger] = None): Map[String, String] = {
     val qualifier = new mutable.HashMap[String, String]()
 
     // Getting artifact with the same name as module name as purl qualifier
-    val moduleArtifacts = moduleReport.artifacts.filter(ar =>{
+    val moduleArtifacts = moduleReport.artifacts.filter(ar => {
       ar._1.name.equals(moduleReport.module.name)
     })
 
-    moduleArtifacts.size match {
+    moduleArtifacts.sortBy { x => (x._1.`type`, x._1.classifier, x._1.hashCode()) }.size match {
       case 0 => () // ignore empty found artifacts
       case x =>
         if (x > 1 && log.isDefined) {
           log.foreach(_.warn("Multiple artifacts with the same name as module name are detected. Taking the first artifact match as Purl qualifier."))
         }
-        if (moduleArtifacts.head._1.`type`.nonEmpty) qualifier.put("type", moduleArtifacts.head._1.`type`)
+        if (moduleArtifacts.head._1.`type`.nonEmpty) {
+          // "jar" type will not be shown, since it's the default value of an artifact.
+          if (moduleArtifacts.head._1.`type` != "jar") {
+            qualifier.put("type", moduleArtifacts.head._1.`type`)
+          }
+        }
         moduleArtifacts.head._1.classifier.foreach(classifier => if (classifier.nonEmpty) {
           qualifier.put("classifier", classifier)
         })

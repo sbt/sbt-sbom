@@ -23,6 +23,7 @@ object BomSbtSettings {
         sbt.file(bomOutputPath.value)
       }
 
+      val projType = ProjectType.fromString(projectType.value)
       new MakeBomTask(
         BomTaskProperties(
           report,
@@ -40,8 +41,8 @@ object BomSbtSettings {
           enableBomSha3Hashes.value,
           includeBomExternalReferences.value,
           includeBomDependencyTree.value,
-          projectType.value,
-          bomOutputPath.value
+          projType,
+          outputPath
         ),
         outputPath / (currentConfiguration / bomFileName).value
       ).execute
@@ -54,6 +55,7 @@ object BomSbtSettings {
         (currentConfiguration / bomFileName).?.value,
         bomSchemaVersion.value
       )
+      val projType = ProjectType.fromString(projectType.value)
       new ListBomTask(
         BomTaskProperties(
           report,
@@ -71,8 +73,8 @@ object BomSbtSettings {
           enableBomSha3Hashes.value,
           includeBomExternalReferences.value,
           includeBomDependencyTree.value,
-          projectType.value,
-          bomOutputPath.value
+          projType,
+          sbt.file(bomOutputPath.value)
         )
       ).execute
     }

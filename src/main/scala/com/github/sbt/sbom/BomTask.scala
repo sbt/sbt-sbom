@@ -29,8 +29,8 @@ final case class BomTaskProperties(
     enableBomSha3Hashes: Boolean,
     includeBomExternalReferences: Boolean,
     includeBomDependencyTree: Boolean,
-    projectType: String,
-    bomOutputPath: String
+    projectType: ProjectType,
+    bomOutputPath: sbt.File
 )
 
 abstract class BomTask[T](protected val properties: BomTaskProperties) {
@@ -129,7 +129,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
 
   protected lazy val includeBomDependencyTree: Boolean = properties.includeBomDependencyTree
 
-  protected lazy val projectType: String = properties.projectType
+  protected lazy val projectType: ProjectType = properties.projectType
 
-  protected lazy val bomOutputPath: String = properties.bomOutputPath
+  protected lazy val bomOutputPath: sbt.File = properties.bomOutputPath
 }
