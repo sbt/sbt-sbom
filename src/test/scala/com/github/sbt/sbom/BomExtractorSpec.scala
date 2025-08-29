@@ -48,4 +48,3 @@ class BomExtractorSpec extends AnyWordSpec with Matchers {
     }
   }
 }
-
