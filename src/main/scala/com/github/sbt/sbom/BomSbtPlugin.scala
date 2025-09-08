@@ -57,6 +57,12 @@ object BomSbtPlugin extends AutoPlugin {
     lazy val bomConfigurations: TaskKey[Seq[Configuration]] = taskKey[Seq[Configuration]](
       "Returns the list of configurations whose components are included in the generated bom"
     )
+    lazy val projectType: SettingKey[String] = settingKey[String](
+      "Project type specification. Project will be assigned as 'Library' by default."
+    )
+    lazy val bomOutputPath: SettingKey[String] = settingKey[String](
+      "Output path of the created BOM file. BOM File will be placed in target/ directory by default"
+    )
   }
 
   import autoImport._
@@ -90,6 +96,8 @@ object BomSbtPlugin extends AutoPlugin {
         .taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, IntegrationTest))
         .value,
       bomConfigurations := Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value,
+      projectType := "library",
+      bomOutputPath := "",
       packagedArtifacts += {
         Artifact(
           artifact.value.name,

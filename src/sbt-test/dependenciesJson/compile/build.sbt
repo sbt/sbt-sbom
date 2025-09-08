@@ -5,9 +5,11 @@
 lazy val root = (project in file("."))
   .settings(
     name := "dependencies",
+    organization := "organization",
     version := "0.1",
     libraryDependencies ++= Dependencies.library,
     bomFileName := "bom.json",
+    projectType := "application",
     includeBomToolVersion := false,
     enableBomSha3Hashes := false,
     scalaVersion := "2.12.20",
