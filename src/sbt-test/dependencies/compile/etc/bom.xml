@@ -6,6 +6,12 @@
         <name>CycloneDX SBT plugin</name>
       </tool>
     </tools>
+    <component type="library" bom-ref="pkg:maven/dependencies/dependencies_2.12@0.1">
+      <group>dependencies</group>
+      <name>dependencies_2.12</name>
+      <version>0.1</version>
+      <purl>pkg:maven/dependencies/dependencies_2.12@0.1</purl>
+    </component>
   </metadata>
   <components>
     <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.20">
@@ -164,7 +170,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3">
+    <component type="library" bom-ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle">
       <group>com.chuusai</group>
       <name>shapeless_2.12</name>
       <version>2.3.3</version>
@@ -182,7 +188,7 @@
           <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
       </licenses>
-      <purl>pkg:maven/com.chuusai/shapeless_2.12@2.3.3</purl>
+      <purl>pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -374,7 +380,7 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3">
+    <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle">
       <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
       <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1"/>
     </dependency>
@@ -390,7 +396,7 @@
       <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0"/>
     </dependency>
     <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0">
-      <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3"/>
+      <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle"/>
       <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
       <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
     </dependency>

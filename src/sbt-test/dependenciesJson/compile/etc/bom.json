@@ -7,7 +7,15 @@
       {
         "name" : "CycloneDX SBT plugin"
       }
-    ]
+    ],
+    "component" : {
+      "type" : "application",
+      "bom-ref": "pkg:maven/organization/dependencies_2.12@0.1",
+      "group" : "organization",
+      "name" : "dependencies_2.12",
+      "version" : "0.1",
+      "purl" : "pkg:maven/organization/dependencies_2.12@0.1"
+    }
   },
   "components" : [
     {
@@ -288,7 +296,7 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3",
+      "bom-ref" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle",
       "group" : "com.chuusai",
       "name" : "shapeless_2.12",
       "version" : "2.3.3",
@@ -323,7 +331,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3",
+      "purl" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle",
       "modified" : false,
       "externalReferences" : [
         {
@@ -657,19 +665,10 @@
   ],
   "dependencies" : [
     {
-      "ref" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3",
+      "ref" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle",
       "dependsOn" : [
         "pkg:maven/org.scala-lang/scala-library@2.12.20",
         "pkg:maven/org.typelevel/macro-compat_2.12@1.1.1"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/dependencies/dependencies_2.12@0.1",
-      "dependsOn" : [
-        "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-        "pkg:maven/io.circe/circe-generic_2.12@0.10.0",
-        "pkg:maven/io.circe/circe-parser_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
       ]
     },
     {
@@ -683,7 +682,7 @@
     {
       "ref" : "pkg:maven/io.circe/circe-generic_2.12@0.10.0",
       "dependsOn" : [
-        "pkg:maven/com.chuusai/shapeless_2.12@2.3.3",
+        "pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle",
         "pkg:maven/io.circe/circe-core_2.12@0.10.0",
         "pkg:maven/org.scala-lang/scala-library@2.12.20"
       ]
@@ -758,6 +757,15 @@
     {
       "ref" : "pkg:maven/org.typelevel/macro-compat_2.12@1.1.1",
       "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+      ]
+    },
+    {
+      "ref": "pkg:maven/organization/dependencies_2.12@0.1",
+      "dependsOn": [
+        "pkg:maven/io.circe/circe-core_2.12@0.10.0",
+        "pkg:maven/io.circe/circe-generic_2.12@0.10.0",
+        "pkg:maven/io.circe/circe-parser_2.12@0.10.0",
         "pkg:maven/org.scala-lang/scala-library@2.12.20"
       ]
     }
