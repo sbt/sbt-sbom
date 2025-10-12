@@ -20,11 +20,11 @@ import org.cyclonedx.model.{
   Tool
 }
 import org.cyclonedx.util.BomUtils
-import sbt._
+import sbt.*
 import sbt.librarymanagement.ModuleReport
 
-import java.util.{ TreeMap => TM, UUID }
-import scala.collection.JavaConverters._
+import java.util.{ TreeMap as TM, UUID }
+import scala.collection.JavaConverters.*
 
 import SbtUpdateReport.{ ModuleGraph, getModuleQualifier }
 

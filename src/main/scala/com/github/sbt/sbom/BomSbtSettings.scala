@@ -4,9 +4,9 @@
 
 package com.github.sbt.sbom
 
-import com.github.sbt.sbom.BomSbtPlugin.autoImport._
+import com.github.sbt.sbom.BomSbtPlugin.autoImport.*
+import sbt.*
 import sbt.Keys.{ projectID, sLog, scalaBinaryVersion, scalaVersion, target }
-import sbt._
 
 object BomSbtSettings {
   def makeBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[sbt.File]] =

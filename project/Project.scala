@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import sbt._
+import sbt.*
 
 object Project {
   lazy val description: String =

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import sbt._
+import sbt.*
 
 object Dependencies {
   lazy val library = Seq(

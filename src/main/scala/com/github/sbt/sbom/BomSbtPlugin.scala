@@ -4,11 +4,11 @@
 
 package com.github.sbt.sbom
 
-import com.github.sbt.sbom.PluginConstants._
+import com.github.sbt.sbom.PluginConstants.*
 import org.cyclonedx.model.Component
+import sbt.*
 import sbt.Keys.{ artifact, configuration, packagedArtifacts, version }
 import sbt.plugins.JvmPlugin
-import sbt.{ Def, _ }
 
 import scala.language.postfixOps
 
@@ -65,9 +65,9 @@ object BomSbtPlugin extends AutoPlugin {
     )
   }
 
-  import autoImport._
+  import autoImport.*
 
-  override lazy val projectSettings: Seq[Setting[_]] = {
+  override lazy val projectSettings: Seq[Setting[?]] = {
     val bomFileNameSetting = Def.setting {
       val artifactId = artifact.value.name
       val artifactVersion = version.value
