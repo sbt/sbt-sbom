@@ -77,7 +77,6 @@ inThisBuild(
   List(
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
-    scalafixScalaBinaryVersion := scalaBinaryVersion.value,
     scalacOptions ++= Seq(
       "-Ywarn-unused"
     )
