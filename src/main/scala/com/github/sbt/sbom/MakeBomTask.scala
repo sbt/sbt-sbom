@@ -4,7 +4,7 @@
 
 package com.github.sbt.sbom
 
-import sbt._
+import sbt.*
 
 class MakeBomTask(properties: BomTaskProperties, bomFile: File) extends BomTask[File](properties) {
 

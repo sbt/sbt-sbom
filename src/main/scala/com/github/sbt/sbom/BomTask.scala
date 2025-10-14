@@ -4,16 +4,16 @@
 
 package com.github.sbt.sbom
 
-import com.github.sbt.sbom.PluginConstants._
+import com.github.sbt.sbom.PluginConstants.*
 import org.apache.commons.io.FileUtils
 import org.cyclonedx.Version
 import org.cyclonedx.generators.BomGeneratorFactory
 import org.cyclonedx.model.Bom
 import org.cyclonedx.parsers.{ JsonParser, XmlParser }
-import sbt._
+import sbt.*
 
 import java.nio.charset.Charset
-import scala.collection.JavaConverters._
+import scala.collection.JavaConverters.*
 
 final case class BomTaskProperties(
     report: UpdateReport,

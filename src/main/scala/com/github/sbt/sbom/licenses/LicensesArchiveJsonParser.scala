@@ -6,7 +6,7 @@ package com.github.sbt.sbom.licenses
 
 import io.circe.Decoder
 import io.circe.generic.semiauto.deriveDecoder
-import io.circe.parser._
+import io.circe.parser.*
 
 import scala.util.control.NonFatal
 
