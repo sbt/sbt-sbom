@@ -25,7 +25,7 @@ Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin`
 
 `addSbtPlugin("com.github.sbt" %% "sbt-sbom" % "0.4.0")`
 
-Note that the minimum supported version of sbt is 1.5.2 (this is what the [scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html#scripted+test+framework) tests target)
+Note that the minimum supported version of sbt is 1.6.0 (this is what the [scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html#scripted+test+framework) tests target)
 
 ### BOM creation
 
