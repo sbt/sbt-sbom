@@ -41,8 +41,8 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
     val params: BomExtractorParams = extractorParams(currentConfiguration)
     val bom: Bom = new BomExtractor(params, report, rootModuleID, log).bom
     val bomText: String = bomFormat match {
-      case BomFormat.Json => BomGeneratorFactory.createJson(schemaVersion, bom).toJsonString
-      case BomFormat.Xml  => BomGeneratorFactory.createXml(schemaVersion, bom).toXmlString
+      case BomFormat.Json => BomGeneratorFactory.createJson(schemaVersion, bom).toJsonString.replaceAll("\r?\n", "\n")
+      case BomFormat.Xml  => BomGeneratorFactory.createXml(schemaVersion, bom).toXmlString.replaceAll("\r?\n", "\n")
     }
     logBomInfo(params, bom)
     bomText
