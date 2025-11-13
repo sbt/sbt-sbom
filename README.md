@@ -13,7 +13,7 @@ The aim of this [project](https://github.com/sbt/sbt-sbom/) is to:
 - extract a valid [CycloneDx](https://cyclonedx.org/) bom file from [sbt](https://www.scala-sbt.org/) projects
 - ensure that the bom file is processable with Software Composition Analysis tools (like [Dependency Track](https://dependencytrack.org/))
 
-Current version of the plugin is 0.4.0, published to the Central Repository.
+Current version of the plugin is 0.5.0, published to the Central Repository.
 
 Snapshot version are published to the [Sonatype Repository](https://s01.oss.sonatype.org/content/repositories/snapshots).
 
@@ -23,7 +23,7 @@ Snapshot version are published to the [Sonatype Repository](https://s01.oss.sona
 
 Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin` :
 
-`addSbtPlugin("com.github.sbt" %% "sbt-sbom" % "0.4.0")`
+`addSbtPlugin("com.github.sbt" %% "sbt-sbom" % "0.5.0")`
 
 Note that the minimum supported version of sbt is 1.6.0 (this is what the [scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html#scripted+test+framework) tests target)
 
