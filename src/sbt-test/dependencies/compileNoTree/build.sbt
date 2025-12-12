@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
     includeBomToolVersion := false,
     enableBomSha3Hashes := false,
     includeBomDependencyTree := false,
-    scalaVersion := "2.12.20",
+    scalaVersion := "2.12.21",
     check := Def
       .sequential(
         Compile / clean,

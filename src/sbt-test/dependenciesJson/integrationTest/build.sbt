@@ -10,7 +10,7 @@ lazy val root = (project in file("."))
     IntegrationTest / bomFileName := "bom.json",
     includeBomToolVersion := false,
     enableBomSha3Hashes := false,
-    scalaVersion := "2.12.20",
+    scalaVersion := "2.12.21",
     check := Def
       .sequential(
         Compile / clean,
