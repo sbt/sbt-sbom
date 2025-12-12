@@ -14,10 +14,10 @@
     </component>
   </metadata>
   <components>
-    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.20">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.21">
       <group>org.scala-lang</group>
       <name>scala-library</name>
-      <version>2.12.20</version>
+      <version>2.12.21</version>
       <scope>required</scope>
       <hashes>
         <hash alg="MD5">6c78ebf7399f0bb5f449b72322453eb6</hash>
@@ -32,7 +32,7 @@
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
+      <purl>pkg:maven/org.scala-lang/scala-library@2.12.21</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -352,10 +352,10 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.21">
       <group>org.scala-lang</group>
       <name>scala-reflect</name>
-      <version>2.12.20</version>
+      <version>2.12.21</version>
       <scope>required</scope>
       <hashes>
         <hash alg="MD5">c809ef0d711bb6ef6f4cfc5247fcd6df</hash>
@@ -370,7 +370,7 @@
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
+      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.21</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">

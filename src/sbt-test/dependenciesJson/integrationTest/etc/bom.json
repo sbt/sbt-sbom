@@ -20,10 +20,10 @@
   "components" : [
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/org.scala-lang/scala-library@2.12.20",
+      "bom-ref" : "pkg:maven/org.scala-lang/scala-library@2.12.21",
       "group" : "org.scala-lang",
       "name" : "scala-library",
-      "version" : "2.12.20",
+      "version" : "2.12.21",
       "scope" : "required",
       "hashes" : [
         {
@@ -55,7 +55,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/org.scala-lang/scala-library@2.12.20",
+      "purl" : "pkg:maven/org.scala-lang/scala-library@2.12.21",
       "modified" : false,
       "externalReferences" : [
         {
@@ -618,10 +618,10 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
+      "bom-ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.21",
       "group" : "org.scala-lang",
       "name" : "scala-reflect",
-      "version" : "2.12.20",
+      "version" : "2.12.21",
       "scope" : "required",
       "hashes" : [
         {
@@ -653,7 +653,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
+      "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.12.21",
       "modified" : false,
       "externalReferences" : [
         {
@@ -667,7 +667,7 @@
     {
       "ref" : "pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
+        "pkg:maven/org.scala-lang/scala-library@2.12.21",
         "pkg:maven/org.typelevel/macro-compat_2.12@1.1.1"
       ]
     },
@@ -677,14 +677,14 @@
         "pkg:maven/io.circe/circe-core_2.12@0.10.0",
         "pkg:maven/io.circe/circe-generic_2.12@0.10.0",
         "pkg:maven/io.circe/circe-parser_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     },
     {
       "ref" : "pkg:maven/io.circe/circe-core_2.12@0.10.0",
       "dependsOn" : [
         "pkg:maven/io.circe/circe-numbers_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
+        "pkg:maven/org.scala-lang/scala-library@2.12.21",
         "pkg:maven/org.typelevel/cats-core_2.12@1.4.0"
       ]
     },
@@ -693,21 +693,21 @@
       "dependsOn" : [
         "pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle",
         "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     },
     {
       "ref" : "pkg:maven/io.circe/circe-jawn_2.12@0.10.0",
       "dependsOn" : [
         "pkg:maven/io.circe/circe-core_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
+        "pkg:maven/org.scala-lang/scala-library@2.12.21",
         "pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0"
       ]
     },
     {
       "ref" : "pkg:maven/io.circe/circe-numbers_2.12@0.10.0",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     },
     {
@@ -715,29 +715,29 @@
       "dependsOn" : [
         "pkg:maven/io.circe/circe-core_2.12@0.10.0",
         "pkg:maven/io.circe/circe-jawn_2.12@0.10.0",
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     },
     {
-      "ref" : "pkg:maven/org.scala-lang/scala-library@2.12.20",
+      "ref" : "pkg:maven/org.scala-lang/scala-library@2.12.21",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
+      "ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.21",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     },
     {
       "ref" : "pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     },
     {
       "ref" : "pkg:maven/org.typelevel/cats-core_2.12@1.4.0",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
+        "pkg:maven/org.scala-lang/scala-library@2.12.21",
         "pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0",
         "pkg:maven/org.typelevel/cats-macros_2.12@1.4.0",
         "pkg:maven/org.typelevel/machinist_2.12@0.6.5"
@@ -746,27 +746,27 @@
     {
       "ref" : "pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     },
     {
       "ref" : "pkg:maven/org.typelevel/cats-macros_2.12@1.4.0",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
+        "pkg:maven/org.scala-lang/scala-library@2.12.21",
         "pkg:maven/org.typelevel/machinist_2.12@0.6.5"
       ]
     },
     {
       "ref" : "pkg:maven/org.typelevel/machinist_2.12@0.6.5",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20",
-        "pkg:maven/org.scala-lang/scala-reflect@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21",
+        "pkg:maven/org.scala-lang/scala-reflect@2.12.21"
       ]
     },
     {
       "ref" : "pkg:maven/org.typelevel/macro-compat_2.12@1.1.1",
       "dependsOn" : [
-        "pkg:maven/org.scala-lang/scala-library@2.12.20"
+        "pkg:maven/org.scala-lang/scala-library@2.12.21"
       ]
     }
   ]

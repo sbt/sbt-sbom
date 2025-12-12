@@ -20,10 +20,10 @@
   "components" : [
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/org.scala-lang/scala-library@2.12.20",
+      "bom-ref" : "pkg:maven/org.scala-lang/scala-library@2.12.21",
       "group" : "org.scala-lang",
       "name" : "scala-library",
-      "version" : "2.12.20",
+      "version" : "2.12.21",
       "scope" : "required",
       "hashes" : [
         {
@@ -55,7 +55,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/org.scala-lang/scala-library@2.12.20",
+      "purl" : "pkg:maven/org.scala-lang/scala-library@2.12.21",
       "modified" : false,
       "externalReferences" : [
         {
@@ -618,10 +618,10 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
+      "bom-ref" : "pkg:maven/org.scala-lang/scala-reflect@2.12.21",
       "group" : "org.scala-lang",
       "name" : "scala-reflect",
-      "version" : "2.12.20",
+      "version" : "2.12.21",
       "scope" : "required",
       "hashes" : [
         {
@@ -653,7 +653,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.12.20",
+      "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.12.21",
       "modified" : false,
       "externalReferences" : [
         {
