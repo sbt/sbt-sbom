@@ -27,6 +27,12 @@ lazy val checkTask = Def.task {
   val bomFile = (Test / makeBom).value
 
   import scala.sys.process._
-  require(Seq("diff", "-w", bomFile.getPath, s"${thisProject.value.base}/etc/bom.json").! == 0)
-  s.log.info(s"${bomFile.getPath} content verified")
+  val changed = Seq("diff", "-w", bomFile.getPath, s"${thisProject.value.base}/etc/bom.json").! != 0
+  if (changed) {
+    if (sys.env.get("UPDATE").contains("true")) {
+      // scripted tests are executed with PWD still pointing at the parent project:
+      require(Seq("cp", bomFile.getPath, s"${sys.env("PWD")}/src/sbt-test/dependenciesJson/test/etc/bom.json").! == 0)
+    }
+    scala.sys.exit(1)
+  }
 }
