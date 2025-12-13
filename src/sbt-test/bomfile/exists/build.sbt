@@ -7,5 +7,5 @@ lazy val root = (project in file("."))
     name := "exists",
     version := "0.1",
     libraryDependencies ++= Dependencies.library,
-    scalaVersion := "2.12.20"
+    scalaVersion := "2.12.21"
   )

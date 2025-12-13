@@ -10,7 +10,7 @@ lazy val root = (project in file("."))
     bomFileName := "bom.xml",
     includeBomToolVersion := false,
     enableBomSha3Hashes := false,
-    scalaVersion := "2.12.20",
+    scalaVersion := "2.12.21",
     check := Def
       .sequential(
         Compile / clean,
@@ -26,5 +26,12 @@ lazy val checkTask = Def.task {
   s.log.info("Verifying bom content...")
   makeBom.value
   import scala.sys.process._
-  require(Seq("diff", "-w", "target/bom.xml", s"${thisProject.value.base}/etc/bom.xml").! == 0)
+  val changed = Seq("diff", "-w", "target/bom.xml", s"${thisProject.value.base}/etc/bom.xml").! != 0
+  if (changed) {
+    if (sys.env.get("UPDATE").contains("true")) {
+      // scripted tests are executed with PWD still pointing at the parent project:
+      require(Seq("cp", "target/bom.xml", s"${sys.env("PWD")}/src/sbt-test/dependencies/compile/etc/bom.xml").! == 0)
+    }
+    scala.sys.exit(1)
+  }
 }

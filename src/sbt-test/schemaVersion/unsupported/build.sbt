@@ -10,7 +10,7 @@ lazy val root = (project in file("."))
     version := "0.1",
     libraryDependencies ++= Dependencies.library,
     Test / bomFileName := "bom.xml",
-    scalaVersion := "2.12.20",
+    scalaVersion := "2.12.21",
     bomSchemaVersion := "999",
     check := Def
       .sequential(
