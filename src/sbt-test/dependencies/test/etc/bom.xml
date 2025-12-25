@@ -14,17 +14,17 @@
     </component>
   </metadata>
   <components>
-    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.20">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-library@2.12.21">
       <group>org.scala-lang</group>
       <name>scala-library</name>
-      <version>2.12.20</version>
+      <version>2.12.21</version>
       <scope>required</scope>
       <hashes>
-        <hash alg="MD5">6c78ebf7399f0bb5f449b72322453eb6</hash>
-        <hash alg="SHA-1">562dc9629943eec010e27898c3be65ffa9210558</hash>
-        <hash alg="SHA-256">4d8a8f984cce31a329a24f10b0bf336f042cb62aeb435290a1b20243154cfccb</hash>
-        <hash alg="SHA-512">32f566686e83ba54e24d6679667f9e699485ce360b2513def7be69b91122ac6c1f40b08411cfb933c64a6a92985ca719190e2cf3825eb68ffdffe47348f40b89</hash>
-        <hash alg="SHA-384">d5f770f83025aabf1257f043692dc4a942112313e878f12f495e76cb6715a06462a98e67e9c934797f1efeda8eec172f</hash>
+        <hash alg="MD5">8ae62906ef70e334bf35466a95da2864</hash>
+        <hash alg="SHA-1">bd2022537d062881d8335d185f9ede3d2351c9b1</hash>
+        <hash alg="SHA-256">e2f4040c95cc4dd1cfeaae38bdde596e4b36933632451efa7d8564c6a359510c</hash>
+        <hash alg="SHA-512">69236b9b056b87077e8608225f041ebef6c2622de5cdd8733555693befe994b9b85e91042960ae6cb6c7ef2818ab2de83a95a3e0fa414a699cf2ff3927d6558f</hash>
+        <hash alg="SHA-384">c3419a097cee20e3bf281ed5e20ddc71c08475598eb483bdf17b512c75a5299e17e2606afd178ea53f3d3edc8d621be8</hash>
       </hashes>
       <licenses>
         <license>
@@ -32,7 +32,7 @@
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-library@2.12.20</purl>
+      <purl>pkg:maven/org.scala-lang/scala-library@2.12.21</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -274,17 +274,17 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
+    <component type="library" bom-ref="pkg:maven/org.scala-lang/scala-reflect@2.12.21">
       <group>org.scala-lang</group>
       <name>scala-reflect</name>
-      <version>2.12.20</version>
+      <version>2.12.21</version>
       <scope>required</scope>
       <hashes>
-        <hash alg="MD5">c809ef0d711bb6ef6f4cfc5247fcd6df</hash>
-        <hash alg="SHA-1">f923933d1c168535e66ca825c18207a8db2b20a6</hash>
-        <hash alg="SHA-256">5f1914cdc7a70580ea6038d929ebb25736ecf2234f677e2d47f8a4b2bc81e1fb</hash>
-        <hash alg="SHA-512">ef2d1215e47b4921597f4f21aa4ff66434bcbfce3325b48567b0ca44e0184aff22097874bc1023142a2e0b4b1c963148f50509ee56371ecd2c7610f28c00f63c</hash>
-        <hash alg="SHA-384">24a908a2d59f64796ba2e602b3702cefcfe471264caa6038163c523692e17becc5a7316e82610359c697727889548391</hash>
+        <hash alg="MD5">b7a5571df38e6ce7467d982e48db9b46</hash>
+        <hash alg="SHA-1">03c4d800e0aa216cb323e2d8cf44cd0ceb820461</hash>
+        <hash alg="SHA-256">8b91a08ba69a0564689793e732f06768d0914ec9e90fa8c3d1b55c5bf4600c14</hash>
+        <hash alg="SHA-512">03214b9ed9d09966c0fd6df30b613a549075a2e2c2b43eef655539456226aa432d790c9050ac78c1e6a026bd85a98ac1a2f1997b0885faa3e39fab1db2b6a8c0</hash>
+        <hash alg="SHA-384">ab369473d12ac219a6c4f2d3ffbee91de4c8cbaa0e90432d43cfc30337b91499ec12ac79398348cb4467bc0d6ddd190e</hash>
       </hashes>
       <licenses>
         <license>
@@ -292,7 +292,7 @@
           <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
       </licenses>
-      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.20</purl>
+      <purl>pkg:maven/org.scala-lang/scala-reflect@2.12.21</purl>
       <modified>false</modified>
       <externalReferences>
         <reference type="website">
@@ -459,78 +459,78 @@
   </components>
   <dependencies>
     <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
       <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1"/>
     </dependency>
     <dependency ref="pkg:maven/dependencies/dependencies_2.12@0.1">
       <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
       <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0"/>
       <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
       <dependency ref="pkg:maven/org.scalatest/scalatest_2.12@3.0.5?type=bundle"/>
     </dependency>
     <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0">
       <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
       <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0"/>
     </dependency>
     <dependency ref="pkg:maven/io.circe/circe-generic_2.12@0.10.0">
       <dependency ref="pkg:maven/com.chuusai/shapeless_2.12@2.3.3?type=bundle"/>
       <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0">
       <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
       <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0"/>
     </dependency>
     <dependency ref="pkg:maven/io.circe/circe-numbers_2.12@0.10.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/io.circe/circe-parser_2.12@0.10.0">
       <dependency ref="pkg:maven/io.circe/circe-core_2.12@0.10.0"/>
       <dependency ref="pkg:maven/io.circe/circe-jawn_2.12@0.10.0"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6?type=bundle">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
-    <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-    <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+    <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
+    <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.21">
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/org.scalactic/scalactic_2.12@3.0.5?type=bundle">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/org.scalatest/scalatest_2.12@3.0.5?type=bundle">
       <dependency ref="pkg:maven/org.scala-lang.modules/scala-xml_2.12@1.0.6?type=bundle"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.21"/>
       <dependency ref="pkg:maven/org.scalactic/scalactic_2.12@3.0.5?type=bundle"/>
     </dependency>
     <dependency ref="pkg:maven/org.spire-math/jawn-parser_2.12@0.13.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/org.typelevel/cats-core_2.12@1.4.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
       <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0"/>
       <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0"/>
       <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5"/>
     </dependency>
     <dependency ref="pkg:maven/org.typelevel/cats-kernel_2.12@1.4.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/org.typelevel/cats-macros_2.12@1.4.0">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
       <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5"/>
     </dependency>
     <dependency ref="pkg:maven/org.typelevel/machinist_2.12@0.6.5">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
-      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-reflect@2.12.21"/>
     </dependency>
     <dependency ref="pkg:maven/org.typelevel/macro-compat_2.12@1.1.1">
-      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.20"/>
+      <dependency ref="pkg:maven/org.scala-lang/scala-library@2.12.21"/>
     </dependency>
   </dependencies>
 </bom>
