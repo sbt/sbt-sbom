@@ -37,7 +37,9 @@ This creates the BOM file inside the `target` directory. The name of the file cr
 
 ### scope selection
 
-It is possible to create the BOM for different scopes, so that all dependencies of the scopes are included in the generated BOM files. The default scope is `Compile`. For now the other supported scopes are `Test` and `IntegrationTest`. To generate the BOM for a certain scope, add the scope as a prefix to the `makeBom` command:
+It is possible to create the BOM for different scopes, so that all dependencies of the scopes are included in the generated BOM files. The default scope is `Compile`. For now the other supported scopes are `Provided`,`Test` and `IntegrationTest`. To generate the BOM for a certain scope, add the scope as a prefix to the `makeBom` command:
+
+`> sbt Provided / makeBom`
 
 `> sbt Test / makeBom`
 
