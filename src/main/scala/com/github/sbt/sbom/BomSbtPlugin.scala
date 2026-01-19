@@ -88,6 +88,7 @@ object BomSbtPlugin extends AutoPlugin {
       makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Compile)).value,
       listBom := Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Compile)).value,
       Test / makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Test)).value,
+      Provided / makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Provided)).value,
       Test / listBom := Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Test)).value,
       IntegrationTest / makeBom := Def
         .taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, IntegrationTest))
