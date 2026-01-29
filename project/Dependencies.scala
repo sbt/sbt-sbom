@@ -10,6 +10,6 @@ object Dependencies {
     "io.circe"      %% "circe-parser"        % "0.14.15",
     "org.cyclonedx"  % "cyclonedx-core-java" % "11.0.1",
     "org.scalatest" %% "scalatest"           % "3.2.19" % Test,
-    "org.scalamock" %% "scalamock"           % "7.5.3"  % Test
+    "org.scalamock" %% "scalamock"           % "7.5.4"  % Test
   )
 }
