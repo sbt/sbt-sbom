@@ -40,12 +40,12 @@ lazy val root = (project in file("."))
     },
     scriptedBufferLog := false,
     scriptedSbt := (scalaBinaryVersion.value match {
-      case "2.12" => "1.6.0"
+      case "2.12" => "1.10.11"
       case _      => "2.0.0"
     }),
     scalacOptions ++= {
       scalaBinaryVersion.value match {
-        case "2.12" => Seq("-Ywarn-unused", "-release:8")
+        case "2.12" => Seq("-Ywarn-unused", "-release:17")
         case _      => Seq("-Wunused:all")
       }
     }
@@ -88,8 +88,8 @@ ThisBuild / githubWorkflowOSes := Seq("ubuntu-latest", "macos-latest", "windows-
 ThisBuild / githubWorkflowScalaVersions := Seq(scala212, scala3)
 
 ThisBuild / githubWorkflowJavaVersions := Seq(
-  // Java 17 first: publish job uses the head of this list when downloading staged artifacts; sbt 2 (Scala 3 axis) needs 17+.
-  JavaSpec.temurin("17")
+  JavaSpec.temurin("17"),
+  JavaSpec.temurin("25"),
 )
 
 // Semantic DB (used by scalafix)
