@@ -19,7 +19,7 @@ object BomSbtPlugin extends AutoPlugin {
 
   override def requires: Plugins = JvmPlugin
 
-  override def trigger: PluginTrigger = allRequirements
+  override def trigger: PluginTrigger = NoTrigger
 
   object autoImport {
     lazy val bomFileName: SettingKey[String] = settingKey[String]("bom file name")
