@@ -26,6 +26,27 @@ Add the plugin dependency to the file `project/plugins.sbt` using `addSbtPlugin`
 `addSbtPlugin("com.github.sbt" %% "sbt-sbom" % "0.5.0")`
 
 Note that the minimum supported version of sbt is 1.6.0 (this is what the [scripted](https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html#scripted+test+framework) tests target)
+                     
+### enable plugin
+
+To enable the plugin, add `enablePlugins(SbomPlugin)` to your `build.sbt` file:
+   
+#### single module project
+
+```scala
+enablePlugins(SbomPlugin)
+```
+
+#### multi module project
+
+```scala
+lazy val someModule = (project in file("some-module"))
+  .settings(
+    name := "myArtifact",
+    version := "1.0",
+  )
+  .enablePlugins(SbomPlugin)
+```
 
 ### BOM creation
 
