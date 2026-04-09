@@ -96,15 +96,23 @@ object BomSbtPlugin extends AutoPlugin {
       makeBom := Def.uncached(Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Compile)).value),
       listBom := Def.uncached(Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Compile)).value),
       Test / makeBom := Def.uncached(Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Test)).value),
-      Provided / makeBom := Def.uncached(Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Provided)).value),
+      Provided / makeBom := Def.uncached(
+        Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Provided)).value
+      ),
       Test / listBom := Def.uncached(Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Test)).value),
-      SbomIntegrationTest / makeBom := Def.uncached(Def
-        .taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, SbomIntegrationTest))
-        .value),
-      SbomIntegrationTest / listBom := Def.uncached(Def
-        .taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, SbomIntegrationTest))
-        .value),
-      bomConfigurations := Def.uncached(Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value),
+      SbomIntegrationTest / makeBom := Def.uncached(
+        Def
+          .taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, SbomIntegrationTest))
+          .value
+      ),
+      SbomIntegrationTest / listBom := Def.uncached(
+        Def
+          .taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, SbomIntegrationTest))
+          .value
+      ),
+      bomConfigurations := Def.uncached(
+        Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value
+      ),
       projectType := "library",
       bomOutputPath := "",
       packagedArtifacts := Def.uncached({
