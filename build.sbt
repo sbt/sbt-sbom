@@ -15,20 +15,22 @@ ThisBuild / licenses := Project.licenses
 ThisBuild / scmInfo := Project.scmInfo
 ThisBuild / description := Project.description
 
-def sbtVersionForPlugin(scalaBinary: String): String =
-  scalaBinary match {
-    case "2.12" => "1.10.7"
-    case _      => "2.0.0-RC11"
-  }
-
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin, ScriptedPlugin, BuildInfoPlugin)
   .settings(
     name := "sbt-sbom",
     libraryDependencies ++= Dependencies.library,
-    addSbtPlugin("com.github.sbt" % "sbt2-compat" % "0.1.0"),
+    // Explicit Maven artifact IDs so sbt 1.6 scripted resolution requests
+    // sbt2-compat_2.12_1.0-0.1.0.pom (addSbtPlugin can request sbt2-compat-0.1.0.pom, which 404s).
+    libraryDependencies += (scalaBinaryVersion.value match {
+      case "2.12" => "com.github.sbt" % "sbt2-compat_2.12_1.0" % "0.1.0"
+      case _      => "com.github.sbt" % "sbt2-compat_sbt2_3" % "0.1.0"
+    }),
     buildInfoPackage := "com.github.sbt.sbom",
-    (pluginCrossBuild / sbtVersion) := sbtVersionForPlugin(scalaBinaryVersion.value),
+    (pluginCrossBuild / sbtVersion) := (scalaBinaryVersion.value match {
+      case "2.12" => "1.10.7"
+      case _      => "2.0.0-RC11"
+    }),
     scriptedLaunchOpts := {
       scriptedLaunchOpts.value ++ Seq(
         "-Xmx1024M",
@@ -37,7 +39,10 @@ lazy val root = (project in file("."))
       )
     },
     scriptedBufferLog := false,
-    scriptedSbt := sbtVersionForPlugin(scalaBinaryVersion.value),
+    scriptedSbt := (scalaBinaryVersion.value match {
+      case "2.12" => "1.6.0"
+      case _      => "2.0.0-RC11"
+    }),
   )
 
 ThisBuild / pomIncludeRepository := { _ =>
