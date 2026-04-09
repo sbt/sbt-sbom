@@ -90,16 +90,6 @@ jobs:
       - shell: bash
         run: sbt '++ ${{ matrix.scala }}' test scripted
 
-      - name: Compress target directories
-        shell: bash
-        run: tar cf targets.tar target project/target
-
-      - name: Upload target directories
-        uses: actions/upload-artifact@v5
-        with:
-          name: target-${{ matrix.os }}-${{ matrix.scala }}-${{ matrix.java }}
-          path: targets.tar
-
   publish:
     name: Publish Artifacts
     needs: [build]
@@ -154,26 +144,6 @@ jobs:
 
       - name: Setup sbt
         uses: sbt/setup-sbt@v1
-
-      - name: Download target directories (2.12.21)
-        uses: actions/download-artifact@v6
-        with:
-          name: target-${{ matrix.os }}-2.12.21-${{ matrix.java }}
-
-      - name: Inflate target directories (2.12.21)
-        run: |
-          tar xf targets.tar
-          rm targets.tar
-
-      - name: Download target directories (3.8.2)
-        uses: actions/download-artifact@v6
-        with:
-          name: target-${{ matrix.os }}-3.8.2-${{ matrix.java }}
-
-      - name: Inflate target directories (3.8.2)
-        run: |
-          tar xf targets.tar
-          rm targets.tar
 
       - name: Publish project
         env:

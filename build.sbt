@@ -56,6 +56,8 @@ ThisBuild / githubWorkflowBuildPreamble := Seq(
 
 ThisBuild / githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("test", "scripted")))
 
+ThisBuild / githubWorkflowArtifactUpload := false
+
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
 ThisBuild / githubWorkflowPublishTargetBranches :=
   Seq(
