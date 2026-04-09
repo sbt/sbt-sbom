@@ -24,7 +24,7 @@ lazy val root = (project in file("."))
     // sbt2-compat_2.12_1.0-0.1.0.pom (addSbtPlugin can request sbt2-compat-0.1.0.pom, which 404s).
     libraryDependencies += (scalaBinaryVersion.value match {
       case "2.12" => "com.github.sbt" % "sbt2-compat_2.12_1.0" % "0.1.0"
-      case _      => "com.github.sbt" % "sbt2-compat_sbt2_3" % "0.1.0"
+      case _      => "com.github.sbt" % "sbt2-compat_sbt2_3"   % "0.1.0"
     }),
     buildInfoPackage := "com.github.sbt.sbom",
     (pluginCrossBuild / sbtVersion) := (scalaBinaryVersion.value match {
