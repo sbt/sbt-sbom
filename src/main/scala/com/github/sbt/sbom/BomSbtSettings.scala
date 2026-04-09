@@ -6,7 +6,7 @@ package com.github.sbt.sbom
 
 import com.github.sbt.sbom.BomSbtPlugin.autoImport.*
 import sbt.*
-import sbt.Keys.{ projectID, sLog, scalaBinaryVersion, scalaVersion, target }
+import sbt.Keys.{ baseDirectory, projectID, sLog, scalaBinaryVersion, scalaVersion }
 
 object BomSbtSettings {
   def makeBomTask(report: UpdateReport, currentConfiguration: Configuration): Def.Initialize[Task[sbt.File]] =
@@ -18,7 +18,7 @@ object BomSbtSettings {
       )
 
       val outputPath = if (bomOutputPath.value.isEmpty) {
-        target.value
+        baseDirectory.value / "target"
       } else {
         sbt.file(bomOutputPath.value)
       }
@@ -74,7 +74,8 @@ object BomSbtSettings {
           includeBomExternalReferences.value,
           includeBomDependencyTree.value,
           projType,
-          sbt.file(bomOutputPath.value)
+          if (bomOutputPath.value.isEmpty) baseDirectory.value / "target"
+          else sbt.file(bomOutputPath.value)
         )
       ).execute
     }
@@ -93,8 +94,8 @@ object BomSbtSettings {
       usedConfiguration match {
         case Test =>
           Seq(Test, Runtime, Compile)
-        case IntegrationTest =>
-          Seq(IntegrationTest, Runtime, Compile)
+        case cfg if cfg == PluginCompat.integrationTest =>
+          Seq(PluginCompat.integrationTest, Runtime, Compile)
         case Runtime =>
           Seq(Runtime, Compile)
         case Compile =>

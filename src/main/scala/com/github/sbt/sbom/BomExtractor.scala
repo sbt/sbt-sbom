@@ -101,8 +101,8 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
     configuration match {
       case Test =>
         Seq(Test, Runtime, Compile)
-      case IntegrationTest =>
-        Seq(IntegrationTest, Runtime, Compile)
+      case cfg if cfg == PluginCompat.integrationTest =>
+        Seq(PluginCompat.integrationTest, Runtime, Compile)
       case Runtime =>
         Seq(Runtime, Compile)
       case Compile =>

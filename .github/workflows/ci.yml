@@ -23,11 +23,15 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        scala: [2.12.21]
-        java: [temurin@8, temurin@11, temurin@17]
+        scala: [2.12.21, 3.8.2]
+        java: [temurin@17, temurin@11, temurin@8]
         exclude:
           - java: temurin@8
             os: macos-latest
+          - scala: 3.8.2
+            java: temurin@8
+          - scala: 3.8.2
+            java: temurin@11
     runs-on: ${{ matrix.os }}
     steps:
       - name: Ignore line ending differences in git
@@ -48,12 +52,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Java (temurin@8)
-        if: matrix.java == 'temurin@8'
+      - name: Setup Java (temurin@17)
+        if: matrix.java == 'temurin@17'
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 8
+          java-version: 17
           cache: sbt
 
       - name: Setup Java (temurin@11)
@@ -64,12 +68,12 @@ jobs:
           java-version: 11
           cache: sbt
 
-      - name: Setup Java (temurin@17)
-        if: matrix.java == 'temurin@17'
+      - name: Setup Java (temurin@8)
+        if: matrix.java == 'temurin@8'
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 8
           cache: sbt
 
       - name: Setup sbt
@@ -104,7 +108,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         scala: [2.12.21]
-        java: [temurin@8]
+        java: [temurin@17]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Ignore line ending differences in git
@@ -124,12 +128,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Java (temurin@8)
-        if: matrix.java == 'temurin@8'
+      - name: Setup Java (temurin@17)
+        if: matrix.java == 'temurin@17'
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 8
+          java-version: 17
           cache: sbt
 
       - name: Setup Java (temurin@11)
@@ -140,12 +144,12 @@ jobs:
           java-version: 11
           cache: sbt
 
-      - name: Setup Java (temurin@17)
-        if: matrix.java == 'temurin@17'
+      - name: Setup Java (temurin@8)
+        if: matrix.java == 'temurin@8'
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 8
           cache: sbt
 
       - name: Setup sbt
@@ -157,6 +161,16 @@ jobs:
           name: target-${{ matrix.os }}-2.12.21-${{ matrix.java }}
 
       - name: Inflate target directories (2.12.21)
+        run: |
+          tar xf targets.tar
+          rm targets.tar
+
+      - name: Download target directories (3.8.2)
+        uses: actions/download-artifact@v6
+        with:
+          name: target-${{ matrix.os }}-3.8.2-${{ matrix.java }}
+
+      - name: Inflate target directories (3.8.2)
         run: |
           tar xf targets.tar
           rm targets.tar

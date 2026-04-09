@@ -6,21 +6,29 @@ ThisBuild / organization := Organization.organization
 ThisBuild / organizationName := Organization.organizationName
 ThisBuild / organizationHomepage := Organization.organizationHomepage
 val scala212 = "2.12.21"
+val scala3 = "3.8.2"
 ThisBuild / scalaVersion := scala212
-ThisBuild / crossScalaVersions := Seq(scala212)
+ThisBuild / crossScalaVersions := Seq(scala212, scala3)
 ThisBuild / homepage := Project.homepage
 ThisBuild / developers := Project.developers
 ThisBuild / licenses := Project.licenses
 ThisBuild / scmInfo := Project.scmInfo
 ThisBuild / description := Project.description
 
+def sbtVersionForPlugin(scalaBinary: String): String =
+  scalaBinary match {
+    case "2.12" => "1.10.7"
+    case _      => "2.0.0-RC11"
+  }
+
 lazy val root = (project in file("."))
-  .enablePlugins(ScriptedPlugin, BuildInfoPlugin)
+  .enablePlugins(SbtPlugin, ScriptedPlugin, BuildInfoPlugin)
   .settings(
     name := "sbt-sbom",
-    sbtPlugin := true,
     libraryDependencies ++= Dependencies.library,
+    addSbtPlugin("com.github.sbt" % "sbt2-compat" % "0.1.0"),
     buildInfoPackage := "com.github.sbt.sbom",
+    (pluginCrossBuild / sbtVersion) := sbtVersionForPlugin(scalaBinaryVersion.value),
     scriptedLaunchOpts := {
       scriptedLaunchOpts.value ++ Seq(
         "-Xmx1024M",
@@ -29,7 +37,7 @@ lazy val root = (project in file("."))
       )
     },
     scriptedBufferLog := false,
-    scriptedSbt := "1.6.0",
+    scriptedSbt := sbtVersionForPlugin(scalaBinaryVersion.value),
   )
 
 ThisBuild / pomIncludeRepository := { _ =>
@@ -65,20 +73,30 @@ ThisBuild / githubWorkflowPublish := Seq(
 ThisBuild / githubWorkflowOSes := Seq("ubuntu-latest", "macos-latest", "windows-latest")
 
 ThisBuild / githubWorkflowJavaVersions := Seq(
-  JavaSpec.temurin("8"),
+  // Java 17 first: publish job uses the head of this list when downloading staged artifacts; sbt 2 (Scala 3 axis) needs 17+.
+  JavaSpec.temurin("17"),
   JavaSpec.temurin("11"),
-  JavaSpec.temurin("17")
+  JavaSpec.temurin("8")
 )
 
-ThisBuild / githubWorkflowBuildMatrixExclusions += MatrixExclude(Map("java" -> "temurin@8", "os" -> "macos-latest"))
+ThisBuild / githubWorkflowBuildMatrixExclusions ++= Seq(
+  MatrixExclude(Map("java" -> "temurin@8", "os" -> "macos-latest")),
+  MatrixExclude(Map("scala" -> scala3, "java" -> "temurin@8")),
+  MatrixExclude(Map("scala" -> scala3, "java" -> "temurin@11"))
+)
+
+ThisBuild / githubWorkflowScalaVersions := Seq(scala212, scala3)
 
 // scalafix specific settings
 inThisBuild(
   List(
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
-    scalacOptions ++= Seq(
-      "-Ywarn-unused"
-    )
+    scalacOptions ++= {
+      scalaBinaryVersion.value match {
+        case "2.12" => Seq("-Ywarn-unused")
+        case _      => Seq("-Wunused:all")
+      }
+    }
   )
 )

@@ -7,8 +7,10 @@ package com.github.sbt.sbom
 import com.github.sbt.sbom.PluginConstants.*
 import org.cyclonedx.model.Component
 import sbt.*
-import sbt.Keys.{ artifact, configuration, packagedArtifacts, version }
+import sbt.Keys.{ artifact, configuration, fileConverter, packagedArtifacts, version }
 import sbt.plugins.JvmPlugin
+import sbtcompat.PluginCompat.*
+import xsbti.FileConverter
 
 import scala.language.postfixOps
 
@@ -63,6 +65,12 @@ object BomSbtPlugin extends AutoPlugin {
     lazy val bomOutputPath: SettingKey[String] = settingKey[String](
       "Output path of the created BOM file. BOM File will be placed in target/ directory by default"
     )
+
+    /**
+     * Integration-test configuration. On sbt 2.x, `IntegrationTest` was removed from the sbt API; use this config
+     * instead of `IntegrationTest` from sbt to avoid ambiguous imports when cross-building or running on sbt 1.
+     */
+    lazy val SbomIntegrationTest: Configuration = PluginCompat.integrationTest
   }
 
   import autoImport.*
@@ -85,28 +93,31 @@ object BomSbtPlugin extends AutoPlugin {
       enableBomSha3Hashes := true,
       includeBomExternalReferences := true,
       includeBomDependencyTree := true,
-      makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Compile)).value,
-      listBom := Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Compile)).value,
-      Test / makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Test)).value,
-      Provided / makeBom := Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Provided)).value,
-      Test / listBom := Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Test)).value,
-      IntegrationTest / makeBom := Def
-        .taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, IntegrationTest))
-        .value,
-      IntegrationTest / listBom := Def
-        .taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, IntegrationTest))
-        .value,
-      bomConfigurations := Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value,
+      makeBom := Def.uncached(Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Compile)).value),
+      listBom := Def.uncached(Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Compile)).value),
+      Test / makeBom := Def.uncached(Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Test)).value),
+      Provided / makeBom := Def.uncached(Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Provided)).value),
+      Test / listBom := Def.uncached(Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Test)).value),
+      SbomIntegrationTest / makeBom := Def.uncached(Def
+        .taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, SbomIntegrationTest))
+        .value),
+      SbomIntegrationTest / listBom := Def.uncached(Def
+        .taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, SbomIntegrationTest))
+        .value),
+      bomConfigurations := Def.uncached(Def.taskDyn(BomSbtSettings.bomConfigurationTask((configuration ?).value)).value),
       projectType := "library",
       bomOutputPath := "",
-      packagedArtifacts += {
-        Artifact(
-          artifact.value.name,
-          "cyclonedx",
-          BomFormat.fromSettings(bomFormat.?.value, None, bomSchemaVersion.value).string,
-          "cyclonedx"
-        ) -> makeBom.value
-      },
+      packagedArtifacts := Def.uncached({
+        implicit val conv: FileConverter = fileConverter.value
+        packagedArtifacts.value + (
+          Artifact(
+            artifact.value.name,
+            "cyclonedx",
+            BomFormat.fromSettings(bomFormat.?.value, None, bomSchemaVersion.value).string,
+            "cyclonedx"
+          ) -> toFileRef(makeBom.value)
+        )
+      }),
     )
   }
 }
