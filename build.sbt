@@ -43,6 +43,12 @@ lazy val root = (project in file("."))
       case "2.12" => "1.6.0"
       case _      => "2.0.0-RC11"
     }),
+    scalacOptions ++= {
+      scalaBinaryVersion.value match {
+        case "2.12" => Seq("-Ywarn-unused", "-release:8")
+        case _      => Seq("-Wunused:all")
+      }
+    }
   )
 
 ThisBuild / pomIncludeRepository := { _ =>
@@ -98,12 +104,6 @@ ThisBuild / githubWorkflowScalaVersions := Seq(scala212, scala3)
 inThisBuild(
   List(
     semanticdbEnabled := true,
-    semanticdbVersion := scalafixSemanticdb.revision,
-    scalacOptions ++= {
-      scalaBinaryVersion.value match {
-        case "2.12" => Seq("-Ywarn-unused")
-        case _      => Seq("-Wunused:all")
-      }
-    }
+    semanticdbVersion := scalafixSemanticdb.revision
   )
 )
