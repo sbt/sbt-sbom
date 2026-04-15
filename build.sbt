@@ -85,6 +85,8 @@ ThisBuild / githubWorkflowPublish := Seq(
 
 ThisBuild / githubWorkflowOSes := Seq("ubuntu-latest", "macos-latest", "windows-latest")
 
+ThisBuild / githubWorkflowScalaVersions := Seq(scala212, scala3)
+
 ThisBuild / githubWorkflowJavaVersions := Seq(
   // Java 17 first: publish job uses the head of this list when downloading staged artifacts; sbt 2 (Scala 3 axis) needs 17+.
   JavaSpec.temurin("17"),
@@ -98,9 +100,7 @@ ThisBuild / githubWorkflowBuildMatrixExclusions ++= Seq(
   MatrixExclude(Map("scala" -> scala3, "java" -> "temurin@11"))
 )
 
-ThisBuild / githubWorkflowScalaVersions := Seq(scala212, scala3)
-
-// scalafix specific settings
+// Semantic DB (used by scalafix)
 inThisBuild(
   List(
     semanticdbEnabled := true,
