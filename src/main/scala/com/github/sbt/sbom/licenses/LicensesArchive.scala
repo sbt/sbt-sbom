@@ -18,14 +18,14 @@ class LicensesArchive(licenses: Seq[License]) {
       }
       .toList
       .groupBy(_._1)
-      .mapValues(_.map(_._2))
+      .map { case (k, v) => k -> v.map(_._2) }
 
   private val licenseByNormalizedId: Map[String, License] =
     licenses
       .groupBy(license => normalizeId(license.id))
-      .mapValues {
-        case Seq(license) => license
-        case licenses     => throw new RuntimeException(s"conflicting licenses: $licenses")
+      .map {
+        case (id, Seq(license)) => id -> license
+        case (_, licenses)      => throw new RuntimeException(s"conflicting licenses: $licenses")
       }
 
   def findByUrl(url: String): Seq[License] = licensesByNormalizedUrl.getOrElse(normalizeUrl(url), Seq.empty)
