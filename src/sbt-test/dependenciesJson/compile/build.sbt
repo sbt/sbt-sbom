@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 lazy val root = (project in file("."))
+  .enablePlugins(BomSbtPlugin)
   .settings(
     name := "dependencies",
     organization := "organization",
