@@ -5,6 +5,7 @@
 import sbt.Keys._
 
 lazy val root = (project in file("."))
+  .enablePlugins(BomSbtPlugin)
   .settings(
     name := "dependencies",
     version := "0.1",
