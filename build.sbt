@@ -29,7 +29,7 @@ lazy val root = (project in file("."))
     buildInfoPackage := "com.github.sbt.sbom",
     (pluginCrossBuild / sbtVersion) := (scalaBinaryVersion.value match {
       case "2.12" => "1.10.7"
-      case _      => "2.0.0-RC11"
+      case _      => "2.0.0"
     }),
     scriptedLaunchOpts := {
       scriptedLaunchOpts.value ++ Seq(
@@ -41,7 +41,7 @@ lazy val root = (project in file("."))
     scriptedBufferLog := false,
     scriptedSbt := (scalaBinaryVersion.value match {
       case "2.12" => "1.6.0"
-      case _      => "2.0.0-RC11"
+      case _      => "2.0.0"
     }),
     scalacOptions ++= {
       scalaBinaryVersion.value match {
