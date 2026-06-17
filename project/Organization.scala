@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import sbt.{URI, url}
+import sbt.{ URI, url }
 
 object Organization {
   val organization: String = "com.github.sbt"
