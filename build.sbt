@@ -9,11 +9,11 @@ val scala212 = "2.12.21"
 val scala3 = "3.8.4"
 ThisBuild / scalaVersion := scala212
 ThisBuild / crossScalaVersions := Seq(scala212, scala3)
-ThisBuild / homepage := Project.homepage
-ThisBuild / developers := Project.developers
-ThisBuild / licenses := Project.licenses
-ThisBuild / scmInfo := Project.scmInfo
-ThisBuild / description := Project.description
+ThisBuild / homepage := ProjectSettings.homepage
+ThisBuild / developers := ProjectSettings.developers
+ThisBuild / licenses := ProjectSettings.licenses
+ThisBuild / scmInfo := ProjectSettings.scmInfo
+ThisBuild / description := ProjectSettings.description
 
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin, ScriptedPlugin, BuildInfoPlugin)
@@ -89,15 +89,7 @@ ThisBuild / githubWorkflowScalaVersions := Seq(scala212, scala3)
 
 ThisBuild / githubWorkflowJavaVersions := Seq(
   // Java 17 first: publish job uses the head of this list when downloading staged artifacts; sbt 2 (Scala 3 axis) needs 17+.
-  JavaSpec.temurin("17"),
-  JavaSpec.temurin("11"),
-  JavaSpec.temurin("8")
-)
-
-ThisBuild / githubWorkflowBuildMatrixExclusions ++= Seq(
-  MatrixExclude(Map("java" -> "temurin@8", "os" -> "macos-latest")),
-  MatrixExclude(Map("scala" -> scala3, "java" -> "temurin@8")),
-  MatrixExclude(Map("scala" -> scala3, "java" -> "temurin@11"))
+  JavaSpec.temurin("17")
 )
 
 // Semantic DB (used by scalafix)
