@@ -4,11 +4,11 @@
 
 import sbt.*
 
-object Project {
+object ProjectSettings {
   lazy val description: String =
     "SBT plugin to generate CycloneDx SBOM files"
 
-  lazy val homepage: Option[URL] =
+  lazy val homepage: Option[URI] =
     Some(url("https://github.com/siculo/sbt-bom"))
 
   lazy val developers: List[Developer] =
@@ -16,9 +16,9 @@ object Project {
       Developer("siculo", "Fabrizio Di Giuseppe", "siculo.github@gmail.com", url("https://github.com/siculo"))
     )
 
-  lazy val licenses: List[(String, URL)] =
+  lazy val licenses: List[License] =
     List(
-      ("MIT License", url("https://opensource.org/licenses/MIT"))
+      License("MIT License", url("https://opensource.org/licenses/MIT"))
     )
 
   lazy val scmInfo: Option[ScmInfo] =
