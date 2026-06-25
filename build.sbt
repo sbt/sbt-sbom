@@ -56,6 +56,8 @@ ThisBuild / pomIncludeRepository := { _ =>
 }
 ThisBuild / publishMavenStyle := true
 
+ThisBuild / githubWorkflowSbtCommand := "sbt --server"
+
 ThisBuild / githubWorkflowBuildPreamble := Seq(
   WorkflowStep.Sbt(List("scalafixAll --check"), name = Some("Linter: Scalafix checks"))
 )

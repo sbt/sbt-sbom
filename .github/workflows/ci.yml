@@ -66,14 +66,14 @@ jobs:
 
       - name: 'Linter: Scalafix checks'
         shell: bash
-        run: sbt '++ ${{ matrix.scala }}; scalafixAll --check'
+        run: sbt --server '++ ${{ matrix.scala }}; scalafixAll --check'
 
       - name: Check that workflows are up to date
         shell: bash
-        run: sbt '++ ${{ matrix.scala }}; githubWorkflowCheck'
+        run: sbt --server '++ ${{ matrix.scala }}; githubWorkflowCheck'
 
       - shell: bash
-        run: sbt '++ ${{ matrix.scala }}; test; scripted'
+        run: sbt --server '++ ${{ matrix.scala }}; test; scripted'
 
   publish:
     name: Publish Artifacts
@@ -128,4 +128,4 @@ jobs:
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-        run: sbt ci-release
+        run: sbt --server ci-release
