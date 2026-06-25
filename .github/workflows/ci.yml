@@ -41,7 +41,7 @@ jobs:
           disk-root: 'C:'
 
       - name: Checkout current branch (full)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -66,14 +66,14 @@ jobs:
 
       - name: 'Linter: Scalafix checks'
         shell: bash
-        run: sbt '++ ${{ matrix.scala }}' 'scalafixAll --check'
+        run: sbt '++ ${{ matrix.scala }}; scalafixAll --check'
 
       - name: Check that workflows are up to date
         shell: bash
-        run: sbt '++ ${{ matrix.scala }}' githubWorkflowCheck
+        run: sbt '++ ${{ matrix.scala }}; githubWorkflowCheck'
 
       - shell: bash
-        run: sbt '++ ${{ matrix.scala }}' test scripted
+        run: sbt '++ ${{ matrix.scala }}; test; scripted'
 
   publish:
     name: Publish Artifacts
@@ -99,7 +99,7 @@ jobs:
           disk-root: 'C:'
 
       - name: Checkout current branch (full)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
