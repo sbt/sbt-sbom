@@ -93,7 +93,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
         log.warn(s"bom-ref must be distinct: $bomRef")
         components.foreach(_.setBomRef(null))
     }
-    components
+    components.sortBy(c => Option(c.getBomRef).getOrElse(""))
   }
 
   private def configurationsForComponents(configuration: Configuration): Seq[sbt.Configuration] = {
