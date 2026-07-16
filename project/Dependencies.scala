@@ -8,7 +8,7 @@ object Dependencies {
   lazy val library = Seq(
     "io.circe"      %% "circe-generic"       % "0.14.16",
     "io.circe"      %% "circe-parser"        % "0.14.16",
-    "org.cyclonedx"  % "cyclonedx-core-java" % "12.2.0",
+    "org.cyclonedx"  % "cyclonedx-core-java" % "13.0.0",
     "org.scalatest" %% "scalatest"           % "3.2.20" % Test,
     "org.scalamock" %% "scalamock"           % "7.5.5"  % Test
   )
