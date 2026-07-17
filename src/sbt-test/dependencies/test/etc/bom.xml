@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.6">
+<bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.7">
   <metadata>
     <tools>
       <tool>
