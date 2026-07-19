@@ -40,6 +40,20 @@ object SbtUpdateReport {
     lazy val dependencyMap: Map[GraphModuleId, Seq[Module]] =
       createMap(identity)
 
+    def reachableModuleIdsFrom(root: GraphModuleId): Set[GraphModuleId] = {
+      @annotation.tailrec
+      def visit(pending: List[GraphModuleId], visited: Set[GraphModuleId]): Set[GraphModuleId] =
+        pending match {
+          case Nil                                      => visited
+          case current :: remaining if visited(current) => visit(remaining, visited)
+          case current :: remaining                     =>
+            val dependencies = dependencyMap(current).map(_.id).toList
+            visit(dependencies ::: remaining, visited + current)
+        }
+
+      visit(root :: Nil, Set.empty)
+    }
+
     def createMap(
         bindingFor: ((GraphModuleId, GraphModuleId)) => (GraphModuleId, GraphModuleId)
     ): Map[GraphModuleId, Seq[Module]] = {

@@ -26,7 +26,7 @@ import sbt.librarymanagement.ModuleReport
 import java.util.{ TreeMap as TM, UUID }
 import scala.collection.JavaConverters.*
 
-import SbtUpdateReport.{ ModuleGraph, getModuleQualifier }
+import SbtUpdateReport.{ GraphModuleId, ModuleGraph, getModuleQualifier }
 
 class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModuleID: ModuleID, log: Logger) {
   private val serialNumber: String = "urn:uuid:" + UUID.randomUUID.toString
@@ -93,7 +93,7 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
         log.warn(s"bom-ref must be distinct: $bomRef")
         components.foreach(_.setBomRef(null))
     }
-    components
+    components.sortBy(c => Option(c.getBomRef).getOrElse(""))
   }
 
   private def configurationsForComponents(configuration: Configuration): Seq[sbt.Configuration] = {
@@ -120,12 +120,15 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
     report
       .configuration(configuration)
       .map { configurationReport =>
+        val reachableModuleIds = moduleGraph(configurationReport).reachableModuleIdsFrom(GraphModuleId(rootModuleID))
         log.info(
           s"Configuration name = ${configurationReport.configuration.name}, modules: ${configurationReport.modules.size}"
         )
-        configurationReport.modules.map { module =>
-          new ComponentExtractor(module).component
-        }
+        configurationReport.modules
+          .filter(module => reachableModuleIds(GraphModuleId(module.module)))
+          .map { module =>
+            new ComponentExtractor(module).component
+          }
       }
       .getOrElse(Seq())
   }
@@ -253,8 +256,9 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
 
   class DependencyTreeExtractor(configurationReport: ConfigurationReport) {
     def dependencyTree: Seq[Dependency] = {
+      val reachableModuleIds = moduleGraph.reachableModuleIdsFrom(GraphModuleId(rootModuleID))
       moduleGraph.nodes
-        .filter(_.evictedByVersion.isEmpty)
+        .filter(module => reachableModuleIds(module.id) && module.evictedByVersion.isEmpty)
         .sortBy(_.id.idString)
         .map { node =>
           val bomRef = purl(node.id.organization, node.id.name, node.id.version, node.qualifier)
@@ -274,9 +278,12 @@ class BomExtractor(settings: BomExtractorParams, report: UpdateReport, rootModul
         }
     }
 
-    private def moduleGraph: ModuleGraph =
-      SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID, log)
+    private lazy val moduleGraph: ModuleGraph =
+      BomExtractor.this.moduleGraph(configurationReport)
   }
+
+  private def moduleGraph(configurationReport: ConfigurationReport): ModuleGraph =
+    SbtUpdateReport.fromConfigurationReport(configurationReport, rootModuleID, log)
 
   private def toCycloneDxProjectType(e: ProjectType): Component.Type = {
     e match {
