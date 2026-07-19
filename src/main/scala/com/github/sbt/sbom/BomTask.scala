@@ -58,15 +58,7 @@ abstract class BomTask[T](protected val properties: BomTaskProperties) {
       case BomFormat.Xml  => new XmlParser()
     }
 
-    // Classloader stuff is a workaround for
-    // https://github.com/CycloneDX/cyclonedx-core-java/issues/849
-    val existingClassloader = Thread.currentThread().getContextClassLoader();
-    val exceptions = try {
-      Thread.currentThread().setContextClassLoader(this.getClass.getClassLoader)
-      parser.validate(bomFile, schemaVersion).asScala
-    } finally {
-      Thread.currentThread().setContextClassLoader(existingClassloader)
-    }
+    val exceptions = parser.validate(bomFile, schemaVersion).asScala
 
     if (exceptions.nonEmpty) {
       val message =
