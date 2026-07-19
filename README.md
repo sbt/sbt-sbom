@@ -141,6 +141,14 @@ a good idea to [run scalafmt](#formatting) on the code afterward
 
 ## changelog
 
+### v0.6.0
+
+- sbt 2.x support
+- Require Java 17
+- Upgrade to CycloneDX 12.2.0, supporting CycloneDX v1.6.1
+- Allow specifying the projectType
+- Support optionally including `Provided` scope dependencies
+
 ### v0.4.0
 
 - Generate the latest supported CycloneDX version (1.6)
