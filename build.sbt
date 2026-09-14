@@ -6,7 +6,7 @@ ThisBuild / organization := Organization.organization
 ThisBuild / organizationName := Organization.organizationName
 ThisBuild / organizationHomepage := Organization.organizationHomepage
 val scala212 = "2.12.21"
-val scala3 = "3.8.4"
+val scala3 = "3.9.0"
 ThisBuild / scalaVersion := scala212
 ThisBuild / crossScalaVersions := Seq(scala212, scala3)
 ThisBuild / homepage := ProjectSettings.homepage
@@ -29,7 +29,7 @@ lazy val root = (project in file("."))
     buildInfoPackage := "com.github.sbt.sbom",
     (pluginCrossBuild / sbtVersion) := (scalaBinaryVersion.value match {
       case "2.12" => "1.10.7"
-      case _      => "2.0.0"
+      case _      => "2.1.0-M1"
     }),
     scriptedLaunchOpts := {
       scriptedLaunchOpts.value ++ Seq(
@@ -41,7 +41,7 @@ lazy val root = (project in file("."))
     scriptedBufferLog := false,
     scriptedSbt := (scalaBinaryVersion.value match {
       case "2.12" => "1.10.11"
-      case _      => "2.0.0"
+      case _      => "2.1.0-M1"
     }),
     scalacOptions ++= {
       scalaBinaryVersion.value match {
