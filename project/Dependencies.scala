@@ -6,10 +6,11 @@ import sbt.*
 
 object Dependencies {
   lazy val library = Seq(
-    "io.circe"      %% "circe-generic"       % "0.14.17",
-    "io.circe"      %% "circe-parser"        % "0.14.17",
-    "org.cyclonedx"  % "cyclonedx-core-java" % "13.3.0",
-    "org.scalatest" %% "scalatest"           % "3.2.20" % Test,
-    "org.scalamock" %% "scalamock"           % "7.5.5"  % Test
+    "io.circe"              %% "circe-generic"       % "0.14.17",
+    "io.circe"              %% "circe-parser"        % "0.14.17",
+    "org.cyclonedx"          % "cyclonedx-core-java" % "13.4.0",
+    "com.github.package-url" % "packageurl-java"     % "1.5.0",
+    "org.scalatest"         %% "scalatest"           % "3.2.20" % Test,
+    "org.scalamock"         %% "scalamock"           % "7.5.5"  % Test
   )
 }
