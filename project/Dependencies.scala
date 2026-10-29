@@ -11,6 +11,6 @@ object Dependencies {
     "org.cyclonedx"          % "cyclonedx-core-java" % "13.4.0",
     "com.github.package-url" % "packageurl-java"     % "1.5.0",
     "org.scalatest"         %% "scalatest"           % "3.2.20" % Test,
-    "org.scalamock"         %% "scalamock"           % "7.5.5"  % Test
+    "org.scalamock"         %% "scalamock"           % "7.6.2"  % Test
   )
 }
