@@ -3,4 +3,4 @@
 > clean
 > compile
 > makeBom
-$ exists target/exists-0.1.bom.json
+$ exists target/exists_2.12-0.1.bom.json
