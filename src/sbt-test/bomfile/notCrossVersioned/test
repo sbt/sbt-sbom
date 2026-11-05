@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: The sbt-sbom team
+# SPDX-License-Identifier: MIT
+> clean
+> makeBom
+$ exists target/notcrossversioned-0.1.bom.json
+-$ exists target/notcrossversioned_2.12-0.1.bom.json

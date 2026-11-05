@@ -7,7 +7,16 @@ package com.github.sbt.sbom
 import com.github.sbt.sbom.PluginConstants.*
 import org.cyclonedx.model.Component
 import sbt.*
-import sbt.Keys.{ artifact, configuration, fileConverter, packagedArtifacts, version }
+import sbt.Keys.{
+  artifact,
+  configuration,
+  fileConverter,
+  packagedArtifacts,
+  projectID,
+  scalaBinaryVersion,
+  scalaVersion,
+  version
+}
 import sbt.plugins.JvmPlugin
 import sbtcompat.PluginCompat.*
 import xsbti.FileConverter
@@ -77,7 +86,7 @@ object BomSbtPlugin extends AutoPlugin {
 
   override lazy val projectSettings: Seq[Setting[?]] = {
     val bomFileNameSetting = Def.setting {
-      val artifactId = artifact.value.name
+      val artifactId = CrossVersion(scalaVersion.value, scalaBinaryVersion.value)(projectID.value).name
       val artifactVersion = version.value
       val schemaVersion = bomSchemaVersion.value
       val format = BomFormat.fromSettings(bomFormat.?.value, None, schemaVersion)
