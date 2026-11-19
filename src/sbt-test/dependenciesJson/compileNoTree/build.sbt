@@ -27,14 +27,15 @@ lazy val checkTask = Def.task {
   s.log.info("Verifying bom content...")
   makeBom.value
   import scala.sys.process._
-  val changed = Seq("diff", "-w", "target/bom.json", s"${thisProject.value.base}/etc/bom.json").! != 0
+  val changed =
+    Seq("diff", "-w", (target.value / "bom.json").toString, s"${thisProject.value.base}/etc/bom.json").! != 0
   if (changed) {
     if (sys.env.get("UPDATE").contains("true")) {
       // scripted tests are executed with PWD still pointing at the parent project:
       require(
         Seq(
           "cp",
-          "target/bom.json",
+          (target.value / "bom.json").toString,
           s"${sys.env("PWD")}/src/sbt-test/dependenciesJson/compileNoTree/etc/bom.json"
         ).! == 0
       )

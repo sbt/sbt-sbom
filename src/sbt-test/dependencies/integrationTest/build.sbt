@@ -32,7 +32,11 @@ lazy val checkTask = Def.task {
     if (sys.env.get("UPDATE").contains("true")) {
       // scripted tests are executed with PWD still pointing at the parent project:
       require(
-        Seq("cp", "target/bom.xml", s"${sys.env("PWD")}/src/sbt-test/dependencies/integrationTest/etc/bom.xml").! == 0
+        Seq(
+          "cp",
+          (target.value / "bom.xml").toString,
+          s"${sys.env("PWD")}/src/sbt-test/dependencies/integrationTest/etc/bom.xml"
+        ).! == 0
       )
     }
     scala.sys.exit(1)

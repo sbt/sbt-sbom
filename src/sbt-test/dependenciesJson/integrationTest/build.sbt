@@ -34,7 +34,7 @@ lazy val checkTask = Def.task {
       require(
         Seq(
           "cp",
-          "target/bom.json",
+          (target.value / "bom.json").toString,
           s"${sys.env("PWD")}/src/sbt-test/dependenciesJson/integrationTest/etc/bom.json"
         ).! == 0
       )
