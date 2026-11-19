@@ -108,6 +108,12 @@ object BomSbtPlugin extends AutoPlugin {
       Provided / makeBom := Def.uncached(
         Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Provided)).value
       ),
+      Runtime / makeBom := Def.uncached(
+        Def.taskDyn(BomSbtSettings.makeBomTask(Classpaths.updateTask.value, Runtime)).value
+      ),
+      Runtime / listBom := Def.uncached(
+        Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Runtime)).value
+      ),
       Test / listBom := Def.uncached(Def.taskDyn(BomSbtSettings.listBomTask(Classpaths.updateTask.value, Test)).value),
       SbomIntegrationTest / makeBom := Def.uncached(
         Def
