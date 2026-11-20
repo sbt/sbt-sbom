@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: The sbt-sbom team
+# SPDX-License-Identifier: MIT
+-$ exists does
+> makeBom
+$ exists does/not/exist/outputpath-0.1.bom.json

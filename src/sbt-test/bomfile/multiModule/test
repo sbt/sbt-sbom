@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: The sbt-sbom team
+# SPDX-License-Identifier: MIT
+# the target directory of the sub-module does not exist on a fresh checkout (sbt 2)
+-$ exists module-a/target
+> makeBom
+$ exists target/multimodule-0.1.bom.json
+$ exists module-a/target/module-a-0.1.bom.json
