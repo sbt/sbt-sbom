@@ -3,4 +3,4 @@
 > clean
 > compile
 > makeBom
-$ exists target/bom.xml
+$ exists target/**/bom.xml
